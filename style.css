@@ -26,7 +26,6 @@ body {
 .hero {
     position: relative;
     min-height: 100vh;
-
 }
 
 .hero h1 {
@@ -69,7 +68,7 @@ body {
     min-height: 100vh;
     padding-top: 4rem;
     padding-bottom: 5rem;
-    scroll-margin-top: 0; 
+    scroll-margin-top: 0;
 }
 
 .home h2,
@@ -128,8 +127,8 @@ body {
 
 /* Info Section */
 .info {
-    background-color: #0a0a0a;
-    color: #fff;
+    background-color: rgb(255, 237, 252);
+    color: #0a0a0a;
     padding-top: 3rem;
     padding-bottom: 8rem;
 }
@@ -145,7 +144,7 @@ body {
 
 .info .card {
     background-color: rgba(255, 255, 255, 0.2) !important;
-    color: #fff !important;
+    color: #0a0a0a !important;
     border: 1px solid #999;
 }
 
@@ -163,6 +162,12 @@ body {
     border-top: 1px solid #999;
     font-size: 0.9rem;
     font-weight: 300;
+}
+
+.info .btn-maps {
+    background-color: var(--pink);
+    color: #fff;
+    font-size: 1.2rem;
 }
 
 /* Story */
@@ -283,12 +288,11 @@ body {
     right: auto;
 }
 
-
 /* Gallery */
 .gallery {
     padding-top: 3rem;
     padding-bottom: 8rem;
-    background-color: #ffedfc;
+    background-color: rgb(255, 237, 252);
 }
 
 .gallery span {
@@ -303,6 +307,41 @@ body {
 .gallery p {
     font-size: 1.2rem;
     font-weight: 300;
+}
+
+/* RSVP */
+.rsvp h2 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.rsvp {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+}
+
+.rsvp p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.rsvp {
+    background-color: #fff;
+}
+
+.rsvp .btn-send {
+    background-color: var(--pink);
+    color: #fff;
+    border: 1px solid var(--pink);
+}
+
+.rsvp .btn-send:hover {
+    background-color: #fe8ebf;
+    color: #fff;
+    border: 1px solid #fff;
 }
 
 /* Media Query Area */
@@ -325,7 +364,7 @@ body {
     .timeline li .timeline-panel {
         width: calc((100% - 200px));
         float: right;
-    } 
+    }
 
     .timeline li .timeline-panel::before {
         border-left-width: 0;
@@ -350,6 +389,12 @@ body {
     .timeline li .timeline-image {
         width: 160px;
         height: 160px;
+    }
+
+    .rsvp .button-send {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
