@@ -344,6 +344,36 @@ body {
     border: 1px solid #fff;
 }
 
+
+/* Gifts */
+
+.gifts h2 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.gifts {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+    background-color:  rgb(255, 237, 252);
+}
+
+.gifts p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.gifts span{   
+    text-transform: uppercase;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
 /* Media Query Area */
 /* Laptop */
 @media (max-width: 992px) {
