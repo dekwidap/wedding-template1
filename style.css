@@ -374,6 +374,33 @@ body {
     display: block;
     margin-bottom: 1rem;
 }
+
+
+
+/* Footer */
+footer {
+    margin-top: 1.5rem;
+    background-color: #fff;
+}
+
+footer a {
+    color: var(--bg);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--pink);
+}
+
+footer li {
+    list-style: none;
+    margin: 1.5rem;
+    display: inline;
+    font-size: 2.5rem;
+}
+
+
 /* Media Query Area */
 /* Laptop */
 @media (max-width: 992px) {
