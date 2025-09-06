@@ -74,7 +74,8 @@ body {
 
 .home h2,
 .info h2,
-.story h2 {
+.story h2,
+.gallery h2 {
     font-family: "Playwrite CA", cursive;
     font-size: 2.5rem;
     font-weight: bold;
@@ -280,6 +281,28 @@ body {
     border-right-width: 14px;
     left: -13px;
     right: auto;
+}
+
+
+/* Gallery */
+.gallery {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+    background-color: #ffedfc;
+}
+
+.gallery span {
+    text-transform: uppercase;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.gallery p {
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 /* Media Query Area */
