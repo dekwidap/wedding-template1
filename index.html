@@ -44,7 +44,9 @@
                 <h1 class="mt-4 mb-4">Kyoto & Kyoti</h1>
                 <p>Wedding reception in:</p>
                 <div class="simply-countdown"></div>
-                <a href="#home" class="btn btn-lg">View Invitation</a>
+                <a href="#home" class="btn btn-lg" onclick="enableScroll()"
+                    >View Invitation</a
+                >
             </main>
         </section>
 
@@ -133,7 +135,7 @@
                         <a
                             href="https://maps.app.goo.gl/xHVzytgNsBTJf3v88"
                             target="_blank"
-                            class="btn btn-light btn-sm my-3"
+                            class="btn btn-danger btn-sm my-3"
                         >
                             Click Here for The Maps Direction
                         </a>
@@ -482,6 +484,17 @@
             </div>
         </footer>
 
+        <!-- Sound -->
+        <div class="audio-container">
+            <audio id="myAudio" autoplay loop>
+                <source src="src/audio/bg-sound.mp3" type="audio/mp3" />
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-icon" style="display: none">
+                <i class="bi bi-disc-fill"></i>
+            </div>
+        </div>
+
         <!-- Bootstrap 5 -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -518,6 +531,72 @@
                 },
                 plural: true, // Use plurals for labels
             });
+        </script>
+
+        <!-- Light Box Image -->
+        <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
+
+        <!-- Disable Scrolling for First Time -->
+        <script>
+            const rootElement = document.querySelector(":root");
+            const audio = document.getElementById("myAudio");
+            const audioIcon = document.querySelector(".audio-icon");
+            const audioIconPause = document.querySelector(".audio-icon i");
+            let isPlayAudio = false;
+
+
+            function disableScroll() {
+                // Get the current scroll position
+                const scrollTop =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                const scrollLeft =
+                    window.pageXOffset || document.documentElement.scrollLeft;
+
+                // Add styles to body to disable scrolling
+                window.onscroll = function () {
+                    window.scrollTo(scrollLeft, scrollTop);
+                };
+
+                rootElement.style.scrollBehavior = "auto";
+            }
+
+            function enableScroll() {
+                // Remove the scroll disabling function
+                window.onscroll = function () {};
+                rootElement.style.scrollBehavior = "smooth";
+                // localStorage.setItem("opened", "true");
+                playAudio();
+            }
+
+            playAudio = () => {
+                audioIcon.style.display = "flex";
+                audio.play();
+                audio.volume = 0.05; // 0.0 (mute) - 1.0 (max)
+                isPlayAudio = true;
+            };
+
+            audioIcon.addEventListener("click", () => {
+                if (isPlayAudio) {
+                    audio.pause();
+                    isPlayAudio = false;
+                    audioIconPause.classList.remove("bi-disc-fill");
+                    audioIconPause.classList.add("bi-pause-circle-fill");
+                } else {
+                    audio.play();
+                    isPlayAudio = true;
+                    audioIconPause.classList.add("bi-disc-fill");
+                    audioIconPause.classList.remove("bi-pause-circle-fill");
+                }
+            });
+
+
+
+
+            // if (!localStorage.getItem("opened")) {
+            //
+            // }
+
+            disableScroll();
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
