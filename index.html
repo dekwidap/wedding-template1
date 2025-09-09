@@ -40,7 +40,7 @@
             class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white"
         >
             <main>
-                <h4>To Mr./Mrs./Brother/Sister,</h4>
+                <h4>To <span>Mr./Mrs./Brother/Sister, </span></h4>
                 <h1 class="mt-4 mb-4">Kyoto & Kyoti</h1>
                 <p>Wedding reception in:</p>
                 <div class="simply-countdown"></div>
@@ -292,6 +292,100 @@
             </div>
         </section>
 
+        <section id="rsvp" class="rsvp">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-10 text-center">
+                        <h2>Confirm your Attendance</h2>
+                        <p>
+                            We kindly request your presence at our wedding
+                            ceremony. Please confirm your attendance by filling
+                            out the RSVP form below.
+                        </p>
+                    </div>
+                </div>
+
+               <form
+                    method="POST"
+                    action="https://script.google.com/macros/s/AKfycbyPVekI50oYRWh3nRyIZ7MVbtKqYZu7xAu9klIJjrIMjDfN5SUB_eyumRDqKJVKhBwk/exec"
+                    class="row row-cols-md-auto g-3 align-items-center justify-content-center mt-3"
+                    id="my-form"
+                >
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="Name"
+                                name="Name"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="Attendance" class="form-label"
+                                >Number of Attendees</label
+                            >
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="Attendance"
+                                min="1"
+                                max="5"
+                                length="1"
+                                value="1"
+                                name="Attendance"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="Status" class="form-label"
+                                >Confirmation</label
+                            >
+                            <select
+                                name="Status"
+                                id="Status"
+                                class="form-select"
+                            >
+                                <option selected>Choose</option>
+                                <option value="Attending">Attending</option>
+                                <option value="Not Attending">
+                                    Not Attendance
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12 button-send">
+                        <button class="btn btn-send btn-sm" style="margin-top: 20px">
+                            Send
+                        </button>
+                    </div>
+                </form>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-10 text-center mt-5">
+                        <p>
+                            If you want to see the guest list who already
+                            confirmed, please click the button below
+                        </p>
+                        <a
+                            href="https://docs.google.com/spreadsheets/d/17BM9LJeJgpJ2v9dDCZ0ht8ILKPgcoY_lQxffrnUFI-s/edit?usp=sharing"
+                            target="_blank"
+                            class="btn btn-sm mb-3 btn-send"
+                        >
+                            Click Here to See The Guest List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Gallery -->
         <section id="gallery" class="gallery">
             <div class="container">
                 <div class="row justify-content-center">
@@ -544,7 +638,6 @@
             const audioIconPause = document.querySelector(".audio-icon i");
             let isPlayAudio = false;
 
-
             function disableScroll() {
                 // Get the current scroll position
                 const scrollTop =
@@ -589,9 +682,6 @@
                 }
             });
 
-
-
-
             // if (!localStorage.getItem("opened")) {
             //
             // }
@@ -599,6 +689,18 @@
             disableScroll();
         </script>
 
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const to = urlParams.get("to") || "";
+            const pronoun = urlParams.get("p") || "Mr./Mrs./Brother/Sister";
+
+            const nameInvatation = document.querySelector(".hero h4 span");
+            nameInvatation.innerText = `${pronoun} ${to},`.replace(/ ,$/, ",");
+
+            document.querySelector("#Name").value = to;
+        </script>
+
+        <!-- Light Box -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
     </body>
 </html>

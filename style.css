@@ -292,7 +292,7 @@ body {
 .gallery {
     padding-top: 3rem;
     padding-bottom: 8rem;
-    background-color: rgb(255, 237, 252);
+    background-color: #fff;
 }
 
 .gallery span {
@@ -329,7 +329,7 @@ body {
 }
 
 .rsvp {
-    background-color: #fff;
+    background-color: rgb(255, 237, 252);;
 }
 
 .rsvp .btn-send {
@@ -358,7 +358,7 @@ body {
 .gifts {
     padding-top: 3rem;
     padding-bottom: 8rem;
-    background-color:  #fff;
+    background-color:  rgb(255, 237, 252);;
 }
 
 .gifts p {
@@ -379,7 +379,7 @@ body {
 
 /* Footer */
 footer {
-    margin-top: 1.5rem;
+    padding: 1.5rem;
     background-color: #000;
     color: white;
 }
