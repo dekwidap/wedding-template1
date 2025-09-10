@@ -32,6 +32,12 @@
 
         <!-- Simply Countdown -->
         <link rel="stylesheet" href="dist-countdown/themes/default.css" />
+
+        <!-- Animate on Scroll -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+        />
     </head>
     <body>
         <!-- Section Top Hero -->
@@ -68,7 +74,7 @@
                 <div class="row couple">
                     <div class="col-lg-6">
                         <div class="row">
-                            <div class="col-8 text-end">
+                            <div class="col-8 text-end" data-aos="fade-right" data-aos-duration="2000">
                                 <h3>Kyoto</h3>
                                 <p>
                                     Lorem ipsum dolor sit amet consectetur,
@@ -103,7 +109,7 @@
                                     class="img-responsive rounded-circle"
                                 />
                             </div>
-                            <div class="col-8">
+                            <div class="col-8" data-aos="fade-left" data-aos-duration="2000">
                                 <h3>Kyoti</h3>
                                 <p>
                                     Lorem ipsum dolor sit amet consectetur,
@@ -150,7 +156,7 @@
 
                 <div class="row justify-content-center mt-4">
                     <div class="col-md-5 col-10">
-                        <div class="card text-center text-bg-light mb-5">
+                        <div class="card text-center text-bg-light mb-5" data-aos="flip-left" data-aos-duration="2000">
                             <div class="card-header">Solemnization</div>
                             <div class="card-body">
                                 <div class="row justify-content-center">
@@ -175,7 +181,7 @@
                     </div>
 
                     <div class="col-md-5 col-10">
-                        <div class="card text-center text-bg-light">
+                        <div class="card text-center text-bg-light" data-aos="flip-right" data-aos-duration="2000">
                             <div class="card-header">Weeding Ceremony</div>
                             <div class="card-body">
                                 <div class="row justify-content-center">
@@ -227,7 +233,7 @@
                                         background-image: url(src/img/Chapter1.png);
                                     "
                                 ></div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" data-aos="zoom-in" data-aos-duration="1500">
                                     <div class="timeline-heading">
                                         <h3>Chapter 1</h3>
                                         <span>4 July 2023</span>
@@ -249,7 +255,7 @@
                                         background-image: url(src/img/Chapter2.png);
                                     "
                                 ></div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" data-aos="zoom-in" data-aos-duration="1500">
                                     <div class="timeline-heading">
                                         <h3>Chapter 2</h3>
                                         <span>10 December 2024</span>
@@ -271,7 +277,7 @@
                                         background-image: url(src/img/Chapter3.png);
                                     "
                                 ></div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" data-aos="zoom-in" data-aos-duration="1500">
                                     <div class="timeline-heading">
                                         <h3>Chapter 3</h3>
                                         <span>20 July 2025</span>
@@ -305,7 +311,7 @@
                     </div>
                 </div>
 
-               <form
+                <form
                     method="POST"
                     action="https://script.google.com/macros/s/AKfycbyPVekI50oYRWh3nRyIZ7MVbtKqYZu7xAu9klIJjrIMjDfN5SUB_eyumRDqKJVKhBwk/exec"
                     class="row row-cols-md-auto g-3 align-items-center justify-content-center mt-3"
@@ -361,7 +367,10 @@
                     </div>
 
                     <div class="col-12 button-send">
-                        <button class="btn btn-send btn-sm" style="margin-top: 20px">
+                        <button
+                            class="btn btn-send btn-sm"
+                            style="margin-top: 20px"
+                        >
                             Send
                         </button>
                     </div>
@@ -403,7 +412,7 @@
                 <div
                     class="row row-cols-md-3 row-cols-sm-2 row-cols-1 justify-content-center"
                 >
-                    <div class="col mt-3">
+                    <div class="col mt-3" data-aos="flip-left" data-aos-duration="2000">
                         <a
                             href="src/img/gallery/g1.png"
                             data-toggle="lightbox"
@@ -417,7 +426,7 @@
                             />
                         </a>
                     </div>
-                    <div class="col mt-3">
+                    <div class="col mt-3" data-aos="flip-left" data-aos-duration="2000">
                         <a
                             href="src/img/gallery/g2.png"
                             data-toggle="lightbox"
@@ -431,7 +440,7 @@
                             />
                         </a>
                     </div>
-                    <div class="col mt-3">
+                    <div class="col mt-3" data-aos="flip-left" data-aos-duration="2000">
                         <a
                             href="src/img/gallery/g3.png"
                             data-toggle="lightbox"
@@ -445,7 +454,7 @@
                             />
                         </a>
                     </div>
-                    <div class="col mt-3">
+                    <div class="col mt-3" data-aos="flip-left" data-aos-duration="2000">
                         <a
                             href="src/img/gallery/g4.png"
                             data-toggle="lightbox"
@@ -459,7 +468,7 @@
                             />
                         </a>
                     </div>
-                    <div class="col mt-3">
+                    <div class="col mt-3" data-aos="flip-left" data-aos-duration="2000">
                         <a
                             href="src/img/gallery/g5.png"
                             data-toggle="lightbox"
@@ -473,7 +482,7 @@
                             />
                         </a>
                     </div>
-                    <div class="col mt-3">
+                    <div class="col mt-3" data-aos="flip-left" data-aos-duration="2000">
                         <a
                             href="src/img/gallery/g6.png"
                             data-toggle="lightbox"
@@ -686,7 +695,7 @@
             //
             // }
 
-            disableScroll();
+            
         </script>
 
         <script>
@@ -702,5 +711,10 @@
 
         <!-- Light Box -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
     </body>
 </html>
