@@ -109,7 +109,6 @@ document.addEventListener("visibilitychange", () => {
     }
 });
 
-
 // =======================
 // FIREBASE CONFIGURATION
 // =======================
@@ -204,3 +203,66 @@ function showSuccessToast() {
         toast.classList.remove("show");
     }, 3000);
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("rsvp-form");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const nameInput = form.querySelector('input[name="Name"]');
+        const statusSelect = form.querySelector('select[name="Status"]');
+
+        const nama = nameInput ? nameInput.value.trim() : "";
+        const kehadiran = statusSelect ? statusSelect.value.trim() : "";
+
+        if (!nama || !kehadiran || kehadiran.toLowerCase().includes("choose")) {
+            Swal.fire({
+                icon: "warning",
+                title: "Data belum lengkap",
+                text: "Harap isi nama dan pilih status kehadiran sebelum mengirim RSVP 🙏",
+                confirmButtonColor: "#ff5e99",
+            });
+            return;
+        }
+
+        // ⏳ Langsung tampilkan loading popup
+        Swal.fire({
+            title: "Mengirim RSVP...",
+            text: "Mohon tunggu sebentar ❤️",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
+
+        const scriptURL = form.action;
+        const formData = new FormData(form);
+
+        fetch(scriptURL, { method: "POST", body: formData })
+            .then((response) => {
+                // ⏩ Tutup popup loading lalu tampilkan hasilnya
+                if (response.ok) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "RSVP berhasil dikirim!",
+                        text: "Terima kasih sudah mengonfirmasi kehadiran ❤️",
+                        confirmButtonColor: "#ff5e99",
+                    });
+                    form.reset();
+                } else {
+                    throw new Error("Gagal mengirim data RSVP");
+                }
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Ups!",
+                    text: "Terjadi kesalahan saat mengirim. Silakan coba lagi nanti.",
+                    confirmButtonColor: "#ff5e99",
+                });
+            });
+    });
+});

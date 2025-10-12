@@ -340,6 +340,7 @@
                 </div>
 
                 <form
+                    id="rsvp-form"
                     method="POST"
                     action="https://script.google.com/macros/s/AKfycbyPVekI50oYRWh3nRyIZ7MVbtKqYZu7xAu9klIJjrIMjDfN5SUB_eyumRDqKJVKhBwk/exec"
                     class="row row-cols-md-auto g-3 align-items-center justify-content-center mt-3"
@@ -385,7 +386,7 @@
                                 id="Status"
                                 class="form-select"
                             >
-                                <option selected>Choose</option>
+                                <option value="" disabled selected>Choose</option>
                                 <option value="Attending">Attending</option>
                                 <option value="Not Attending">
                                     Not Attendance
@@ -719,6 +720,10 @@
 
         <!-- Light Box Image -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
+
+        <!-- Sweetalert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
         <!-- Light Box -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
