@@ -121,9 +121,20 @@ window.addEventListener("focus", () => {
 // =======================
 
 // TODO: Ganti konfigurasi berikut dengan config dari Firebase Project kamu
-const firebaseConfig = window.__FIREBASE_CONFIG__;
+const firebaseConfig = {
+  apiKey: "AIzaSyBtf6t_6mFOe1TZIcuObdPVXMdvQc2A2FY",
+  authDomain: "wedding-dekwid-1.firebaseapp.com",
+  databaseURL: "https://wedding-dekwid-1-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "wedding-dekwid-1",
+  storageBucket: "wedding-dekwid-1.appspot.com",
+  messagingSenderId: "108200316819",
+  appId: "1:108200316819:web:a2e2829ee0268d7a652266"
+};
+
+// inisialisasi Firebase
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+
 // =======================
 // FORM KARTU UCAPAN
 // =======================
