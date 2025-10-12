@@ -52,15 +52,23 @@ function enableScroll() {
     window.onscroll = function () {};
     rootElement.style.scrollBehavior = "smooth";
     // localStorage.setItem("opened", "true");
-    playAudio();
+    // playAudio();
 }
 
 playAudio = () => {
     audioIcon.style.display = "flex";
+    audio.muted = false; // unmute saat tombol diklik
     audio.play();
-    audio.volume = 0.05; // 0.0 (mute) - 1.0 (max)
+    audio.volume = 0.05;
     isPlayAudio = true;
 };
+const viewButton = document.querySelector(".view-invitation");
+if (viewButton) {
+    viewButton.addEventListener("click", () => {
+        enableScroll();
+        playAudio();
+    });
+}
 
 audioIcon.addEventListener("click", () => {
     if (isPlayAudio) {
@@ -75,11 +83,6 @@ audioIcon.addEventListener("click", () => {
         audioIconPause.classList.remove("bi-pause-circle-fill");
     }
 });
-
-// if (!localStorage.getItem("opened")) {
-//
-// }
-// disableScroll();
 
 // Personalize Invitation
 const urlParams = new URLSearchParams(window.location.search);
@@ -106,15 +109,6 @@ document.addEventListener("visibilitychange", () => {
     }
 });
 
-window.addEventListener("blur", () => {
-    audio.pause();
-});
-
-window.addEventListener("focus", () => {
-    if (isPlayAudio) {
-        audio.play();
-    }
-});
 
 // =======================
 // FIREBASE CONFIGURATION
@@ -122,13 +116,14 @@ window.addEventListener("focus", () => {
 
 // TODO: Ganti konfigurasi berikut dengan config dari Firebase Project kamu
 const firebaseConfig = {
-  apiKey: "AIzaSyBtf6t_6mFOe1TZIcuObdPVXMdvQc2A2FY",
-  authDomain: "wedding-dekwid-1.firebaseapp.com",
-  databaseURL: "https://wedding-dekwid-1-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "wedding-dekwid-1",
-  storageBucket: "wedding-dekwid-1.appspot.com",
-  messagingSenderId: "108200316819",
-  appId: "1:108200316819:web:a2e2829ee0268d7a652266"
+    apiKey: "AIzaSyBtf6t_6mFOe1TZIcuObdPVXMdvQc2A2FY",
+    authDomain: "wedding-dekwid-1.firebaseapp.com",
+    databaseURL:
+        "https://wedding-dekwid-1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "wedding-dekwid-1",
+    storageBucket: "wedding-dekwid-1.appspot.com",
+    messagingSenderId: "108200316819",
+    appId: "1:108200316819:web:a2e2829ee0268d7a652266",
 };
 
 // inisialisasi Firebase
