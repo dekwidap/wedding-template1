@@ -229,8 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // ⏳ Langsung tampilkan loading popup
         Swal.fire({
-            title: "Mengirim RSVP...",
-            text: "Mohon tunggu sebentar ❤️",
+            title: "Sending RSVP...",
+            text: "Please Wait ❤️",
             allowOutsideClick: false,
             allowEscapeKey: false,
             didOpen: () => {
@@ -247,20 +247,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     Swal.fire({
                         icon: "success",
-                        title: "RSVP berhasil dikirim!",
-                        text: "Terima kasih sudah mengonfirmasi kehadiran ❤️",
+                        title: "Your RSVP Already Sended",
+                        text: "Thank you for your Confirmation ❤️",
                         confirmButtonColor: "#ff5e99",
                     });
                     form.reset();
                 } else {
-                    throw new Error("Gagal mengirim data RSVP");
+                    throw new Error("Failed RSVP");
                 }
             })
             .catch(() => {
                 Swal.fire({
                     icon: "error",
                     title: "Ups!",
-                    text: "Terjadi kesalahan saat mengirim. Silakan coba lagi nanti.",
+                    text: "There was been a error. Please try again later or contact the couple 🙏",
                     confirmButtonColor: "#ff5e99",
                 });
             });
