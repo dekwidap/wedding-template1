@@ -1,0 +1,11 @@
+# Node modules (kalau nanti pakai npm)
+node_modules/
+
+# File sensitif
+.env
+config.js
+firebaseConfig.js
+
+# Sistem lokal
+.DS_Store
+Thumbs.db

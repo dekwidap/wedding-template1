@@ -1,0 +1,679 @@
+:root {
+    --pink: #f14e95;
+    --bg: #0a0a0a;
+    --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-size: 1.2rem;
+    font-family: "Work Sans", sans-serif;
+}
+
+/* Hero Section */
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("src/img/handHolder.png") no-repeat center center/cover;
+    z-index: -1;
+    filter: brightness(0.4);
+}
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+}
+
+.hero h1 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 3rem;
+}
+
+.hero h4 {
+    font-size: 1.6rem;
+}
+
+.hero p {
+    font-size: 1.4rem;
+}
+
+.hero a {
+    color: var(--pink);
+    background-color: #fff;
+    box-shadow: var(--shadow);
+}
+
+.hero h1,
+.hero h4,
+.hero p {
+    text-shadow: var(--shadow);
+}
+
+.hero a:hover {
+    color: #fff;
+    background-color: var(--pink);
+    box-shadow: var(--shadow);
+}
+
+/* Home */
+.home {
+    background-image: url("src/img/blueFlora.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+    scroll-margin-top: 0;
+}
+
+.home h2,
+.info h2,
+.story h2,
+.gallery h2 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.home h4 {
+    color: #444;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.home p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Couple Section */
+.home .couple {
+    margin-top: 20px;
+}
+
+.home .couple h3 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2rem;
+    color: var(--pink);
+}
+
+.home .couple img {
+    width: 100%;
+}
+
+.home .heart {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(65px);
+}
+
+.home .heart i {
+    margin: auto;
+    color: var(--pink);
+}
+
+/* Info Section */
+.info {
+    background-color: rgb(255, 237, 252);
+    color: #0a0a0a;
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+}
+
+.info .alamat {
+    font-size: 1.2rem;
+}
+
+.info .descriptions {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.info .card {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #0a0a0a !important;
+    border: 1px solid #999;
+}
+
+.info .card-header {
+    border: 1px solid #999;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.info .card-body {
+    font-size: 1rem;
+}
+
+.info .card-footer {
+    border-top: 1px solid #999;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.info .btn-maps {
+    background-color: var(--pink);
+    color: red;
+    font-size: 1.2rem;
+}
+
+/* Story */
+.story {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+}
+
+.story span {
+    text-transform: uppercase;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.story p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.timeline {
+    list-style: none;
+    padding: 1.4rem 0;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    width: 1px;
+    background-color: #ccc;
+    left: 50%;
+}
+
+.timeline li {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.timeline li::before,
+.timeline li::after {
+    content: "";
+    display: table;
+}
+
+.timeline li::after {
+    clear: both;
+}
+
+.timeline li .timeline-image {
+    width: 160px;
+    height: 160px;
+    background-color: #ccc;
+    position: absolute;
+    left: 50%;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.timeline li .timeline-panel {
+    width: 40%;
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 2rem;
+    position: relative;
+    border-radius: 5px;
+}
+
+.timeline li .timeline-panel::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 70px;
+    right: -15px;
+    z-index: -1;
+    border-top: 15px solid transparent;
+    border-left: 15px solid black;
+    border-right: 0px solid black;
+    border-bottom: 15px solid transparent;
+}
+
+.timeline li .timeline-panel::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    border-top: 14px solid transparent;
+    border-left: 14px solid #fff;
+    border-right: 0px solid #fff;
+    border-bottom: 14px solid transparent;
+    top: 71px;
+    right: -14px;
+}
+
+.timeline li.timeline-inverted .timeline-panel {
+    float: right;
+}
+
+.timeline li.timeline-inverted .timeline-panel::before {
+    border-left-width: 0px;
+    border-right-width: 15px;
+    left: -15px;
+    right: auto;
+}
+
+.timeline li.timeline-inverted .timeline-panel::after {
+    border-left-width: 0px;
+    border-right-width: 14px;
+    left: -13px;
+    right: auto;
+}
+
+/* Gallery */
+.gallery {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+    background-color: rgb(255, 237, 252);
+}
+
+.gallery span {
+    text-transform: uppercase;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.gallery p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* RSVP */
+.rsvp h2 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.rsvp {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+}
+
+.rsvp p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.rsvp {
+    background-color: rgb(255, 237, 252);
+}
+
+.rsvp .btn-send {
+    background-color: var(--pink);
+    color: #fff;
+    border: 1px solid var(--pink);
+}
+
+.rsvp .btn-send:hover {
+    background-color: #fe8ebf;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+/* Guest Messages Section */
+.messages {
+    background-color: #fff;
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+}
+
+.messages h2 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.messages .sub-text {
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.messages form .form-control {
+    border-radius: 0.75rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.messages form .form-control:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 6px rgba(241, 78, 149, 0.4);
+}
+
+.messages .btn-send {
+    background-color: var(--pink);
+    color: #fff;
+    border: none;
+    padding: 0.6rem 2rem;
+    border-radius: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.messages .btn-send:hover {
+    background-color: #fe8ebf;
+}
+
+/* Daftar pesan */
+.message-list {
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Animasi fade-in untuk ucapan baru */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-item {
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.message-item h5 {
+    color: var(--pink);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.message-item p {
+    color: #333;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* --- Ubah form Kartu Ucapan jadi vertikal di semua perangkat --- */
+.messages form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 700px; /* ubah nilai ini sesuai keinginan */
+    margin: 0 auto; /* biar tetap di tengah */
+}
+
+.messages form .col-md-5,
+.messages form .col-10 {
+    width: 100% !important; /* Biar full lebar, bukan 2 kolom */
+}
+
+.messages form input,
+.messages form textarea {
+    width: 100%;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .messages form {
+        text-align: center;
+    }
+    .messages form .col-md-5 {
+        width: 80%;
+    }
+    .message-list {
+        max-height: 300px;
+    }
+}
+
+/* Gifts */
+
+.gifts h2 {
+    font-family: "Playwrite CA", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.gifts {
+    padding-top: 3rem;
+    padding-bottom: 8rem;
+    background-color: #fff;
+}
+
+.gifts p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.gifts span {
+    text-transform: uppercase;
+    color: #666;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    padding: 1.5rem;
+    background-color: #000;
+    color: white;
+}
+
+footer a {
+    color: var(--bg);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer li {
+    list-style: none;
+    margin: 1.5rem;
+    display: inline;
+    font-size: 2.5rem;
+}
+
+.bi-instagram,
+.bi-github,
+.bi-facebook {
+    color: #fff;
+}
+
+.bi-instagram:hover,
+.bi-github:hover,
+.bi-facebook:hover {
+    color: var(--pink);
+}
+
+.audio-icon {
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    animation: rorate 4s linear infinite;
+    transform-origin: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+}
+
+.bi-disc-fill,
+.bi-pause-circle-fill {
+    color: var(--pink);
+    opacity: 0.5;
+    mix-blend-mode: difference;
+}
+
+@keyframes rorate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Media Query Area */
+/* Laptop */
+@media (max-width: 992px) {
+    html {
+        font-size: 90%;
+    }
+    .home .heart {
+        display: none;
+    }
+    .timeline::before {
+        left: 60px;
+    }
+    .timeline li .timeline-image {
+        left: 15px;
+        margin-left: 45px;
+        top: 16px;
+    }
+    .timeline li .timeline-panel {
+        width: calc((100% - 200px));
+        float: right;
+    }
+
+    .timeline li .timeline-panel::before {
+        border-left-width: 0;
+        border-right-width: 15px;
+        left: -15px;
+        right: auto;
+    }
+
+    .timeline li .timeline-panel::after {
+        border-left-width: 0;
+        border-right-width: 14px;
+        left: -13px;
+        right: auto;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    html {
+        font-size: 85%;
+    }
+    .timeline li .timeline-image {
+        width: 160px;
+        height: 160px;
+    }
+
+    .rsvp .button-send {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Phone */
+@media (max-width: 576px) {
+    html {
+        font-size: 80%;
+    }
+    .timeline li .timeline-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .timeline li .timeline-panel {
+        width: 55%;
+        transform: translateX(-15px);
+    }
+
+    .timeline li .timeline-panel::before {
+        top: 30px;
+    }
+
+    .timeline li .timeline-panel::after {
+        top: 31px;
+    }
+}
+
+/* Extra Large */
+@media (max-width: 1200px) {
+    .home .heart {
+        transform: translateX(-50%) translateY(45px);
+    }
+}
+
+/* Toast Notification */
+.toast-message {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--pink);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 9999;
+}
+
+.toast-message.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-message i {
+    color: #fff;
+    font-size: 1.4rem;
+}
