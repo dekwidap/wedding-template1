@@ -47,6 +47,8 @@ function disableScroll() {
     rootElement.style.scrollBehavior = "auto";
 }
 
+disableScroll();
+
 function enableScroll() {
     // Remove the scroll disabling function
     window.onscroll = function () {};
