@@ -26,65 +26,107 @@ simplyCountdown(".simply-countdown", {
     plural: true, // Use plurals for labels
 });
 
-// Disable Scrolling for First Time
+// === SCROLL CONTROL ===
 const rootElement = document.querySelector(":root");
 const audio = document.getElementById("myAudio");
 const audioIcon = document.querySelector(".audio-icon");
-const audioIconPause = document.querySelector(".audio-icon i");
-let isPlayAudio = false;
+const audioIconI = document.querySelector(".audio-icon i");
+const viewButton = document.querySelector(".view-invitation");
 
 function disableScroll() {
-    // Get the current scroll position
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft =
         window.pageXOffset || document.documentElement.scrollLeft;
-
-    // Add styles to body to disable scrolling
     window.onscroll = function () {
         window.scrollTo(scrollLeft, scrollTop);
     };
-
     rootElement.style.scrollBehavior = "auto";
 }
 
-disableScroll();
-
 function enableScroll() {
-    // Remove the scroll disabling function
     window.onscroll = function () {};
     rootElement.style.scrollBehavior = "smooth";
-    // localStorage.setItem("opened", "true");
-    // playAudio();
 }
 
-playAudio = () => {
+// === AUDIO UI SYNC ===
+function updateAudioUI() {
+    // tampilkan tombol icon
     audioIcon.style.display = "flex";
-    audio.muted = false; // unmute saat tombol diklik
-    audio.play();
-    audio.volume = 0.05;
-    isPlayAudio = true;
-};
-const viewButton = document.querySelector(".view-invitation");
+
+    if (!audio.paused && !audio.ended) {
+        // sedang PLAY
+        audioIconI.classList.add("bi-disc-fill");
+        audioIconI.classList.remove("bi-pause-circle-fill");
+    } else {
+        // sedang PAUSE / STOP
+        audioIconI.classList.remove("bi-disc-fill");
+        audioIconI.classList.add("bi-pause-circle-fill");
+    }
+}
+
+function playAudioSafe() {
+    audio.muted = false;
+    return audio
+        .play()
+        .then(() => {
+            audio.volume = 0.5;
+            updateAudioUI();
+        })
+        .catch((err) => {
+            // kalau masih ke-block, user belum benar2 klik; icon tetap tampil utk klik manual
+            console.warn("Autoplay blocked:", err);
+            updateAudioUI();
+        });
+}
+
+function toggleAudio() {
+    if (audio.paused || audio.ended) {
+        playAudioSafe();
+    } else {
+        audio.pause();
+        updateAudioUI();
+    }
+}
+
+// === INIT ===
+const openedBefore = localStorage.getItem("opened") === "true";
+
+if (!openedBefore) {
+    // pertama kali: kunci scroll, sembunyikan icon audio sampai user klik
+    disableScroll();
+    audio.pause();
+    audioIcon.style.display = "none";
+} else {
+    // pernah buka: scroll aktif, musik default PAUSE, icon tampil (ikon pause)
+    enableScroll();
+    audio.pause();
+    updateAudioUI();
+}
+
+// sync UI saat state audio berubah (anti-miss)
+["play", "pause", "ended"].forEach((ev) =>
+    audio.addEventListener(ev, updateAudioUI)
+);
+
+// === HANDLERS ===
 if (viewButton) {
     viewButton.addEventListener("click", () => {
-        enableScroll();
-        playAudio();
+        // kalau pertama kali, buka scroll & tandai sudah pernah buka
+        if (!localStorage.getItem("opened")) {
+            enableScroll();
+            localStorage.setItem("opened", "true");
+        }
+
+        // tampilkan icon & toggle musik dari tombol ini juga
+        updateAudioUI();
+        toggleAudio();
     });
 }
 
 audioIcon.addEventListener("click", () => {
-    if (isPlayAudio) {
-        audio.pause();
-        isPlayAudio = false;
-        audioIconPause.classList.remove("bi-disc-fill");
-        audioIconPause.classList.add("bi-pause-circle-fill");
-    } else {
-        audio.play();
-        isPlayAudio = true;
-        audioIconPause.classList.add("bi-disc-fill");
-        audioIconPause.classList.remove("bi-pause-circle-fill");
-    }
+    toggleAudio();
 });
+
 
 // Personalize Invitation
 const urlParams = new URLSearchParams(window.location.search);
