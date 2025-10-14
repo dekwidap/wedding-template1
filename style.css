@@ -98,6 +98,12 @@ body {
     overflow: hidden; /* biar ornamen tidak keluar area section */
     z-index: 0; /* buat layer untuk pseudo-element */
     --orn-img: url("src/img/assets/ornamentDoa.png"); /* ganti dgn filemu */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* posisikan isi di bawah */
+    align-items: center; /* tetap center secara horizontal */
+    text-align: center;
 }
 /* Ornamen kiri & kanan bawah */
 #doa::before {
@@ -116,7 +122,7 @@ body {
     content: "";
     position: absolute;
     right: -4px; /* kanan */
-    top: -32px; /* atas */
+    top: 15px; /* atas */
     left: auto;
     bottom: auto; /* pastikan tidak ketarik ke bawah */
     background: var(--orn-img) no-repeat center / contain;
@@ -145,26 +151,41 @@ body {
 
 /* Perkecil di layar kecil */
 @media (max-width: 576px) {
-    #doa {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* posisikan isi di bawah */
-        align-items: center; /* tetap center secara horizontal */
-        text-align: center;
-        padding-bottom: 0; /* semula 80px */
+    html {
+        font-size: 80%;
     }
-    #doa::before,
-    #doa::after {
-        width: clamp(320px, 24vw, 400px);
+    .timeline li .timeline-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .timeline li .timeline-panel {
+        width: 55%;
+        transform: translateX(-15px);
+    }
+
+    .timeline li .timeline-panel::before {
+        top: 30px;
+    }
+
+    .timeline li .timeline-panel::after {
+        top: 31px;
+    }
+    .img-swastika {
+        width: 60%;
+    }
+
+    #doa::after,
+    #doa::before {
+        width: clamp(200px, 24vw, 300px);
+        aspect-ratio: 1 / 1; /* kalau file-nya kotak; kalau tidak, pakai height */
     }
 
     #doa::before {
         content: "";
         position: absolute;
-        left: -4px;
-        bottom: -6px;
+        left: 4px;
+        bottom: -24px;
         top: auto;
         background: var(--orn-img) no-repeat center / contain;
         pointer-events: none;
@@ -173,8 +194,8 @@ body {
     #doa::after {
         content: "";
         position: absolute;
-        right: -4px; /* kanan */
-        top: -24px; /* atas */
+        right: 4px; /* kanan */
+        top: -8px; /* atas */
         left: auto;
         bottom: auto; /* pastikan tidak ketarik ke bawah */
         background: var(--orn-img) no-repeat center / contain;
@@ -681,41 +702,6 @@ body {
     .message-list {
         max-height: 300px;
     }
-    #doa {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* posisikan isi di bawah */
-        align-items: center; /* tetap center secara horizontal */
-        text-align: center;
-        padding-bottom: 0; /* semula 80px */
-    }
-    #doa::before,
-    #doa::after {
-        width: clamp(320px, 24vw, 400px);
-    }
-
-    #doa::before {
-        content: "";
-        position: absolute;
-        left: -4px;
-        bottom: -6px;
-        top: auto;
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
-
-    #doa::after {
-        content: "";
-        position: absolute;
-        right: -4px; /* kanan */
-        top: -24px; /* atas */
-        left: auto;
-        bottom: auto; /* pastikan tidak ketarik ke bawah */
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
 }
 
 /* Gifts */
@@ -793,6 +779,7 @@ footer li {
     justify-content: center;
     align-items: center;
     line-height: 0;
+    z-index: 999;
 }
 
 .bi-disc-fill,
@@ -846,41 +833,6 @@ footer li {
         left: -13px;
         right: auto;
     }
-    #doa {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* posisikan isi di bawah */
-        align-items: center; /* tetap center secara horizontal */
-        text-align: center;
-        padding-bottom: 0; /* semula 80px */
-    }
-    #doa::before,
-    #doa::after {
-        width: clamp(320px, 24vw, 400px);
-    }
-
-    #doa::before {
-        content: "";
-        position: absolute;
-        left: -4px;
-        bottom: -6px;
-        top: auto;
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
-
-    #doa::after {
-        content: "";
-        position: absolute;
-        right: -4px; /* kanan */
-        top: -24px; /* atas */
-        left: auto;
-        bottom: auto; /* pastikan tidak ketarik ke bawah */
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
 }
 
 /* Tablet */
@@ -900,82 +852,9 @@ footer li {
     }
 }
 
-/* Phone */
-@media (max-width: 576px) {
-    html {
-        font-size: 80%;
-    }
-    .timeline li .timeline-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    .timeline li .timeline-panel {
-        width: 55%;
-        transform: translateX(-15px);
-    }
-
-    .timeline li .timeline-panel::before {
-        top: 30px;
-    }
-
-    .timeline li .timeline-panel::after {
-        top: 31px;
-    }
-    .img-swastika {
-        width: 60%;
-    }
-}
-
-@media (min-width: 577px) {
-    #doa::before,
-    #doa::after {
-        width: clamp(120px, 24vw, 300px);
-    }
-}
-
 @media (max-width: 992px) {
     .woman {
         margin-top: 32px;
-    }
-}
-
-/* Extra Large */
-@media (max-width: 1200px) {
-    #doa {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* posisikan isi di bawah */
-        align-items: center; /* tetap center secara horizontal */
-        text-align: center;
-        padding-bottom: 0; /* semula 80px */
-    }
-    #doa::before,
-    #doa::after {
-        width: clamp(320px, 24vw, 400px);
-    }
-
-    #doa::before {
-        content: "";
-        position: absolute;
-        left: -4px;
-        bottom: -6px;
-        top: auto;
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
-
-    #doa::after {
-        content: "";
-        position: absolute;
-        right: -4px; /* kanan */
-        top: -24px; /* atas */
-        left: auto;
-        bottom: auto; /* pastikan tidak ketarik ke bawah */
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
     }
 }
 
