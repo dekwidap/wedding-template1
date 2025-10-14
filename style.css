@@ -19,7 +19,19 @@ body {
     justify-content: flex-start; /* posisikan isi di bawah */
     align-items: center; /* tetap center secara horizontal */
     text-align: center;
-    padding-bottom: 80px; /* jarak dari bawah layar */
+    padding-bottom: 0; /* semula 80px */
+}
+
+/* Wave separator */
+.wave-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px; /* -1px biar gak ada garis putih di border */
+    width: 100%;
+    height: 50px; /* ubah tinggi gelombang di sini */
+    display: block;
+    pointer-events: none; /* biar klik tidak kehalang */
 }
 
 .section-title {
@@ -34,11 +46,11 @@ body {
 .hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("src/img/bgHome0.jpg") no-repeat center center/cover;
+    inset: 0;
+    background-image: url("src/img/bgHome0.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; /* tetap cover */
+    background-position: center 43%; /* X= center, Y= 20% (lebih ke atas) */
     z-index: -1;
     filter: brightness(0.4);
 }
@@ -78,8 +90,6 @@ body {
 #doa {
     background: #fff;
     min-height: 100vh; /* kalau mau full 1 layar */
-    padding-top: 24px; /* ganti ruang atas dengan padding */
-    /* display: flow-root; */ /* boleh pakai ini, atau overflow hidden, untuk anti-collapse */
     overflow: hidden; /* salah satu saja cukup */
 }
 
@@ -87,6 +97,16 @@ body {
     margin-top: 0 !important; /* cegah margin anak pertama naik ke luar section */
 }
 
+.card-veda {
+    --bs-card-bg: #fff; /* latar body card */
+    --bs-card-border-color: #BA8F5B; /* warna border */
+    --bs-card-cap-bg: #fad76c; /* latar header/footer */
+    --bs-card-color: #000; /* warna teks default */
+}
+.card-veda .card-header,
+.card-veda .card-footer {
+    color: #1C1A19; /* warna teks header/footer */
+}
 /* Home */
 .home {
     background-image: url("src/img/blueFlora.png");
@@ -666,6 +686,9 @@ footer li {
 
     .timeline li .timeline-panel::after {
         top: 31px;
+    }
+    .img-swastika {
+        width: 60%;
     }
 }
 
