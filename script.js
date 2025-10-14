@@ -127,7 +127,6 @@ audioIcon.addEventListener("click", () => {
     toggleAudio();
 });
 
-
 // Personalize Invitation
 const urlParams = new URLSearchParams(window.location.search);
 const to = urlParams.get("to") || "";
@@ -310,3 +309,31 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 });
+
+// Copy Text
+function copyText(el) {
+    var content = jQuery(el)
+        .siblings("div.card-container")
+        .find("div.card-number")
+        .text()
+        .trim();
+    var temp = document.createElement("textarea");
+
+    document.body.appendChild(temp);
+
+    temp.value = content.replace(/\s+/g, "");
+    temp.select();
+
+    document.execCommand("Copy");
+
+    document.body.removeChild(temp);
+
+    jQuery(el).text("Berhasil di Copy");
+
+    setTimeout(() => {
+        jQuery(el).html(`<i class="fas fa-regular fa-copy"></i> Copy`);
+    }, 1500);
+}
+
+
+

@@ -9,7 +9,6 @@
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet"
-            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
 
@@ -22,7 +21,7 @@
         <!-- CSS Externals -->
         <link rel="stylesheet" href="style.css" />
 
-        <!-- Google Fonts: Work Sans & Playtime Canada -->
+        <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -38,22 +37,74 @@
             rel="stylesheet"
             href="https://unpkg.com/aos@2.3.1/dist/aos.css"
         />
+
+        <!-- FontAwesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
     </head>
+
     <body>
-        <!-- Section Top Hero -->
+        <!-- Section Hero -->
         <section
             id="hero"
-            class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white"
+            class="hero w-100 h-100 p-3 mx-auto text-center text-white"
         >
             <main>
                 <h4>To <span>Mr./Mrs./Brother/Sister, </span></h4>
-                <h1 class="mt-4 mb-4">Kyoto & Kyoti</h1>
+                <h1 class="mt-4 mb-4">Dhani & Ditha</h1>
                 <p>Wedding reception in:</p>
                 <div class="simply-countdown"></div>
-                <a href="#home" class="btn btn-lg view-invitation"  onclick="enableScroll()"
+                <a
+                    href="#doa"
+                    class="btn btn-lg view-invitation"
+                    onclick="enableScroll()"
                     >View Invitation</a
                 >
             </main>
+        </section>
+
+        <!-- Section Doa -->
+        <section id="doa" class="doa">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-10 text-center">
+                        <img
+                            src="src/img/assets/swastika.png"
+                            alt="Om Shanti"
+                            width="30%"
+                            style="margin-bottom: 12px"
+                        />
+                        <div
+                            class="card text-center text-bg-light mb-5"
+                            data-aos="flip-left"
+                            data-aos-duration="2000"
+                        >
+                            <div class="card-header">(Rg veda : X.85.36)</div>
+                            <div class="card-body">
+                                <p>
+                                    Grbhnāmi te saubhagatvāya hastam, Mayā patyā
+                                    jaradastir yathāsah, Bhago aryamā savitā
+                                    puramdhir, Mahyam tvādurgārhapatyāya devāh.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                Artinya : <br />
+                                Dalam sebuah pernikahan kalian disatukan demi
+                                sebuah kebahagiaan dengan janji hati untuk
+                                saling membahagiakan. Bersamaku engkau akan
+                                hidup selamanya karena Tuhan pasti akan
+                                memberikan karunia sebagai pelindung dan saksi
+                                dalam pernikahan ini. Untuk itulah kalian
+                                dipersatukan dalam satu keluarga.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Section Home -->
@@ -61,13 +112,19 @@
             <div class="container" id="test">
                 <div class="row justify-content-center">
                     <div class="col-md-8 text-center">
-                        <h2>Welcome to Our Wedding</h2>
+                        <img
+                            src="src/img/assets/om-swastyastu.png"
+                            alt="Om Swastyastu"
+                            width="50%"
+                            style="margin-bottom: 12px"
+                        />
+                        <h2>Om Swastyastu</h2>
                         <h4>
-                            We are delighted to invite you to celebrate our
-                            special day with us. Your presence means a lot to
-                            us.
+                            Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi
+                            Wasa/Tuhan Yang Maha Esa kami bermaksud mengundang
+                            Bapak/Ibu/Saudara/i pada Upacara Manusa Yadnya
+                            Pawiwahan (Pernikahan) putra-putri kami.
                         </h4>
-                        <p>Don't Forget To Coming</p>
                     </div>
                 </div>
 
@@ -79,38 +136,34 @@
                                 data-aos="fade-up"
                                 data-aos-duration="2000"
                             >
-                                <h3>Kyoto</h3>
+                                <h3>Yandhani Astika Putra</h3>
+                                <p>Putra pertama dari pasangan.</p>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Distinctio, dolorum.
-                                </p>
-                                <p>
-                                    Son from Father <br />
-                                    and <br />
-                                    Mother from
+                                    I Wayan Suriada <br />& <br />Ni Nengah Ayu
+                                    Hastina Wathy
                                 </p>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 photo-frame">
                                 <img
-                                    src="src/img/man.png"
+                                    src="src/img/weddingSection/man.jpg"
                                     alt="Man"
-                                    class="img-responsive rounded-circle"
+                                    class="img-responsive"
                                 />
                             </div>
                         </div>
                     </div>
 
-                    <span class="heart">
-                        <i class="bi bi-arrow-through-heart-fill"></i>
-                    </span>
+                    <span class="heart"
+                        ><i class="bi bi-arrow-through-heart-fill"></i
+                    ></span>
 
                     <div class="col-lg-6 kyoti">
                         <div class="row">
                             <div class="col-4">
                                 <img
-                                    src="src/img/girl.png"
-                                    alt="Man"
-                                    class="img-responsive rounded-circle"
+                                    src="src/img/weddingSection/woman.jpg"
+                                    alt="Woman"
+                                    class="img-responsive"
                                 />
                             </div>
                             <div
@@ -118,15 +171,11 @@
                                 data-aos="fade-up"
                                 data-aos-duration="2000"
                             >
-                                <h3>Kyoti</h3>
+                                <h3>Putu Ditha Putri Cahyani</h3>
+                                <p>Putri pertama dari pasangan.</p>
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Distinctio, dolorum.
-                                </p>
-                                <p>
-                                    Son from Father <br />
-                                    and <br />
-                                    Mother from
+                                    AKBP (Purn) I Ketut Perten <br />& <br />Ni
+                                    Made Warniki, S.E.
                                 </p>
                             </div>
                         </div>
@@ -135,30 +184,23 @@
             </div>
         </section>
 
-        <!-- Section Info -->
-        <section id="info" class="info">
+        <!-- Section Info Wedding -->
+        <section id="info-wedding" class="info">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-10 text-center">
                         <h2>Information Wedding Ceremony</h2>
                         <p class="adress">
-                            Adress: Hotel Loniva <br />
-                            Jl. Raya Puputan No.142, Renon, Denpasar Selatan,
-                            Kota Denpasar, Bali 80234
+                            Jl. Menuh No.25 Semarapura Kelod, Kec. Klungkung,
+                            Kabupaten Klungkung, Bali 80711
                         </p>
                         <a
-                            href="https://maps.app.goo.gl/xHVzytgNsBTJf3v88"
+                            href="https://maps.app.goo.gl/mnioj4gHzdfuuwKz9"
                             target="_blank"
                             class="btn btn-danger btn-sm my-3"
+                            >Click Here for The Maps Direction</a
                         >
-                            Click Here for The Maps Direction
-                        </a>
-                        <p class="description">
-                            Please make sure not to mistake the address or date.
-                            If you arrive at the destination and there are no
-                            signs of a wedding taking place, it is likely that
-                            you have the wrong schedule or the wrong venue."
-                        </p>
+                        <p class="description">Save our Date</p>
                     </div>
                 </div>
 
@@ -169,25 +211,20 @@
                             data-aos="flip-left"
                             data-aos-duration="2000"
                         >
-                            <div class="card-header">Solemnization</div>
+                            <div class="card-header">Wedding Reception</div>
                             <div class="card-body">
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
                                         <i class="bi bi-clock-fill d-block"></i>
-                                        <span>08.00 AM - 14.00 PM</span>
+                                        <span>12.00 - 22.00 WITA</span>
                                     </div>
                                     <div class="col-md-6">
                                         <i
                                             class="bi bi-calendar-event-fill d-block"
                                         ></i>
-                                        <span>Saturday, 20 November 2025</span>
+                                        <span>Friday, 07 November 2025</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                We kindly ask for your presence during the
-                                wedding ceremony to be observed in a respectful
-                                and solemn manner.
                             </div>
                         </div>
                     </div>
@@ -198,7 +235,7 @@
                             data-aos="flip-right"
                             data-aos-duration="2000"
                         >
-                            <div class="card-header">Weeding Ceremony</div>
+                            <div class="card-header">Metatah</div>
                             <div class="card-body">
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
@@ -213,19 +250,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                We are delighted to invite you wedding
-                                reception. Your presence will bring joy and
-                                complete the happiness of our special day.
-                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-10 text-center">
+                        <p class="description">
+                            Atas kehadiran dan doa restunya kami ucapkan
+                            terimakasih.
+                        </p>
+                        <p class="adress">OM SANTI NAKAL OM</p>
+                        <img
+                            src="src/img/assets/om-shanti.png"
+                            alt="Om Shanti"
+                            width="100%"
+                            style="margin-bottom: 12px"
+                        />
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section Story -->
-        <section id="story" class="story">
+        <!-- <section id="story" class="story">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-10 text-center">
@@ -324,18 +372,13 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <section id="rsvp" class="rsvp">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-10 text-center">
-                        <h2>Confirm your Attendance</h2>
-                        <p>
-                            We kindly request your presence at our wedding
-                            ceremony. Please confirm your attendance by filling
-                            out the RSVP form below.
-                        </p>
+                        <h2>RSVP & Wishes</h2>
                     </div>
                 </div>
 
@@ -360,8 +403,29 @@
 
                     <div class="col-12">
                         <div class="mb-3">
+                            <label for="Status" class="form-label"
+                                >Confirmation</label
+                            >
+                            <select
+                                name="Status"
+                                id="Status"
+                                class="form-select"
+                            >
+                                <option value="" disabled selected>
+                                    Choose
+                                </option>
+                                <option value="Attending">Attending</option>
+                                <option value="Not Attending">
+                                    Not Attendance
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="mb-3">
                             <label for="Attendance" class="form-label"
-                                >Number of Attendees</label
+                                >Number of Guests</label
                             >
                             <input
                                 type="number"
@@ -376,25 +440,6 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="Status" class="form-label"
-                                >Confirmation</label
-                            >
-                            <select
-                                name="Status"
-                                id="Status"
-                                class="form-select"
-                            >
-                                <option value="" disabled selected>Choose</option>
-                                <option value="Attending">Attending</option>
-                                <option value="Not Attending">
-                                    Not Attendance
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="col-12 button-send">
                         <button
                             class="btn btn-send btn-sm"
@@ -405,7 +450,7 @@
                     </div>
                 </form>
 
-                <div class="row justify-content-center">
+                <!-- <div class="row justify-content-center">
                     <div class="col-md-8 col-10 text-center mt-5">
                         <p>
                             If you want to see the guest list who already
@@ -419,14 +464,14 @@
                             Click Here to See The Guest List
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
 
         <!-- Section Guest Messages -->
         <section id="messages" class="messages">
             <div class="container">
-                <div class="row justify-content-center text-center">
+                <!-- <div class="row justify-content-center text-center">
                     <div class="col-md-8 col-10">
                         <h2>Send Your Wishes</h2>
                         <p class="sub-text">
@@ -434,7 +479,7 @@
                             special day 💌
                         </p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Form Kartu Ucapan -->
                 <form id="message-form" class="row justify-content-center mt-4">
@@ -480,6 +525,48 @@
             <span>Thank you for your message 💌</span>
         </div>
 
+        <!-- Section Gifts -->
+        <section id="gifts" class="gifts">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-10 text-center">
+                        <h2>Wedding Gift</h2>
+                        <p>
+                            For family and friends who would like to send a
+                            gift, we would be glad to receive it through bank
+                            transfer below
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center text-center">
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <img
+                                    src="src/img/assets/bni-logo.jpg"
+                                    alt="Om Shanti"
+                                    width="30%"
+                                    style="margin-bottom: 12px"
+                                />
+                                <br />
+                                2902260891 - Putu Ditha Putri Cahyani
+                                <br />
+                                <a
+                                    style="cursor: pointer"
+                                    onclick="copyText(this)"
+                                    class="copy-button btn btn-light mt-3"
+                                >
+                                    <i class="fas fa-fw fa-copy"></i>
+                                    Copy Number
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Section Gallery -->
         <section id="gallery" class="gallery">
             <div class="container">
@@ -487,11 +574,6 @@
                     <div class="col-md-8 col-10 text-center">
                         <span>Memory of Our Story</span>
                         <h2>Gallery Photo</h2>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Laudantium repellat numquam a doloremque
-                            quidem iusto?
-                        </p>
                     </div>
                 </div>
 
@@ -504,13 +586,13 @@
                         data-aos-duration="2000"
                     >
                         <a
-                            href="src/img/gallery/g1.png"
+                            href="src/img/gallery/g1.jpg"
                             data-toggle="lightbox"
                             data-caption="This describes the image"
                             data-gallery="example-gallery"
                         >
                             <img
-                                src="src/img/gallery/g1.png"
+                                src="src/img/gallery/g1.jpg"
                                 alt="Gallery 1"
                                 class="img-fluid w-100 rounded"
                             />
@@ -522,13 +604,13 @@
                         data-aos-duration="2000"
                     >
                         <a
-                            href="src/img/gallery/g2.png"
+                            href="src/img/gallery/g2.jpg"
                             data-toggle="lightbox"
                             data-caption="This describes the image"
                             data-gallery="example-gallery"
                         >
                             <img
-                                src="src/img/gallery/g2.png"
+                                src="src/img/gallery/g2.jpg"
                                 alt="Gallery 1"
                                 class="img-fluid w-100 rounded"
                             />
@@ -540,13 +622,13 @@
                         data-aos-duration="2000"
                     >
                         <a
-                            href="src/img/gallery/g3.png"
+                            href="src/img/gallery/g3.jpg"
                             data-toggle="lightbox"
                             data-caption="This describes the image"
                             data-gallery="example-gallery"
                         >
                             <img
-                                src="src/img/gallery/g3.png"
+                                src="src/img/gallery/g3.jpg"
                                 alt="Gallery 1"
                                 class="img-fluid w-100 rounded"
                             />
@@ -558,13 +640,13 @@
                         data-aos-duration="2000"
                     >
                         <a
-                            href="src/img/gallery/g4.png"
+                            href="src/img/gallery/g4.jpg"
                             data-toggle="lightbox"
                             data-caption="This describes the image"
                             data-gallery="example-gallery"
                         >
                             <img
-                                src="src/img/gallery/g4.png"
+                                src="src/img/gallery/g4.jpg"
                                 alt="Gallery 1"
                                 class="img-fluid w-100 rounded"
                             />
@@ -576,13 +658,13 @@
                         data-aos-duration="2000"
                     >
                         <a
-                            href="src/img/gallery/g5.png"
+                            href="src/img/gallery/g5.jpg"
                             data-toggle="lightbox"
                             data-caption="This describes the image"
                             data-gallery="example-gallery"
                         >
                             <img
-                                src="src/img/gallery/g5.png"
+                                src="src/img/gallery/g5.jpg"
                                 alt="Gallery 1"
                                 class="img-fluid w-100 rounded"
                             />
@@ -594,13 +676,87 @@
                         data-aos-duration="2000"
                     >
                         <a
-                            href="src/img/gallery/g6.png"
+                            href="src/img/gallery/g6.jpg"
                             data-toggle="lightbox"
                             data-caption="This describes the image"
                             data-gallery="example-gallery"
                         >
                             <img
-                                src="src/img/gallery/g6.png"
+                                src="src/img/gallery/g6.jpg"
+                                alt="Gallery 1"
+                                class="img-fluid w-100 rounded"
+                            />
+                        </a>
+                    </div>
+                    <div
+                        class="col mt-3"
+                        data-aos="flip-left"
+                        data-aos-duration="2000"
+                    >
+                        <a
+                            href="src/img/gallery/g7.jpg"
+                            data-toggle="lightbox"
+                            data-caption="This describes the image"
+                            data-gallery="example-gallery"
+                        >
+                            <img
+                                src="src/img/gallery/g7.jpg"
+                                alt="Gallery 1"
+                                class="img-fluid w-100 rounded"
+                            />
+                        </a>
+                    </div>
+                    <div
+                        class="col mt-3"
+                        data-aos="flip-left"
+                        data-aos-duration="2000"
+                    >
+                        <a
+                            href="src/img/gallery/g8.jpg"
+                            data-toggle="lightbox"
+                            data-caption="This describes the image"
+                            data-gallery="example-gallery"
+                        >
+                            <img
+                                src="src/img/gallery/g8.jpg"
+                                alt="Gallery 1"
+                                class="img-fluid w-100 rounded"
+                            />
+                        </a>
+                    </div>
+
+                    <div
+                        class="col mt-3"
+                        data-aos="flip-left"
+                        data-aos-duration="2000"
+                    >
+                        <a
+                            href="src/img/gallery/g9.jpg"
+                            data-toggle="lightbox"
+                            data-caption="This describes the image"
+                            data-gallery="example-gallery"
+                        >
+                            <img
+                                src="src/img/gallery/g9.jpg"
+                                alt="Gallery 1"
+                                class="img-fluid w-100 rounded"
+                            />
+                        </a>
+                    </div>
+
+                    <div
+                        class="col mt-3"
+                        data-aos="flip-left"
+                        data-aos-duration="2000"
+                    >
+                        <a
+                            href="src/img/gallery/g10.jpg"
+                            data-toggle="lightbox"
+                            data-caption="This describes the image"
+                            data-gallery="example-gallery"
+                        >
+                            <img
+                                src="src/img/gallery/g10.jpg"
                                 alt="Gallery 1"
                                 class="img-fluid w-100 rounded"
                             />
@@ -610,45 +766,24 @@
             </div>
         </section>
 
-        <!-- Section Gifts -->
-        <section id="gifts" class="gifts">
+        <section
+            id="penutup-section"
+            class="penutup-section py-5"
+            data-aos="fade-up"
+            data-aos-easing="linear"
+            data-aos-duration="1500"
+        >
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center">
-                        <span>Token of Appreciation</span>
-                        <h2>Send a Gift</h2>
-                        <p>
-                            Your presence is the greatest gift we could ask for.
-                            However, if you wish to honor us with a gift, we
-                            would be grateful for your thoughtful gesture.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center text-center">
-                    <div class="col-md-6">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <div class="fw-bold">BCA</div>
-                                123 456 7890 - Kyoto & Kyoti
-                            </li>
-                            <li class="list-group-item">
-                                <div class="fw-bold">BNI</div>
-                                123 456 7890 - Kyoto & Kyoti
-                            </li>
-                            <li class="list-group-item">
-                                <div class="fw-bold mb-2">
-                                    QRIS ALL MERCHANT
-                                </div>
-                                <img
-                                    src="src/img/qrcode.png"
-                                    alt="QRIS"
-                                    width="150"
-                                    height="150"
-                                    class="img-fluid qris"
-                                />
-                            </li>
-                        </ul>
+                    <div class="col-lg-8">
+                        <div class="section-title text-center">
+                            <h3 class="text-pink brideFont fw-bold">
+                                We are honored to have you at the wedding. Thank
+                                you!
+                            </h3>
+                            <h5 class="my-3">With Love ❤️</h5>
+                            <h1 class="brideFont">Dhani & Ditha</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -724,7 +859,6 @@
         <!-- Sweetalert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
         <!-- Light Box -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
 
@@ -734,5 +868,12 @@
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
         <script src="script.js"></script>
+
+        <!-- Jquery3 -->
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>
