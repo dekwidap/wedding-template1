@@ -36,14 +36,17 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #000;
-    overflow: hidden;
-    background-image: url("src/img/assets/desktopView.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-}
 
+    /* 🌆 Dua lapisan background */
+    background-image: 
+        url("src/img/assets/desktopView.png"),    /* border frame (di atas) */
+        url("src/img/weddingLanding/bgLanding.jpg");          /* foto latar belakang (di bawah) */
+    
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, cover;   /* border = contain, foto = cover */
+    background-position: center, center;
+    overflow: hidden;
+}
 #landing-page {
     position: relative;
     min-height: 100svh; /* pakai small viewport height */
@@ -52,6 +55,18 @@ section {
     top: 0;
     inset: 0;
     overflow: hidden;
+}
+
+.landing-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* ubah opacity sesuai selera */
+    z-index: 1;
+}
+.safe-area {
+    position: relative;
+    z-index: 2;
 }
 
 /* AREA AMAN DI DALAM FRAME */
@@ -99,8 +114,14 @@ section {
 /* ========== TABLET (768–1024px) ========== */
 @media (min-width: 768px) and (max-width: 1024px) {
     .landing-page {
-        background-image: url("src/img/assets/mobileView.png");
-        background-size: contain;
+        /* 🔁 Dua lapisan background untuk mobile */
+        background-image:
+            url("src/img/assets/mobileView.png"),    /* border versi mobile */
+            url("src/img/weddingLanding/bgLanding.jpg");  /* foto latar belakang mobile */
+        
+        background-repeat: no-repeat, no-repeat;
+        background-size: contain, cover; /* border tetap proporsional, foto isi penuh */
+        background-position: center, center;
     }
 
     .safe-area {
@@ -131,9 +152,14 @@ section {
 /* ========== HANDPHONE (≤767px) ========== */
 @media (max-width: 767px) {
     .landing-page {
-        background-image: url("src/img/assets/mobileView.png");
-        background-size: contain;
-        background-position: center center;
+        /* 🔁 Dua lapisan background untuk mobile */
+        background-image:
+            url("src/img/assets/mobileView.png"),    /* border versi mobile */
+            url("src/img/weddingLanding/bgLanding.jpg");  /* foto latar belakang mobile */
+        
+        background-repeat: no-repeat, no-repeat;
+        background-size: contain, cover; /* border tetap proporsional, foto isi penuh */
+        background-position: center, center;
     }
 
     .safe-area {
@@ -180,9 +206,9 @@ section {
     position: relative;
     height: 100svh; /* ✅ isi penuh tinggi layar */
     width: 100%;
-    background-image: url("src/img/weddingTitle/desktopMode2.jpg");
+    background-image: url("src/img/weddingTitle/desktopMode.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center 80%;
     background-repeat: no-repeat;
     background-color: #000; /* fallback */
     color: #fff;
@@ -193,7 +219,7 @@ section {
 /* 📱 TABLET & HANDPHONE */
 @media (max-width: 1024px) {
     #wedding-title {
-        background-image: url("src/img/weddingTitle/mobileMode2.jpg");
+        background-image: url("src/img/weddingTitle/mobileMode.jpg");
         background-size: cover;
         background-position: center;
     }
