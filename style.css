@@ -7,16 +7,32 @@
 html,
 body {
     overflow-x: hidden;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 body {
     font-size: 1.2rem;
     font-family: "Work Sans", sans-serif;
 }
 
+/* === UNIVERSAL FULLSCREEN SECTION FIX === */
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* fallback untuk desktop & browser lama */
+    min-height: 100svh; /* stabil di HP dengan UI bar */
+    min-height: 100dvh; /* browser modern (dynamic) */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
 /* ========== BASE ========== */
 .landing-page {
     position: relative;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,6 +42,16 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+#landing-page {
+    position: relative;
+    min-height: 100svh; /* pakai small viewport height */
+    margin: 0;
+    padding: 0;
+    top: 0;
+    inset: 0;
+    overflow: hidden;
 }
 
 /* AREA AMAN DI DALAM FRAME */
@@ -152,7 +178,7 @@ body {
 /* ========== SECTION WEDDING TITLE (FULL HEIGHT) ========== */
 #wedding-title {
     position: relative;
-    height: 100vh; /* ✅ isi penuh tinggi layar */
+    height: 100svh; /* ✅ isi penuh tinggi layar */
     width: 100%;
     background-image: url("src/img/weddingTitle/desktopMode2.jpg");
     background-size: cover;
@@ -286,7 +312,7 @@ body {
 #doa {
     position: relative; /* penting agar pseudo-elem bisa diposisikan */
     background: #fff;
-    min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden; /* biar ornamen tidak keluar area section */
     z-index: 0; /* buat layer untuk pseudo-element */
     display: flex;
@@ -322,17 +348,6 @@ body {
 }
 
 /* POSISI */
-.doa-ornaments .top-left {
-    top: 0;
-    left: 0;
-}
-
-.doa-ornaments .top-right {
-    top: 0;
-    right: 0;
-    transform: scaleX(-1); /* mirror horizontal */
-}
-
 .doa-ornaments .bottom-left {
     bottom: 0;
     left: 0;
@@ -345,16 +360,6 @@ body {
     transform: scale(-1, -1); /* mirror diagonal */
 }
 /* 🪷 Jika ingin ornamen keluar dari canvas (offset keluar section) */
-.doa-ornaments .top-left {
-    top: -60px; /* keluar ke atas 40px */
-    left: -60px; /* keluar ke kiri 40px */
-}
-
-.doa-ornaments .top-right {
-    top: -60px;
-    right: -60px;
-}
-
 .doa-ornaments .bottom-left {
     bottom: -60px; /* keluar ke bawah */
     left: -60px;
@@ -383,16 +388,11 @@ body {
 
 /* 📱 Mobile & Tablet View */
 @media (max-width: 768px) {
-    .doa-ornaments .top-left {
-        top: -45px;  /* offset dikurangi biar gak keluar viewport */
-        left: -45px;
+    .doa-ornaments .ornament {
+        position: absolute;
+        width: 120px; /* 🔧 ubah sesuai kebutuhan desktop */
+        opacity: 0.8;
     }
-
-    .doa-ornaments .top-right {
-        top: -45px;
-        right: -45px;
-    }
-
     .doa-ornaments .bottom-left {
         bottom: -45px;
         left: -45px;
@@ -404,6 +404,20 @@ body {
     }
 }
 
+/* 📱 Mobile & Tablet */
+@media (max-width: 1024px) {
+    section {
+        min-height: 100svh; /* pastikan tetap penuh layar saat UI bar muncul */
+        padding: 0;
+    }
+}
+
+/* 💻 Desktop */
+@media (min-width: 1025px) {
+    section {
+        min-height: 100vh; /* stabil di laptop/PC */
+    }
+}
 
 /* Perkecil di layar kecil */
 @media (max-width: 576px) {
@@ -977,38 +991,6 @@ footer li {
     color: var(--gold);
 }
 
-.audio-icon {
-    width: 4rem;
-    height: 4rem;
-    font-size: 4rem;
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    cursor: pointer;
-    animation: rorate 4s linear infinite;
-    transform-origin: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 0;
-    z-index: 9999;
-}
-
-.bi-disc-fill,
-.bi-pause-circle-fill {
-    color: var(--gold);
-    opacity: 0.5;
-    mix-blend-mode: difference;
-}
-
-@keyframes rorate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
 
 /* Media Query Area */
 /* Laptop */
