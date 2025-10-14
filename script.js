@@ -128,29 +128,18 @@ audioIcon.addEventListener("click", () => {
 });
 
 // Personalize Invitation
-const urlParams = new URLSearchParams(window.location.search);
-const to = urlParams.get("to") || "";
-const pronoun = urlParams.get("p") || "Mr./Mrs./Brother/Sister";
+// const urlParams = new URLSearchParams(window.location.search);
+// const to = urlParams.get("to") || "";
+// const pronoun = urlParams.get("p") || "Mr./Mrs./Brother/Sister";
 
-const nameInvatation = document.querySelector(".hero h4 span");
-nameInvatation.innerText = `${pronoun} ${to},`.replace(/ ,$/, ",");
+// const nameInvatation = document.querySelector(".hero h4 span");
+// nameInvatation.innerText = `${pronoun} ${to},`.replace(/ ,$/, ",");
 
-document.querySelector("#Name").value = to;
+// document.querySelector("#Name").value = to;
 
 // AOS Animation
 AOS.init();
 
-// Music Focus
-document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-        audio.pause();
-    } else {
-        if (isPlayAudio) {
-            // hanya play kalau sebelumnya memang play
-            audio.play();
-        }
-    }
-});
 
 // =======================
 // FIREBASE CONFIGURATION

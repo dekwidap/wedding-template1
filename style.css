@@ -13,81 +13,273 @@ body {
     font-family: "Work Sans", sans-serif;
 }
 
-/* Hero Section */
-
-.hero {
+/* ========== BASE ========== */
+.landing-page {
     position: relative;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* posisikan isi di bawah */
-    align-items: center; /* tetap center secara horizontal */
-    text-align: center;
-    padding-bottom: 0; /* semula 80px */
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    overflow: hidden;
+    background-image: url("src/img/assets/desktopView.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
-/* Wave separator */
-.wave-bottom {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px; /* -1px biar gak ada garis putih di border */
-    width: 100%;
-    height: 50px; /* ubah tinggi gelombang di sini */
-    display: block;
-    pointer-events: none; /* biar klik tidak kehalang */
-}
-
-.section-title {
-    position: relative;
+/* AREA AMAN DI DALAM FRAME */
+.safe-area {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* posisikan isi di bawah */
-    align-items: center; /* tetap center secara horizontal */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 12vh;
+    padding-bottom: 10vh;
+}
+
+.guest-ornament {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.guest-box {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #000;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 55vw;
+    max-width: 600px;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("src/img/bgHome0.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; /* tetap cover */
-    background-position: center 43%; /* X= center, Y= 20% (lebih ke atas) */
-    z-index: -1;
-    filter: brightness(0.4);
-}
-
-.hero h1 {
-    font-family: "Playwrite CA", cursive;
-    font-size: 3rem;
-}
-
-.hero h4 {
-    font-size: 1.6rem;
-}
-
-.hero p {
+.guest-box p {
+    margin: 0.3rem 0;
     font-size: 1.4rem;
 }
 
-.hero a {
-    color: var(--gold);
-    background-color: #fff;
-    box-shadow: var(--shadow);
+.guest-box .guest-name {
+    margin: 1rem 0;
+    font-family: "Playwrite CA", cursive;
+    font-size: 2rem;
+    color: #b3a162;
 }
 
-.hero h1,
-.hero h4,
-.hero p {
-    text-shadow: var(--shadow);
+/* ========== TABLET (768–1024px) ========== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .landing-page {
+        background-image: url("src/img/assets/mobileView.png");
+        background-size: contain;
+    }
+
+    .safe-area {
+        padding-top: 14vh;
+        padding-bottom: 12vh;
+    }
+
+    .guest-ornament {
+        width: 130px;
+        margin-bottom: 1.2rem;
+    }
+
+    .guest-box {
+        width: 40vw;
+        max-width: 500px;
+        padding: 1.8rem 1.5rem;
+    }
+
+    .guest-box p {
+        font-size: 1.2rem;
+    }
+
+    .guest-box .guest-name {
+        font-size: 1.7rem;
+    }
 }
 
-.hero a:hover {
+/* ========== HANDPHONE (≤767px) ========== */
+@media (max-width: 767px) {
+    .landing-page {
+        background-image: url("src/img/assets/mobileView.png");
+        background-size: contain;
+        background-position: center center;
+    }
+
+    .safe-area {
+        padding-top: 22vh; /* aman dari ornamen atas */
+        padding-bottom: 20vh; /* aman dari bawah */
+    }
+
+    .guest-ornament {
+        width: 110px;
+        margin-bottom: 1rem;
+    }
+
+    .guest-box {
+        padding: 1.5rem 1rem;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.55);
+    }
+
+    .guest-box p {
+        font-size: 1.1rem;
+    }
+
+    .guest-box .guest-name {
+        font-size: 1.6rem;
+    }
+}
+
+/* ========== HANDPHONE SUPER PANJANG (20:9 ke atas) ========== */
+@media (max-aspect-ratio: 9/16) {
+    .safe-area {
+        padding-top: 24vh;
+        padding-bottom: 22vh;
+    }
+
+    .guest-ornament {
+        width: 80px;
+        padding-bottom: 3rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ========== SECTION WEDDING TITLE (FULL HEIGHT) ========== */
+#wedding-title {
+    position: relative;
+    height: 100vh; /* ✅ isi penuh tinggi layar */
+    width: 100%;
+    background-image: url("src/img/weddingTitle/desktopMode2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000; /* fallback */
     color: #fff;
-    background-color: var(--gold);
-    box-shadow: var(--shadow);
+    text-align: center;
+    overflow: hidden; /* potong elemen keluar */
+}
+
+/* 📱 TABLET & HANDPHONE */
+@media (max-width: 1024px) {
+    #wedding-title {
+        background-image: url("src/img/weddingTitle/mobileMode2.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .ornament-top img,
+    .ornament-bottom img {
+        width: 220px; /* ubah sesuai kebutuhan tablet */
+    }
+}
+
+/* ========== ORNAMENTS ========== */
+.ornament-top,
+.ornament-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.ornament-top {
+    top: 0;
+}
+
+.ornament-bottom {
+    bottom: 0;
+}
+
+.ornament-top img,
+.ornament-bottom img {
+    width: 650px;
+    height: auto;
+    display: block;
+    opacity: 0.9;
+}
+
+/* ========== TEKS DI TENGAH ========== */
+.wedding-text {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 2rem;
+}
+
+.wedding-text .subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: #e7c97c;
+    font-family: "Playfair Display", serif;
+}
+
+.wedding-text .bride-groom {
+    font-family: "Playwrite CA", cursive;
+    font-size: 3rem;
+    color: #b3a162;
+    margin: 0.5rem 0;
+}
+
+.wedding-text .and-symbol {
+    font-size: 2.5rem;
+    color: #e7c97c;
+    margin: 0.3rem 0;
+    font-family: "Cormorant Garamond", serif;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+    .ornament-top img,
+    .ornament-bottom img {
+        width: 380px;
+    }
+
+    .wedding-text .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .wedding-text .bride-groom {
+        font-size: 2.2rem;
+    }
+
+    .wedding-text .and-symbol {
+        font-size: 2rem;
+    }
+}
+
+/* ========== HANDPHONE SUPER PANJANG (20:9 KE ATAS) ========== */
+@media (max-aspect-ratio: 9/16) {
+    .wedding-text {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+}
+
+/* ✅ Pastikan ornament menempel ke tepi section */
+.ornament-top,
+.ornament-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.ornament-top {
+    top: 0; /* mepet atas */
+}
+
+.ornament-bottom {
+    bottom: 0; /* mepet bawah */
 }
 
 /* Doa Section */
@@ -97,57 +289,121 @@ body {
     min-height: 100vh;
     overflow: hidden; /* biar ornamen tidak keluar area section */
     z-index: 0; /* buat layer untuk pseudo-element */
-    --orn-img: url("src/img/assets/ornamentDoa.png"); /* ganti dgn filemu */
-
     display: flex;
     flex-direction: column;
     justify-content: center; /* posisikan isi di bawah */
     align-items: center; /* tetap center secara horizontal */
     text-align: center;
 }
-/* Ornamen kiri & kanan bawah */
-#doa::before {
-    content: "";
+
+.card-veda {
+    --bs-card-bg: #fff; /* latar body card */
+    --bs-card-border-color: #ba8f5b; /* warna border */
+    --bs-card-cap-bg: #b3a162; /* latar header/footer */
+    --bs-card-color: #000; /* warna teks default */
+}
+.card-veda .card-header,
+.card-veda .card-footer {
+    color: #1c1a19; /* warna teks header/footer */
+}
+
+/* 🪷 ORNAMENT EMPAT POJOK DOA SECTION */
+.doa-ornaments {
     position: absolute;
-    left: -4px;
-    bottom: -32px;
-    top: auto;
-    background: var(--orn-img) no-repeat center / contain;
-    pointer-events: none;
-    filter: invert(63%) sepia(49%) saturate(327%) hue-rotate(10deg)
-        brightness(93%) contrast(87%);
+    inset: 0; /* isi penuh section */
+    z-index: 1; /* di bawah isi utama tapi di atas background */
+    pointer-events: none; /* biar ga ganggu klik elemen di bawah */
 }
 
-#doa::after {
-    content: "";
+.doa-ornaments .ornament {
     position: absolute;
-    right: -4px; /* kanan */
-    top: 15px; /* atas */
-    left: auto;
-    bottom: auto; /* pastikan tidak ketarik ke bawah */
-    background: var(--orn-img) no-repeat center / contain;
-    pointer-events: none;
-    filter: invert(63%) sepia(49%) saturate(327%) hue-rotate(10deg)
-        brightness(93%) contrast(87%);
+    width: 180px; /* 🔧 ubah sesuai kebutuhan desktop */
+    opacity: 0.8;
 }
 
-#doa::after,
-#doa::before {
-    width: clamp(400px, 18vw, 580px); /* ubah angka ini utk besar-kecil */
-    aspect-ratio: 1 / 1; /* kalau file-nya kotak; kalau tidak, pakai height */
+/* POSISI */
+.doa-ornaments .top-left {
+    top: 0;
+    left: 0;
 }
 
-/* kiri */
-#doa::before {
-    left: -4px;
-    transform: scaleX(-1);
+.doa-ornaments .top-right {
+    top: 0;
+    right: 0;
+    transform: scaleX(-1); /* mirror horizontal */
 }
 
-/* kanan (mirror) */
-#doa::after {
-    right: -4px;
-    transform: scaleY(-1);
+.doa-ornaments .bottom-left {
+    bottom: 0;
+    left: 0;
+    transform: scaleY(-1); /* mirror vertical */
 }
+
+.doa-ornaments .bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: scale(-1, -1); /* mirror diagonal */
+}
+/* 🪷 Jika ingin ornamen keluar dari canvas (offset keluar section) */
+.doa-ornaments .top-left {
+    top: -60px; /* keluar ke atas 40px */
+    left: -60px; /* keluar ke kiri 40px */
+}
+
+.doa-ornaments .top-right {
+    top: -60px;
+    right: -60px;
+}
+
+.doa-ornaments .bottom-left {
+    bottom: -60px; /* keluar ke bawah */
+    left: -60px;
+}
+
+.doa-ornaments .bottom-right {
+    bottom: -60px;
+    right: -60px;
+}
+
+/* ✨ Animasi Rotasi Halus */
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Terapkan ke semua ornament */
+.doa-ornaments .ornament {
+    animation: spin-slow 15s linear infinite; /* 40s bisa kamu ubah kecepatannya */
+    transform-origin: center; /* rotasi di tengah gambar */
+}
+
+/* 📱 Mobile & Tablet View */
+@media (max-width: 768px) {
+    .doa-ornaments .top-left {
+        top: -45px;  /* offset dikurangi biar gak keluar viewport */
+        left: -45px;
+    }
+
+    .doa-ornaments .top-right {
+        top: -45px;
+        right: -45px;
+    }
+
+    .doa-ornaments .bottom-left {
+        bottom: -45px;
+        left: -45px;
+    }
+
+    .doa-ornaments .bottom-right {
+        bottom: -45px;
+        right: -45px;
+    }
+}
+
 
 /* Perkecil di layar kecil */
 @media (max-width: 576px) {
@@ -174,52 +430,8 @@ body {
     .img-swastika {
         width: 60%;
     }
-
-    #doa::after,
-    #doa::before {
-        width: clamp(200px, 24vw, 300px);
-        aspect-ratio: 1 / 1; /* kalau file-nya kotak; kalau tidak, pakai height */
-    }
-
-    #doa::before {
-        content: "";
-        position: absolute;
-        left: 4px;
-        bottom: -24px;
-        top: auto;
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
-
-    #doa::after {
-        content: "";
-        position: absolute;
-        right: 4px; /* kanan */
-        top: -8px; /* atas */
-        left: auto;
-        bottom: auto; /* pastikan tidak ketarik ke bawah */
-        background: var(--orn-img) no-repeat center / contain;
-        pointer-events: none;
-    }
-    .wave-top {
-        height: 70px;
-    }
 }
 
-#doa > *:first-child {
-    margin-top: 0 !important; /* cegah margin anak pertama naik ke luar section */
-}
-
-.card-veda {
-    --bs-card-bg: #fff; /* latar body card */
-    --bs-card-border-color: #ba8f5b; /* warna border */
-    --bs-card-cap-bg: #b3a162; /* latar header/footer */
-    --bs-card-color: #000; /* warna teks default */
-}
-.card-veda .card-header,
-.card-veda .card-footer {
-    color: #1c1a19; /* warna teks header/footer */
-}
 /* Home */
 .home {
     background-color: rgba(191, 154, 47, 0.2);
@@ -779,7 +991,7 @@ footer li {
     justify-content: center;
     align-items: center;
     line-height: 0;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .bi-disc-fill,
