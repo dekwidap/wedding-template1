@@ -86,6 +86,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-10 text-center">
                         <img
+                            data-aos="fade-down"
+                            data-aos-duration="2000"
                             class="img-swastika"
                             src="src/img/assets/swastika.png"
                             alt="Om Shanti"
@@ -93,7 +95,7 @@
                         />
                         <div
                             class="card text-center mb-5 card-veda"
-                            data-aos="flip-left"
+                            data-aos="fade-down"
                             data-aos-duration="2000"
                         >
                             <div class="card-header">
@@ -129,13 +131,27 @@
 
         <!-- Section Home -->
         <section id="home" class="home">
+            <!-- Wave TOP (flip ke atas) -->
+            <svg
+                class="wave-top"
+                viewBox="0 0 1440 120"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+            >
+                <!-- fill = warna background #home (mis. putih) -->
+                <path
+                    d="M0,24 C240,96 480,0 720,48 960,96 1200,16 1440,72 L1440,120 L0,120 Z"
+                    fill="#ffffff"
+                ></path>
+            </svg>
+
             <div class="container" id="test">
                 <div class="row justify-content-center">
                     <div class="col-md-8 text-center">
                         <img
+                            class="img-omswastyastu"
                             src="src/img/assets/om-swastyastu.png"
                             alt="Om Swastyastu"
-                            width="50%"
                             style="margin-bottom: 12px"
                         />
                         <h2>Om Swastyastu</h2>
@@ -153,7 +169,7 @@
                         <div class="row">
                             <div
                                 class="col-8 text-end"
-                                data-aos="fade-up"
+                                data-aos="fade-right"
                                 data-aos-duration="2000"
                             >
                                 <h3>Yandhani Astika Putra</h3>
@@ -163,7 +179,11 @@
                                     Hastina Wathy
                                 </p>
                             </div>
-                            <div class="col-4 photo-frame">
+                            <div
+                                class="col-4 photo-frame"
+                                data-aos="fade-left"
+                                data-aos-duration="2000"
+                            >
                                 <img
                                     src="src/img/weddingSection/man.jpg"
                                     alt="Man"
@@ -173,13 +193,20 @@
                         </div>
                     </div>
 
-                    <span class="heart"
+                    <span
+                        class="heart"
+                        data-aos="zoom-in"
+                        data-aos-duration="2000"
                         ><i class="bi bi-arrow-through-heart-fill"></i
                     ></span>
 
-                    <div class="col-lg-6 kyoti">
+                    <div class="col-lg-6 woman">
                         <div class="row">
-                            <div class="col-4">
+                            <div
+                                class="col-4 photo-frame"
+                                data-aos="fade-right"
+                                data-aos-duration="2000"
+                            >
                                 <img
                                     src="src/img/weddingSection/woman.jpg"
                                     alt="Woman"
@@ -188,7 +215,7 @@
                             </div>
                             <div
                                 class="col-8"
-                                data-aos="fade-up"
+                                data-aos="fade-left"
                                 data-aos-duration="2000"
                             >
                                 <h3>Putu Ditha Putri Cahyani</h3>

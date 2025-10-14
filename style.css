@@ -1,5 +1,5 @@
 :root {
-    --pink: #a3cef1;
+    --gold: #b3a162;
     --bg: #0a0a0a;
     --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -69,7 +69,7 @@ body {
 }
 
 .hero a {
-    color: var(--pink);
+    color: var(--gold);
     background-color: #fff;
     box-shadow: var(--shadow);
 }
@@ -82,15 +82,103 @@ body {
 
 .hero a:hover {
     color: #fff;
-    background-color: var(--pink);
+    background-color: var(--gold);
     box-shadow: var(--shadow);
 }
 
 /* Doa Section */
 #doa {
+    position: relative; /* penting agar pseudo-elem bisa diposisikan */
     background: #fff;
-    min-height: 100vh; /* kalau mau full 1 layar */
-    overflow: hidden; /* salah satu saja cukup */
+    min-height: 100vh;
+    overflow: hidden; /* biar ornamen tidak keluar area section */
+    z-index: 0; /* buat layer untuk pseudo-element */
+    --orn-img: url("src/img/assets/ornamentDoa.png"); /* ganti dgn filemu */
+}
+/* Ornamen kiri & kanan bawah */
+#doa::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    bottom: -32px;
+    top: auto;
+    background: var(--orn-img) no-repeat center / contain;
+    pointer-events: none;
+    filter: invert(63%) sepia(49%) saturate(327%) hue-rotate(10deg)
+        brightness(93%) contrast(87%);
+}
+
+#doa::after {
+    content: "";
+    position: absolute;
+    right: -4px; /* kanan */
+    top: -32px; /* atas */
+    left: auto;
+    bottom: auto; /* pastikan tidak ketarik ke bawah */
+    background: var(--orn-img) no-repeat center / contain;
+    pointer-events: none;
+    filter: invert(63%) sepia(49%) saturate(327%) hue-rotate(10deg)
+        brightness(93%) contrast(87%);
+}
+
+#doa::after,
+#doa::before {
+    width: clamp(400px, 18vw, 580px); /* ubah angka ini utk besar-kecil */
+    aspect-ratio: 1 / 1; /* kalau file-nya kotak; kalau tidak, pakai height */
+}
+
+/* kiri */
+#doa::before {
+    left: -4px;
+    transform: scaleX(-1);
+}
+
+/* kanan (mirror) */
+#doa::after {
+    right: -4px;
+    transform: scaleY(-1);
+}
+
+/* Perkecil di layar kecil */
+@media (max-width: 576px) {
+    #doa {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* posisikan isi di bawah */
+        align-items: center; /* tetap center secara horizontal */
+        text-align: center;
+        padding-bottom: 0; /* semula 80px */
+    }
+    #doa::before,
+    #doa::after {
+        width: clamp(320px, 24vw, 400px);
+    }
+
+    #doa::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        bottom: -6px;
+        top: auto;
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
+
+    #doa::after {
+        content: "";
+        position: absolute;
+        right: -4px; /* kanan */
+        top: -24px; /* atas */
+        left: auto;
+        bottom: auto; /* pastikan tidak ketarik ke bawah */
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
+    .wave-top {
+        height: 70px;
+    }
 }
 
 #doa > *:first-child {
@@ -99,24 +187,101 @@ body {
 
 .card-veda {
     --bs-card-bg: #fff; /* latar body card */
-    --bs-card-border-color: #BA8F5B; /* warna border */
-    --bs-card-cap-bg: #fad76c; /* latar header/footer */
+    --bs-card-border-color: #ba8f5b; /* warna border */
+    --bs-card-cap-bg: #b3a162; /* latar header/footer */
     --bs-card-color: #000; /* warna teks default */
 }
 .card-veda .card-header,
 .card-veda .card-footer {
-    color: #1C1A19; /* warna teks header/footer */
+    color: #1c1a19; /* warna teks header/footer */
 }
 /* Home */
 .home {
-    background-image: url("src/img/blueFlora.png");
+    background-color: rgba(191, 154, 47, 0.2);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 100vh;
     padding-top: 4rem;
     padding-bottom: 5rem;
     scroll-margin-top: 0;
+    position: relative; /* anchor untuk wave */
+}
+
+.wave-top {
+    position: absolute;
+    left: 0;
+    top: -1px; /* nempel ke hero, hilangkan garis */
+    width: 100%;
+    height: 90px; /* atur tinggi gelombang */
+    display: block;
+    transform: rotate(180deg); /* flip ke atas (bisa ganti scaleY(-1)) */
+    pointer-events: none; /* biar gak ganggu klik */
+    z-index: 1;
+}
+
+.img-omswastyastu {
+    width: 40%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: invert(63%) sepia(49%) saturate(327%) hue-rotate(10deg)
+        brightness(93%) contrast(87%);
+}
+
+.photo-frame {
+    width: 200px;
+    height: 280px;
+    border-radius: 50% / 60%; /* bentuk oval vertikal */
+    overflow: hidden; /* wajib: biar gambar ke-clip */
+    border: 4px solid #b3a162; /* gold frame */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* isi penuh area, potong otomatis */
+    display: block; /* hilangkan celah inline */
+}
+
+@media (min-width: 999px) and (max-width: 1400px) {
+    .photo-frame {
+        width: 150px;
+        height: 260px;
+        border-radius: 50% / 60%; /* bentuk oval vertikal */
+        overflow: hidden; /* wajib: biar gambar ke-clip */
+        border: 4px solid #b3a162; /* gold frame */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* isi penuh area, potong otomatis */
+        display: block; /* hilangkan celah inline */
+    }
+}
+
+@media (max-width: 768px) {
+    .photo-frame {
+        width: 110px;
+        height: 140px;
+        border-radius: 50% / 60%; /* bentuk oval vertikal */
+        overflow: hidden; /* wajib: biar gambar ke-clip */
+        border: 4px solid #b3a162; /* gold frame */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* isi penuh area, potong otomatis */
+        display: block; /* hilangkan celah inline */
+    }
+    .woman {
+        margin-top: 32px;
+        margin-left: 24px;
+    }
 }
 
 .home h2,
@@ -126,19 +291,17 @@ body {
     font-family: "Playwrite CA", cursive;
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--pink);
+    color: var(--gold);
     margin-bottom: 1rem;
 }
 
 .home h4 {
-    color: #444;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
 }
 
 .home p {
     font-size: 1.2rem;
-    color: #666;
 }
 
 /* Couple Section */
@@ -149,7 +312,7 @@ body {
 .home .couple h3 {
     font-family: "Playwrite CA", cursive;
     font-size: 2rem;
-    color: var(--pink);
+    color: var(--gold);
 }
 
 .home .couple img {
@@ -165,12 +328,13 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) translateY(65px);
+    transform: translateX(-70%) translateY(90px) !important;
+    z-index: 99;
 }
 
 .home .heart i {
     margin: auto;
-    color: var(--pink);
+    color: var(--gold);
 }
 
 /* Info Section */
@@ -213,7 +377,7 @@ body {
 }
 
 .info .btn-maps {
-    background-color: var(--pink);
+    background-color: var(--gold);
     color: red;
     font-size: 1.2rem;
 }
@@ -226,7 +390,6 @@ body {
 
 .story span {
     text-transform: uppercase;
-    color: #666;
     font-size: 0.9rem;
     letter-spacing: 1px;
     display: block;
@@ -345,7 +508,6 @@ body {
 
 .gallery span {
     text-transform: uppercase;
-    color: #666;
     font-size: 0.9rem;
     letter-spacing: 1px;
     display: block;
@@ -362,7 +524,7 @@ body {
     font-family: "Playwrite CA", cursive;
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--pink);
+    color: var(--gold);
     margin-bottom: 1rem;
 }
 
@@ -381,9 +543,9 @@ body {
 }
 
 .rsvp .btn-send {
-    background-color: var(--pink);
+    background-color: var(--gold);
     color: #fff;
-    border: 1px solid var(--pink);
+    border: 1px solid var(--gold);
 }
 
 .rsvp .btn-send:hover {
@@ -403,7 +565,7 @@ body {
     font-family: "Playwrite CA", cursive;
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--pink);
+    color: var(--gold);
     margin-bottom: 1rem;
 }
 
@@ -420,12 +582,12 @@ body {
 }
 
 .messages form .form-control:focus {
-    border-color: var(--pink);
+    border-color: var(--gold);
     box-shadow: 0 0 6px rgba(241, 78, 149, 0.4);
 }
 
 .messages .btn-send {
-    background-color: var(--pink);
+    background-color: var(--gold);
     color: #fff;
     border: none;
     padding: 0.6rem 2rem;
@@ -473,7 +635,7 @@ body {
 }
 
 .message-item h5 {
-    color: var(--pink);
+    color: var(--gold);
     font-weight: 600;
     margin-bottom: 0.3rem;
 }
@@ -515,6 +677,41 @@ body {
     .message-list {
         max-height: 300px;
     }
+    #doa {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* posisikan isi di bawah */
+        align-items: center; /* tetap center secara horizontal */
+        text-align: center;
+        padding-bottom: 0; /* semula 80px */
+    }
+    #doa::before,
+    #doa::after {
+        width: clamp(320px, 24vw, 400px);
+    }
+
+    #doa::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        bottom: -6px;
+        top: auto;
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
+
+    #doa::after {
+        content: "";
+        position: absolute;
+        right: -4px; /* kanan */
+        top: -24px; /* atas */
+        left: auto;
+        bottom: auto; /* pastikan tidak ketarik ke bawah */
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
 }
 
 /* Gifts */
@@ -523,7 +720,7 @@ body {
     font-family: "Playwrite CA", cursive;
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--pink);
+    color: var(--gold);
     margin-bottom: 1rem;
 }
 
@@ -540,7 +737,6 @@ body {
 
 .gifts span {
     text-transform: uppercase;
-    color: #666;
     font-size: 0.9rem;
     letter-spacing: 1px;
     display: block;
@@ -576,7 +772,7 @@ footer li {
 .bi-instagram:hover,
 .bi-github:hover,
 .bi-facebook:hover {
-    color: var(--pink);
+    color: var(--gold);
 }
 
 .audio-icon {
@@ -597,7 +793,7 @@ footer li {
 
 .bi-disc-fill,
 .bi-pause-circle-fill {
-    color: var(--pink);
+    color: var(--gold);
     opacity: 0.5;
     mix-blend-mode: difference;
 }
@@ -646,6 +842,41 @@ footer li {
         left: -13px;
         right: auto;
     }
+    #doa {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* posisikan isi di bawah */
+        align-items: center; /* tetap center secara horizontal */
+        text-align: center;
+        padding-bottom: 0; /* semula 80px */
+    }
+    #doa::before,
+    #doa::after {
+        width: clamp(320px, 24vw, 400px);
+    }
+
+    #doa::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        bottom: -6px;
+        top: auto;
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
+
+    #doa::after {
+        content: "";
+        position: absolute;
+        right: -4px; /* kanan */
+        top: -24px; /* atas */
+        left: auto;
+        bottom: auto; /* pastikan tidak ketarik ke bawah */
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
 }
 
 /* Tablet */
@@ -692,10 +923,55 @@ footer li {
     }
 }
 
+@media (min-width: 577px) {
+    #doa::before,
+    #doa::after {
+        width: clamp(120px, 24vw, 300px);
+    }
+}
+
+@media (max-width: 992px) {
+    .woman {
+        margin-top: 32px;
+    }
+}
+
 /* Extra Large */
 @media (max-width: 1200px) {
-    .home .heart {
-        transform: translateX(-50%) translateY(45px);
+    #doa {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* posisikan isi di bawah */
+        align-items: center; /* tetap center secara horizontal */
+        text-align: center;
+        padding-bottom: 0; /* semula 80px */
+    }
+    #doa::before,
+    #doa::after {
+        width: clamp(320px, 24vw, 400px);
+    }
+
+    #doa::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        bottom: -6px;
+        top: auto;
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
+    }
+
+    #doa::after {
+        content: "";
+        position: absolute;
+        right: -4px; /* kanan */
+        top: -24px; /* atas */
+        left: auto;
+        bottom: auto; /* pastikan tidak ketarik ke bawah */
+        background: var(--orn-img) no-repeat center / contain;
+        pointer-events: none;
     }
 }
 
@@ -705,7 +981,7 @@ footer li {
     bottom: 3rem;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background-color: var(--pink);
+    background-color: var(--gold);
     color: #fff;
     padding: 1rem 2rem;
     border-radius: 2rem;
