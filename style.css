@@ -390,7 +390,7 @@ section {
 @media (max-width: 768px) {
     .doa-ornaments .ornament {
         position: absolute;
-        width: 120px; /* 🔧 ubah sesuai kebutuhan desktop */
+        width: 100px; /* 🔧 ubah sesuai kebutuhan desktop */
         opacity: 0.8;
     }
     .doa-ornaments .bottom-left {
