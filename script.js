@@ -1,44 +1,46 @@
-// Simply Countdown
-simplyCountdown(".simply-countdown", {
-    year: 2026, // Target year (required)
-    month: 9, // Target month [1-12] (required)
-    day: 10, // Target day [1-31] (required)
-    hours: 8, // Target hour [0-23], default: 0
-    words: {
-        // Custom labels, with lambda for plurals
-        days: {
-            root: "day",
-            lambda: (root, n) => (n > 1 ? root + "s" : root),
-        },
-        hours: {
-            root: "hour",
-            lambda: (root, n) => (n > 1 ? root + "s" : root),
-        },
-        minutes: {
-            root: "minute",
-            lambda: (root, n) => (n > 1 ? root + "s" : root),
-        },
-        seconds: {
-            root: "second",
-            lambda: (root, n) => (n > 1 ? root + "s" : root),
-        },
-    },
-    plural: true, // Use plurals for labels
-});
+// === GANTI TANGGAL DI SINI ===
+// Format ISO dengan zona waktu WITA (UTC+08:00):
+const EVENT_DATE = new Date("2025-11-07T08:00:00+08:00");
+// ==============================
 
-// Personalize Invitation
-// const urlParams = new URLSearchParams(window.location.search);
-// const to = urlParams.get("to") || "";
-// const pronoun = urlParams.get("p") || "Mr./Mrs./Brother/Sister";
+const elDays = document.getElementById("cd-days");
+const elHours = document.getElementById("cd-hours");
+const elMins = document.getElementById("cd-mins");
+const elSecs = document.getElementById("cd-secs");
 
-// const nameInvatation = document.querySelector(".hero h4 span");
-// nameInvatation.innerText = `${pronoun} ${to},`.replace(/ ,$/, ",");
+function pad(n) {
+    return n.toString().padStart(2, "0");
+}
 
-// document.querySelector("#Name").value = to;
+function tick() {
+    const now = new Date().getTime();
+    const diff = EVENT_DATE.getTime() - now;
+
+    if (diff <= 0) {
+        elDays.textContent = "00";
+        elHours.textContent = "00";
+        elMins.textContent = "00";
+        elSecs.textContent = "00";
+        return; // selesai
+    }
+
+    const sec = Math.floor(diff / 1000);
+    const days = Math.floor(sec / 86400);
+    const hrs = Math.floor((sec % 86400) / 3600);
+    const mins = Math.floor((sec % 3600) / 60);
+    const secs = sec % 60;
+
+    elDays.textContent = pad(days);
+    elHours.textContent = pad(hrs);
+    elMins.textContent = pad(mins);
+    elSecs.textContent = pad(secs);
+}
+
+tick();
+setInterval(tick, 1000);
 
 // AOS Animation
 AOS.init();
-
 
 // =======================
 // FIREBASE CONFIGURATION
@@ -222,6 +224,3 @@ function copyText(el) {
         jQuery(el).html(`<i class="fas fa-regular fa-copy"></i> Copy`);
     }, 1500);
 }
-
-
-

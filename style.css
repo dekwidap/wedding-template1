@@ -515,6 +515,197 @@ section {
     display: none;
 }
 
+/* ===== Wedding Date Section ===== */
+.wedding-date-section {
+    position: relative;
+    background: url("src/img/weddingDate/weddingDate.jpg") center / cover
+        no-repeat; /* ⬅️ ganti gambarnya */
+    color: #fff;
+    padding: clamp(64px, 10vh, 120px) 6vw;
+    overflow: hidden;
+}
+.wd-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* overlay gelap 0.4 */
+    z-index: 1;
+}
+.wd-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.wd-title {
+    font-family: "Playwrite CA", cursive;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+.wd-subtitle {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    color: #f0f0f0;
+    max-width: 780px;
+    text-wrap: balance;
+}
+
+/* Countdown */
+.wd-countdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 0.25rem 0 1rem;
+}
+.cd-item {
+    background: rgba(0, 0, 0, 0.5); /* box hitam 0.5 */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    min-width: 92px;
+    padding: 0.8rem 1rem;
+    backdrop-filter: saturate(120%) blur(2px);
+}
+.cd-value {
+    display: block;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    line-height: 1;
+}
+.cd-label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+/* Event list (vertical) */
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: min(900px, 100%);
+}
+.event-card {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.5); /* box hitam 0.5 */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 1.1rem 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+.event-title {
+    margin: 0 0 0.4rem 0;
+    font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+    color: #b3a162; /* emas biar nyambung sama style kamu */
+    font-weight: 700;
+}
+.event-date,
+.event-time,
+.event-location {
+    margin: 0.1rem 0;
+    font-size: clamp(0.95rem, 2.6vw, 1rem);
+    color: #f5f5f5;
+}
+.event-location {
+    opacity: 0.95;
+}
+
+/* Maps button */
+.btn-map {
+    display: inline-block;
+    margin-top: 0.4rem;
+    padding: 0.8rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #b3a162;
+    color: #101010;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-map:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+.btn-map:active {
+    transform: translateY(0);
+}
+
+/* Ukuran font – versi sederhana */
+.event-card .event-title {
+    font-size: 2rem;
+}
+.event-card .event-date,
+.event-card .event-time,
+.event-card .event-location {
+    font-size: 1rem;
+}
+
+/* Responsif kecil */
+@media (max-width: 480px) {
+    .cd-item {
+        min-width: 82px;
+        padding: 0.7rem 0.9rem;
+    }
+    .wd-countdown {
+        display: flex;
+        flex-wrap: nowrap; /* ⬅️ jangan dibungkus ke baris baru */
+        justify-content: space-between;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    .wd-countdown .cd-item {
+        flex: 1 1 0; /* ⬅️ bagi rata lebar 4 box */
+        min-width: 0; /* biar gak maksa melebar */
+        padding: 0.6rem 0.4rem; /* kecilkan padding */
+    }
+    .wd-countdown .cd-value {
+        font-size: clamp(1rem, 8vw, 1.3rem); /* kecilkan angka */
+        line-height: 1;
+    }
+    .wd-countdown .cd-label {
+        font-size: 0.7rem;
+        white-space: nowrap; /* "Seconds" tetap 1 baris */
+        letter-spacing: 0.3px;
+    }
+
+    .simply-countdown {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    .simply-countdown > .simply-section {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 0.6rem 0.4rem;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+    }
+    .simply-countdown .simply-amount {
+        font-weight: 700;
+        font-size: clamp(1rem, 8vw, 1.3rem);
+        line-height: 1;
+    }
+    .simply-countdown .simply-word {
+        font-size: 0.7rem;
+        white-space: nowrap;
+        letter-spacing: 0.3px;
+    }
+
+    .wedding-date-section {
+        background-position: 30% 30%;
+    }
+}
+
 /* ==== MOBILE LAYOUT ==== */
 @media (max-width: 768px) {
     /* Sembunyikan versi desktop */
@@ -566,6 +757,9 @@ section {
             rgba(0, 0, 0, 0) 70%
         );
         z-index: 1;
+    }
+    .wedding-date-section {
+        background-position: 30% 30%;
     }
 
     /* Kontainer teks di bagian bawah */
@@ -751,7 +945,6 @@ section {
 }
 
 .home h2,
-.info h2,
 .story h2,
 .gallery h2 {
     font-family: "Playwrite CA", cursive;
@@ -801,51 +994,6 @@ section {
 .home .heart i {
     margin: auto;
     color: var(--gold);
-}
-
-/* Info Section */
-.info {
-    background-color: #e7ecef;
-    color: #0a0a0a;
-    padding-top: 3rem;
-    padding-bottom: 8rem;
-}
-
-.info .alamat {
-    font-size: 1.2rem;
-}
-
-.info .descriptions {
-    font-size: 1rem;
-    font-weight: 300;
-}
-
-.info .card {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    color: #0a0a0a !important;
-    border: 1px solid #999;
-}
-
-.info .card-header {
-    border: 1px solid #999;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-}
-
-.info .card-body {
-    font-size: 1rem;
-}
-
-.info .card-footer {
-    border-top: 1px solid #999;
-    font-size: 0.9rem;
-    font-weight: 300;
-}
-
-.info .btn-maps {
-    background-color: var(--gold);
-    color: red;
-    font-size: 1.2rem;
 }
 
 /* Story */

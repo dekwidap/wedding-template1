@@ -130,15 +130,6 @@
                             pada Upacara Manusa Yadnya Pawiwahan (Pernikahan)
                             putra-putri kami.
                         </h4>
-                        <!-- <img
-                            data-aos="fade-down"
-                            data-aos-duration="2000"
-                            class="img-swastika"
-                            src="src/img/assets/swastika.png"
-                            alt="Om Shanti"
-                            style="margin-bottom: 12px"
-                        /> -->
-
                         <p class="veda-verse">
                             <i>
                                 Grbhnāmi te saubhagatvāya hastam, Mayā patyā
@@ -232,91 +223,74 @@
             </div>
         </section>
 
-        <!-- Section Info Wedding -->
-        <section id="info-wedding" class="info">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center">
-                        <h2>Information Wedding Ceremony</h2>
-                        <p class="adress">
-                            Jl. Menuh No.25 Semarapura Kelod, Kec. Klungkung,
-                            Kabupaten Klungkung, Bali 80711
-                        </p>
-                        <a
-                            href="https://maps.app.goo.gl/mnioj4gHzdfuuwKz9"
-                            target="_blank"
-                            class="btn btn-danger btn-sm my-3"
-                            >Click Here for The Maps Direction</a
-                        >
-                        <p class="description">Save our Date</p>
-                    </div>
-                </div>
+        <!-- Section: Wedding Date -->
+        <section
+            id="wedding-date"
+            class="wedding-date-section"
+            aria-label="Wedding Date"
+        >
+            <span class="wd-overlay" aria-hidden="true"></span>
 
-                <div class="row justify-content-center mt-4">
-                    <div class="col-md-5 col-10">
-                        <div
-                            class="card text-center text-bg-light mb-5"
-                            data-aos="flip-left"
-                            data-aos-duration="2000"
-                        >
-                            <div class="card-header">Wedding Reception</div>
-                            <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <i class="bi bi-clock-fill d-block"></i>
-                                        <span>12.00 - 22.00 WITA</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <i
-                                            class="bi bi-calendar-event-fill d-block"
-                                        ></i>
-                                        <span>Friday, 07 November 2025</span>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="wd-container">
+                <h2 class="wd-title">Save our Date</h2>
+                <p class="wd-subtitle">
+                    We invite you to join us and be a part of our joyous
+                    celebration to be held on
+                </p>
+
+                <!-- Event details (vertical) -->
+                <div class="event-list">
+                    <div class="event-card">
+                        <h3 class="event-title">Akad Nikah</h3>
+                        <p class="event-date">Sunday, 2 November 2025</p>
+                        <p class="event-time">08:00–10:00 WITA</p>
+                        <p class="event-location">
+                            Jl. Menuh No.25, Semarapura Kelod, Kec. Klungkung, Kabupaten Klungkung, Bali 
+                        </p>
+                    </div>
+                    <!-- Countdown (vanilla, no library) -->
+                    <div
+                        id="countdown"
+                        class="wd-countdown"
+                        role="timer"
+                        aria-live="polite"
+                    >
+                        <div class="cd-item">
+                            <span id="cd-days" class="cd-value">00</span>
+                            <span class="cd-label">Days</span>
+                        </div>
+                        <div class="cd-item">
+                            <span id="cd-hours" class="cd-value">00</span>
+                            <span class="cd-label">Hours</span>
+                        </div>
+                        <div class="cd-item">
+                            <span id="cd-mins" class="cd-value">00</span>
+                            <span class="cd-label">Minutes</span>
+                        </div>
+                        <div class="cd-item">
+                            <span id="cd-secs" class="cd-value">00</span>
+                            <span class="cd-label">Seconds</span>
                         </div>
                     </div>
-
-                    <div class="col-md-5 col-10">
-                        <div
-                            class="card text-center text-bg-light"
-                            data-aos="flip-right"
-                            data-aos-duration="2000"
-                        >
-                            <div class="card-header">Metatah</div>
-                            <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6">
-                                        <i class="bi bi-clock-fill d-block"></i>
-                                        <span>12.00AM - Until Midnight</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <i
-                                            class="bi bi-calendar-event-fill d-block"
-                                        ></i>
-                                        <span>Sunday, 21 November 2025</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center">
-                        <p class="description">
-                            Atas kehadiran dan doa restunya kami ucapkan
-                            terimakasih.
+                    <div class="event-card">
+                        <h3 class="event-title">Resepsi</h3>
+                        <p class="event-date">Friday, 7 November 2025</p>
+                        <p class="event-time">19:00–21:00 WITA</p>
+                        <p class="event-location">
+                            Jl. Menuh No.25, Semarapura Kelod, Kec. Klungkung, Kabupaten Klungkung, Bali 
                         </p>
-                        <p class="adress">OM SANTI NAKAL OM</p>
-                        <img
-                            src="src/img/assets/om-shanti.png"
-                            alt="Om Shanti"
-                            width="100%"
-                            style="margin-bottom: 12px"
-                        />
                     </div>
                 </div>
+
+                <!-- Google Maps button (dummy link) -->
+                <a
+                    class="btn-map"
+                    href="https://maps.app.goo.gl/NjArH6K9QDsk8rtP7"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Open in Google Maps
+                </a>
             </div>
         </section>
 
