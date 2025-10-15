@@ -510,99 +510,96 @@ section {
     color: #f0f0f0;
 }
 
-
-
-
-
-
-
 /* ==== DEFAULT (Desktop on, Mobile off) ==== */
-#couple-mobile { display: none; }
+#couple-mobile {
+    display: none;
+}
 
 /* ==== MOBILE LAYOUT ==== */
 @media (max-width: 768px) {
-  /* Sembunyikan versi desktop */
-  .couple-section { display: none; }
+    /* Sembunyikan versi desktop */
+    .couple-section {
+        display: none;
+    }
 
-  /* Tampilkan versi mobile */
-  #couple-mobile { display: block; }
+    /* Tampilkan versi mobile */
+    #couple-mobile {
+        display: block;
+    }
 
-  .couple-mobile {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+    .couple-mobile {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 
-  .mobile-person {
-    position: relative;
-    /* tinggi layar penuh; pakai dvh utk browser mobile modern dengan fallback */
-    min-height: 100vh;
-    min-height: 100dvh;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    .mobile-person {
+        position: relative;
+        /* tinggi layar penuh; pakai dvh utk browser mobile modern dengan fallback */
+        min-height: 100vh;
+        min-height: 100dvh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
 
-    display: flex;
-    align-items: flex-end;     /* teks di bawah */
-    isolation: isolate;        /* pastikan overlay di bawah teks */
-  }
+        display: flex;
+        align-items: flex-end; /* teks di bawah */
+        isolation: isolate; /* pastikan overlay di bawah teks */
+    }
 
-  /* Ganti path gambar sesuai file kamu */
-  .mobile-person.groom {
-    background-image: url("src/img/groomBride/groomMobile.jpg");
-  }
-  .mobile-person.bride {
-    background-image: url("src/img/groomBride/brideMobile.jpg");
-  }
+    /* Ganti path gambar sesuai file kamu */
+    .mobile-person.groom {
+        background-image: url("src/img/groomBride/groomMobile.jpg");
+    }
+    .mobile-person.bride {
+        background-image: url("src/img/groomBride/brideMobile.jpg");
+    }
 
-  /* Overlay gradasi dari bawah supaya teks kebaca */
-  .mobile-person .mobile-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,0.85) 0%,
-      rgba(0,0,0,0.45) 40%,
-      rgba(0,0,0,0.0) 70%
-    );
-    z-index: 1;
-  }
+    /* Overlay gradasi dari bawah supaya teks kebaca */
+    .mobile-person .mobile-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.45) 40%,
+            rgba(0, 0, 0, 0) 70%
+        );
+        z-index: 1;
+    }
 
-  /* Kontainer teks di bagian bawah */
-  .mobile-text {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    padding: 0 7vw calc(7vh + env(safe-area-inset-bottom));
-    text-align: center;
-    color: #fff;
-  }
+    /* Kontainer teks di bagian bawah */
+    .mobile-text {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 0 7vw calc(7vh + env(safe-area-inset-bottom));
+        text-align: center;
+        color: #fff;
+    }
 
-  /* Reuse kelas teks kamu, tapi kecilkan untuk mobile */
-  .nickname {
-    font-size: 2.1rem;     /* dari 2.8rem -> 2.1rem */
-    margin-bottom: 0.25rem;
-    /* warna emas tetap */
-  }
-  .fullname {
-    font-size: 1.05rem;    /* dari 1.3rem -> 1.05rem */
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-  }
-  .parents {
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: #f5f5f5;
-  }
+    /* Reuse kelas teks kamu, tapi kecilkan untuk mobile */
+    .nickname {
+        font-size: 2.1rem; /* dari 2.8rem -> 2.1rem */
+        margin-bottom: 0.25rem;
+        /* warna emas tetap */
+    }
+    .fullname {
+        font-size: 1.05rem; /* dari 1.3rem -> 1.05rem */
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+    }
+    .parents {
+        font-size: 0.95rem;
+        line-height: 1.55;
+        color: #f5f5f5;
+    }
 
-  /* Sedikit shadow agar kontras di atas foto */
-  .mobile-text * {
-    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
-  }
+    /* Sedikit shadow agar kontras di atas foto */
+    .mobile-text * {
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+    }
 }
-
-
-
 
 /* 📱 Mobile & Tablet View */
 @media (max-width: 768px) {
