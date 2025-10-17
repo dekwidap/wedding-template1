@@ -87,7 +87,7 @@ section {
 }
 
 .guest-box {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.65);
     color: #000;
     padding: 2rem;
     border-radius: 12px;
@@ -106,9 +106,10 @@ section {
 
 .guest-box .guest-name {
     margin: 1rem 0;
-    font-family: "Playwrite CA", cursive;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 2rem;
-    color: #b3a162;
 }
 
 /* ========== TABLET (768–1024px) ========== */
@@ -175,7 +176,7 @@ section {
     .guest-box {
         padding: 1.5rem 1rem;
         border-radius: 10px;
-        background-color: rgba(255, 255, 255, 0.55);
+        background-color: rgba(255, 255, 255, 0.65);
     }
 
     .guest-box p {
@@ -208,10 +209,8 @@ section {
     width: 100%;
     background-image: url("src/img/weddingTitle/desktopMode.webp");
     background-size: cover;
-    background-position: center 80%;
+    background-position: center 85%;
     background-repeat: no-repeat;
-    background-color: #000; /* fallback */
-    color: #fff;
     text-align: center;
     overflow: hidden; /* potong elemen keluar */
 }
@@ -221,7 +220,7 @@ section {
     #wedding-title {
         background-image: url("src/img/weddingTitle/mobileMode.webp");
         background-size: cover;
-        background-position: center;
+        background-position: center 65%;
     }
 
     .ornament-top img,
@@ -267,24 +266,31 @@ section {
     padding: 0 2rem;
 }
 
+.wedding-container {
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    background-color: rgba(210, 210, 210, 0.7);
+}
+
 .wedding-text .subtitle {
     font-size: 1.5rem;
     letter-spacing: 2px;
     margin-bottom: 1rem;
-    color: #e7c97c;
-    font-family: "Playfair Display", serif;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .wedding-text .bride-groom {
     font-family: "Playwrite CA", cursive;
     font-size: 3rem;
-    color: #b3a162;
+
     margin: 0.5rem 0;
 }
 
 .wedding-text .and-symbol {
     font-size: 2.5rem;
-    color: #e7c97c;
+
     margin: 0.3rem 0;
     font-family: "Cormorant Garamond", serif;
 }
@@ -294,6 +300,11 @@ section {
     .ornament-top img,
     .ornament-bottom img {
         width: 380px;
+    }
+    #wedding-title {
+        background-image: url("src/img/weddingTitle/mobileMode.webp");
+        background-size: cover;
+        background-position: center 100%;
     }
 
     .wedding-text .subtitle {
@@ -487,6 +498,9 @@ section {
     width: 100%;
     padding: 0 8vw 6vh;
     z-index: 2;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* 👰🤵 MASING-MASING DIV */
@@ -505,7 +519,6 @@ section {
 
 .fullname {
     font-size: 1.3rem;
-    font-weight: 600;
     margin-bottom: 1rem;
 }
 
@@ -550,13 +563,7 @@ section {
     font-family: "Playwrite CA", cursive;
     font-size: clamp(2rem, 4.5vw, 3rem);
     letter-spacing: 0.5px;
-    color: #fff;
-}
-.wd-subtitle {
-    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-    color: #f0f0f0;
-    max-width: 780px;
-    text-wrap: balance;
+    color: var(--gold);
 }
 
 /* Countdown */
@@ -608,7 +615,9 @@ section {
     margin: 0 0 0.4rem 0;
     font-size: clamp(1.1rem, 3.5vw, 1.25rem);
     color: #b3a162; /* emas biar nyambung sama style kamu */
-    font-weight: 700;
+    font-family: "Patua One", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 .event-date,
 .event-time,
@@ -676,14 +685,8 @@ section {
 .section-title {
     font-family: "Playwrite CA", cursive;
     font-size: clamp(2rem, 4vw, 2.6rem);
-    color: #fff;
+    color: var(--gold);
 }
-.section-desc {
-    color: #e9e9e9;
-    opacity: 0.95;
-    text-wrap: balance;
-}
-
 /* ===== Masonry (tanpa JS) pakai multi-column ===== */
 .masonry {
     max-width: 1400px;
@@ -941,6 +944,7 @@ body.no-scroll {
 .rsvp-title {
     font-family: "Playwrite CA", cursive;
     font-size: clamp(2rem, 4.5vw, 2.6rem);
+    color: var(--gold);
 }
 
 /* Form card */
@@ -1225,6 +1229,7 @@ body.no-scroll {
     font-family: "Playwrite CA", cursive;
     font-size: clamp(2rem, 4.5vw, 2.6rem);
     margin: 0 0 1rem;
+    color: var(--gold);
 }
 
 /* Kartu (mirip RSVP) */
@@ -1331,6 +1336,9 @@ body.no-scroll {
         display: flex;
         flex-direction: column;
         width: 100%;
+        font-family: "Patua One", serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     .mobile-person {
@@ -1383,17 +1391,16 @@ body.no-scroll {
 
     /* Reuse kelas teks kamu, tapi kecilkan untuk mobile */
     .nickname {
-        font-size: 2.1rem; /* dari 2.8rem -> 2.1rem */
-        margin-bottom: 0.25rem;
+        font-size: 2.5rem; /* dari 2.8rem -> 2.1rem */
+        margin-bottom: 0.4rem;
         /* warna emas tetap */
     }
     .fullname {
-        font-size: 1.05rem; /* dari 1.3rem -> 1.05rem */
-        font-weight: 600;
+        font-size: 1.5rem; /* dari 1.3rem -> 1.05rem */
         margin-bottom: 0.8rem;
     }
     .parents {
-        font-size: 0.95rem;
+        font-size: 1.3rem;
         line-height: 1.55;
         color: #f5f5f5;
     }
@@ -1781,248 +1788,98 @@ body.no-scroll {
     right: auto;
 }
 
-/* Gallery */
-.gallery {
-    padding-top: 3rem;
-    padding-bottom: 8rem;
-    background-color: rgb(255, 237, 252);
-}
+/* ===== Closing Section ===== */
+.closing {
+    /* Ganti ke gambar kamu */
+    --bg: url("src/img/BRD04255.webp");
 
-.gallery span {
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.gallery p {
-    font-size: 1.2rem;
-    font-weight: 300;
-}
-
-/* RSVP */
-.rsvp h2 {
-    font-family: "Playwrite CA", cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--gold);
-    margin-bottom: 1rem;
-}
-
-.rsvp {
-    padding-top: 3rem;
-    padding-bottom: 8rem;
-}
-
-.rsvp p {
-    font-size: 1.2rem;
-    font-weight: 300;
-}
-
-.rsvp {
-    background-color: rgb(255, 237, 252);
-}
-
-.rsvp .btn-send {
-    background-color: var(--gold);
-    color: #fff;
-    border: 1px solid var(--gold);
-}
-
-.rsvp .btn-send:hover {
-    background-color: #fe8ebf;
-    color: #fff;
-    border: 1px solid #fff;
-}
-
-/* Guest Messages Section */
-.messages {
-    background-color: #fff;
-    padding-top: 4rem;
-    padding-bottom: 8rem;
-}
-
-.messages h2 {
-    font-family: "Playwrite CA", cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--gold);
-    margin-bottom: 1rem;
-}
-
-.messages .sub-text {
-    font-size: 1.2rem;
-    color: #444;
-}
-
-.messages form .form-control {
-    border-radius: 0.75rem;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.2s ease-in-out;
-}
-
-.messages form .form-control:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 6px rgba(241, 78, 149, 0.4);
-}
-
-.messages .btn-send {
-    background-color: var(--gold);
-    color: #fff;
-    border: none;
-    padding: 0.6rem 2rem;
-    border-radius: 0.75rem;
-    transition: background-color 0.3s ease;
-}
-
-.messages .btn-send:hover {
-    background-color: #fe8ebf;
-}
-
-/* Daftar pesan */
-.message-list {
-    background-color: #fff;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-/* Animasi fade-in untuk ucapan baru */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.message-item {
-    border-bottom: 1px solid #f1f1f1;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-.message-item:last-child {
-    border-bottom: none;
-}
-
-.message-item h5 {
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-}
-
-.message-item p {
-    color: #333;
-    font-size: 1rem;
-    margin: 0;
-}
-
-/* --- Ubah form Kartu Ucapan jadi vertikal di semua perangkat --- */
-.messages form {
+    position: relative;
+    min-height: 70vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    max-width: 700px; /* ubah nilai ini sesuai keinginan */
-    margin: 0 auto; /* biar tetap di tengah */
-}
+    justify-content: center;
 
-.messages form .col-md-5,
-.messages form .col-10 {
-    width: 100% !important; /* Biar full lebar, bukan 2 kolom */
-}
-
-.messages form input,
-.messages form textarea {
-    width: 100%;
-}
-
-/* Responsif */
-@media (max-width: 768px) {
-    .messages form {
-        text-align: center;
-    }
-    .messages form .col-md-5 {
-        width: 80%;
-    }
-    .message-list {
-        max-height: 300px;
-    }
-}
-
-/* Gifts */
-
-.gifts h2 {
-    font-family: "Playwrite CA", cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--gold);
-    margin-bottom: 1rem;
-}
-
-.gifts {
-    padding-top: 3rem;
-    padding-bottom: 8rem;
-    background-color: #fff;
-}
-
-.gifts p {
-    font-size: 1.2rem;
-    font-weight: 300;
-}
-
-.gifts span {
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-/* Footer */
-footer {
-    padding: 1.5rem;
-    background-color: #000;
-    color: white;
-}
-
-footer a {
-    color: var(--bg);
-    font-weight: bold;
-    text-decoration: none;
-}
-
-footer li {
-    list-style: none;
-    margin: 1.5rem;
-    display: inline;
-    font-size: 2.5rem;
-}
-
-.bi-instagram,
-.bi-github,
-.bi-facebook {
     color: #fff;
+    background-image: var(--bg);
+    background-size: cover;
+    background-position: 50% 35%;
+    overflow: hidden; /* jaga pseudo-element */
 }
 
-.bi-instagram:hover,
-.bi-github:hover,
-.bi-facebook:hover {
-    color: var(--gold);
+/* veil halus biar teks selalu kebaca */
+.closing::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 0;
 }
 
-/* Media Query Area */
+/* gradient bawah yang menyatu ke footer hitam */
+.closing::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 35vh; /* atur sesuai selera / tinggi footer */
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.6) 60%,
+        #000 100%
+    );
+    z-index: 0;
+}
+
+.closing .safe-area,
+.closing__inner {
+    position: relative;
+    z-index: 1; /* di atas overlay */
+}
+
+.closing__quote {
+    margin: 0 auto 18px;
+    max-width: 920px;
+    padding: 0 12px;
+    text-align: justify;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    font-weight: 600;
+    font-size: clamp(16px, 2.4vw, 22px);
+}
+
+.closing__names {
+    margin: 0;
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 36px);
+    text-align: center;
+}
+
+.closing__icon {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    margin-left: 8px;
+    background: center / contain no-repeat;
+    color: #fff;
+    /* taruh icon kamu di sini: */
+    background-image: url("src/img/assets/like.png");
+    filter: brightness(0) invert(1); /* hitam → putih */
+    vertical-align: middle;
+}
+
+@media (max-width: 480px) {
+    .closing {
+        min-height: 60vh;
+    }
+    .closing__icon {
+        width: 22px;
+        height: 22px;
+    }
+}
+
 /* Laptop */
 @media (max-width: 992px) {
     html {
@@ -2139,4 +1996,69 @@ footer li {
     background-position: center;
     background-size: cover;
     z-index: -1; /* ini kuncinya */
+}
+
+/* ===== Footer ===== */
+.site-footer {
+    background: #000; /* nyambung dengan gradient closing */
+    color: #bbb;
+    padding: 28px 0 36px;
+    margin-top: -1px; /* hindari hairline di beberapa device */
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.footer__copy {
+    margin: 0;
+    font-size: clamp(14px, 1.8vw, 15px);
+    letter-spacing: 0.02em;
+    opacity: 0.95;
+}
+
+.footer__copy i {
+    margin: 0 0.35em;
+    font-size: 0.95em;
+    opacity: 0.9;
+    vertical-align: middle;
+}
+
+.footer__socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #bbb;
+    font-size: 20px;
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover/focus jadi emas (ambil dari var di CSS, ada fallback) */
+.social-link:is(:hover, :focus-visible) {
+    color: var(--gold, #d4af37);
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+@media (max-width: 480px) {
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
 }

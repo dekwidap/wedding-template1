@@ -1,3 +1,28 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const targets = document.querySelectorAll(".guest-name");
+    if (!targets.length) return;
+
+    const params = new URLSearchParams(window.location.search);
+    let to = params.get("to"); // ex: ?to=Dekwid%20Aryama%20Putra
+    if (to == null) return; // tanpa param: biarkan default di HTML
+
+    // Decode & rapikan
+    to = to.replace(/\+/g, " "); // dukung ?to=Nama+Tamu
+    try {
+        to = decodeURIComponent(to);
+    } catch (e) {}
+    to = to.replace(/[_-]+/g, " "); // ganti _ atau - jadi spasi
+    to = to.trim().replace(/\s{2,}/g, " ");
+
+    // (opsional) Title Case — hapus komentar kalau mau otomatis kapital awal kata
+    // to = to.replace(/\w\S*/g, w => w[0].toUpperCase() + w.slice(1).toLowerCase());
+
+    if (to) {
+        if (to.length > 80) to = to.slice(0, 80) + "…"; // cegah nama terlalu panjang
+        targets.forEach((el) => (el.textContent = to)); // aman dari XSS
+    }
+});
+
 // === GANTI TANGGAL DI SINI ===
 // Format ISO dengan zona waktu WITA (UTC+08:00):
 const EVENT_DATE = new Date("2025-11-07T08:00:00+08:00");

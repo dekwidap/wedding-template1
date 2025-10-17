@@ -28,6 +28,10 @@
             href="https://fonts.googleapis.com/css2?family=Playwrite+CA:wght@100..400&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap"
+            rel="stylesheet"
+        />
 
         <!-- Simply Countdown -->
         <link rel="stylesheet" href="dist-countdown/themes/default.css" />
@@ -60,8 +64,8 @@
                 </div>
 
                 <div class="guest-box">
-                    <p>Kepada Yth;</p>
-                    <p>Bapak/Ibu/Saudara/i</p>
+                    <p>Kepada Yth.</p>
+                    <p>Bapak/Ibu/Saudara/I</p>
                     <h3 class="guest-name">Nama Tamu</h3>
                     <p>Di Tempat</p>
                 </div>
@@ -81,10 +85,12 @@
             </div>
 
             <div class="wedding-text">
-                <p class="subtitle">The Wedding Of</p>
-                <h1 class="bride-groom">Dhani</h1>
-                <span class="and-symbol">&</span>
-                <h1 class="bride-groom">Ditha</h1>
+                <div class="wedding-container">
+                    <p class="subtitle">The Wedding Of</p>
+                    <h1 class="bride-groom">Dhani</h1>
+                    <span class="and-symbol">&</span>
+                    <h1 class="bride-groom">Ditha</h1>
+                </div>
             </div>
 
             <div class="ornament-bottom">
@@ -126,7 +132,7 @@
                         <h2 class="title-omSwastyastu">Om Swastyastu</h2>
                         <h4 class="title-doa" style="text-align: justify">
                             Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi
-                            Wasa kami bermaksud mengundang Bapak/Ibu/Saudara/I
+                            Wasa, kami bermaksud mengundang Bapak/Ibu/Saudara/I
                             pada Upacara Manusa Yadnya Pawiwahan (Pernikahan)
                             putra-putri kami.
                         </h4>
@@ -232,18 +238,14 @@
             <span class="wd-overlay" aria-hidden="true"></span>
 
             <div class="wd-container">
-                <h2 class="wd-title">Save our Date</h2>
-                <p class="wd-subtitle">
-                    We invite you to join us and be a part of our joyous
-                    celebration to be held on
-                </p>
+                <h2 class="wd-title">Save Our Date</h2>
 
                 <!-- Event details (vertical) -->
                 <div class="event-list">
                     <div class="event-card">
-                        <h3 class="event-title">Akad Nikah</h3>
-                        <p class="event-date">Sunday, 2 November 2025</p>
-                        <p class="event-time">08:00–10:00 WITA</p>
+                        <h3 class="event-title">Pawiwahan</h3>
+                        <p class="event-date">Friday, 7 November 2025</p>
+                        <p class="event-time">08.00 - 11.00 WITA</p>
                         <p class="event-location">
                             Jl. Menuh No.25, Semarapura Kelod, Kec. Klungkung,
                             Kabupaten Klungkung, Bali
@@ -276,7 +278,7 @@
                     <div class="event-card">
                         <h3 class="event-title">Resepsi</h3>
                         <p class="event-date">Friday, 7 November 2025</p>
-                        <p class="event-time">19:00–21:00 WITA</p>
+                        <p class="event-time">12.00 - 22.00 WITA/p></p>
                         <p class="event-location">
                             Jl. Menuh No.25, Semarapura Kelod, Kec. Klungkung,
                             Kabupaten Klungkung, Bali
@@ -300,9 +302,6 @@
         <section id="gallery" class="gallery-section" aria-label="Gallery">
             <div class="gallery-header">
                 <h2 class="section-title">Our Gallery</h2>
-                <p class="section-desc">
-                    A few favorite moments from our pre-wedding session.
-                </p>
             </div>
 
             <!-- Masonry wrapper -->
@@ -490,7 +489,7 @@
                     <div class="form-actions">
                         <!-- type="button" supaya belum submit; nanti kamu pasang logic sendiri -->
                         <button type="button" id="btn-rsvp" class="btn-submit">
-                            RSVP
+                            SEND
                         </button>
                     </div>
                 </form>
@@ -553,7 +552,9 @@
                         >
                             2902260891
                         </div>
-                        <div class="acc-name">a.n. Putu Ditha Putri Cahyani</div>
+                        <div class="acc-name">
+                            a.n. Putu Ditha Putri Cahyani
+                        </div>
                     </div>
 
                     <button
@@ -567,68 +568,84 @@
             </div>
         </section>
 
-        <section
-            id="penutup-section"
-            class="penutup-section py-5"
-            data-aos="fade-up"
-            data-aos-easing="linear"
-            data-aos-duration="1500"
-        >
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="section-title text-center">
-                            <h3 class="text-pink brideFont fw-bold">
-                                We are honored to have you at the wedding. Thank
-                                you!
-                            </h3>
-                            <h5 class="my-3">With Love ❤️</h5>
-                            <h1 class="brideFont">Dhani & Ditha</h1>
-                        </div>
-                    </div>
+        <!-- Section Penutup -->
+        <section id="closing" class="closing" aria-label="Penutup">
+            <div class="safe-area">
+                <div class="closing__inner">
+                    <p class="closing__quote">
+                        SETIAP UCAPAN DAN DOA YANG KAMU BERIKAN, JADI BAGIAN
+                        INDAH DALAM CERITA KAMI TAK SABAR MENYAMBUTMU DI HARI
+                        SPESIAL NANTI.
+                    </p>
+
+                    <h3 class="closing__names">
+                        Dhani
+                        <span class="closing__icon" aria-hidden="true"></span>
+                        Ditha
+                        <!-- kamu bisa ganti background-image di CSS untuk icon ini -->
+                    </h3>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
+        <!-- Footer -->
+        <footer
+            id="site-footer"
+            class="site-footer"
+            role="contentinfo"
+            aria-label="Footer"
+        >
+            <div class="">
+                <div class="footer__inner">
+                    <p class="footer__copy">
+                        <span class="year">2025</span>
+                        <i
+                            class="fa-regular fa-copyright"
+                            aria-hidden="true"
+                        ></i>
+                        Made with 🫶🏻 — <strong>Dekwid Aryama Putra</strong>
+                    </p>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
-                        <small class="block"
-                            >&copy; 2025 This template has been modified from
-                            the original by Sandhika Galih (YouTube)</small
+                    <nav class="footer__socials" aria-label="Social media">
+                        <!-- Ganti href="#" ke link kamu -->
+                        <a
+                            href="https://www.instagram.com/dekwidaryama/"
+                            class="social-link"
+                            aria-label="Instagram"
+                            target="_blank"
+                            rel="noopener"
                         >
-                        <br />
-                        <small class="block"
-                            >Design By Dekwid Aryama Putra</small
+                            <i
+                                class="fa-brands fa-instagram"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <a
+                            href="https://www.facebook.com/dekwidap/"
+                            class="social-link"
+                            aria-label="Facebook"
+                            target="_blank"
+                            rel="noopener"
                         >
-
-                        <ul class="mt-3">
-                            <li>
-                                <a
-                                    href="https://www.instagram.com/dekwidaryama/"
-                                    target="_blank"
-                                    ><i class="bi bi-instagram"></i
-                                ></a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.facebook.com/dekwidap/"
-                                    target="_blank"
-                                    ><i class="bi bi-facebook"></i
-                                ></a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://github.com/dekwidap"
-                                    target="_blank"
-                                    ><i class="bi bi-github"></i
-                                ></a>
-                            </li>
-                        </ul>
-                    </div>
+                            <i
+                                class="fa-brands fa-facebook-f"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                        <a
+                            href="https://github.com/dekwidap"
+                            class="social-link"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <i
+                                class="fa-brands fa-github"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                    </nav>
                 </div>
             </div>
         </footer>
