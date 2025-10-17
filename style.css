@@ -39,7 +39,8 @@ section {
 
     /* 🌆 Dua lapisan background */
     background-image: url("src/img/assets/desktopView.png"),
-        /* border frame (di atas) */ url("src/img/weddingLanding/bgLanding.jpg"); /* foto latar belakang (di bawah) */
+        /* border frame (di atas) */
+            url("src/img/weddingLanding/bgLanding.webp"); /* foto latar belakang (di bawah) */
 
     background-repeat: no-repeat, no-repeat;
     background-size: contain, cover; /* border = contain, foto = cover */
@@ -116,7 +117,7 @@ section {
         /* 🔁 Dua lapisan background untuk mobile */
         background-image: url("src/img/assets/mobileView.png"),
             /* border versi mobile */
-                url("src/img/weddingLanding/bgLanding.jpg"); /* foto latar belakang mobile */
+                url("src/img/weddingLanding/bgLanding.webp"); /* foto latar belakang mobile */
 
         background-repeat: no-repeat, no-repeat;
         background-size: contain, cover; /* border tetap proporsional, foto isi penuh */
@@ -154,7 +155,7 @@ section {
         /* 🔁 Dua lapisan background untuk mobile */
         background-image: url("src/img/assets/mobileView.png"),
             /* border versi mobile */
-                url("src/img/weddingLanding/bgLanding.jpg"); /* foto latar belakang mobile */
+                url("src/img/weddingLanding/bgLanding.webp"); /* foto latar belakang mobile */
 
         background-repeat: no-repeat, no-repeat;
         background-size: contain, cover; /* border tetap proporsional, foto isi penuh */
@@ -205,7 +206,7 @@ section {
     position: relative;
     height: 100svh; /* ✅ isi penuh tinggi layar */
     width: 100%;
-    background-image: url("src/img/weddingTitle/desktopMode.jpg");
+    background-image: url("src/img/weddingTitle/desktopMode.webp");
     background-size: cover;
     background-position: center 80%;
     background-repeat: no-repeat;
@@ -218,7 +219,7 @@ section {
 /* 📱 TABLET & HANDPHONE */
 @media (max-width: 1024px) {
     #wedding-title {
-        background-image: url("src/img/weddingTitle/mobileMode.jpg");
+        background-image: url("src/img/weddingTitle/mobileMode.webp");
         background-size: cover;
         background-position: center;
     }
@@ -450,7 +451,7 @@ section {
 .couple-section {
     position: relative;
     height: 100vh; /* ⬅️ fix utama */
-    background: url("src/img/groomBride/groomBride.jpg") center / cover
+    background: url("src/img/groomBride/groomBride.webp") center / cover
         no-repeat;
     color: #fff;
     overflow: hidden;
@@ -518,7 +519,7 @@ section {
 /* ===== Wedding Date Section ===== */
 .wedding-date-section {
     position: relative;
-    background: url("src/img/weddingDate/weddingDate.jpg") center / cover
+    background: url("src/img/weddingDate/weddingDate.webp") center / cover
         no-repeat; /* ⬅️ ganti gambarnya */
     color: #fff;
     padding: clamp(64px, 10vh, 120px) 6vw;
@@ -647,6 +648,181 @@ section {
     font-size: 1rem;
 }
 
+/* ===== Gallery Section (desktop-first) ===== */
+.gallery-section {
+    padding: clamp(56px, 8vh, 96px) 6vw;
+    color: #fff;
+    position: relative;
+    /* Fallback: JPG + overlay (tanpa markup tambahan) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url("src/img/weddingGallery/bgGallery.webp"); /* ⬅️ ganti path */
+    background-size: 100% 100%, cover; /* overlay full, foto cover */
+    background-position: 50% 50%, 50% 50%; /* overlay center, foto center */
+    background-repeat: no-repeat, no-repeat;
+    color: #fff;
+    /* warna gelap merata + blend */
+    background-color: rgba(0, 0, 0, 0.45); /* ⬅️ atur tingkat gelap (0–1) */
+    background-blend-mode: multiply; /* ⬅️ gelapkan foto tanpa pengaruh ke teks */
+}
+.gallery-header {
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+}
+.section-title {
+    font-family: "Playwrite CA", cursive;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    color: #fff;
+}
+.section-desc {
+    color: #e9e9e9;
+    opacity: 0.95;
+    text-wrap: balance;
+}
+
+/* ===== Masonry (tanpa JS) pakai multi-column ===== */
+.masonry {
+    max-width: 1400px;
+    margin: 0 auto;
+    column-count: 4; /* desktop: 4 kolom */
+    column-gap: 16px; /* jarak antar kolom */
+}
+.masonry-item {
+    break-inside: avoid; /* cegah patah di tengah kolom */
+    margin: 0 0 16px; /* jarak bawah antar item */
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    background: #111; /* fallback saat image loading */
+    cursor: pointer;
+}
+.masonry-item img {
+    display: block;
+    width: 100%;
+    height: auto; /* biarkan tinggi natural (portrait/landscape) */
+    /* kalau mau efek crop seragam, boleh set height + object-fit:cover */
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+.masonry-item:hover img {
+    transform: scale(1.02);
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Gambar besar */
+.lb-img {
+    max-width: 92vw;
+    max-height: 92dvh;
+    object-fit: contain;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+/* Caption (ambil dari alt) */
+.lb-caption {
+    margin-top: 0.6rem;
+    color: #e9e9e9;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 92vw;
+}
+
+/* Tombol navigasi & close */
+.lb-btn {
+    position: absolute;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(4px);
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+.lb-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+.lb-close {
+    top: 16px;
+    right: 16px;
+    font-size: 28px;
+    line-height: 1;
+}
+.lb-prev {
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+}
+.lb-next {
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+}
+
+/* Tutup scroll saat lightbox terbuka */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* ===== Tweak lebar besar banget ===== */
+@media (min-width: 1600px) {
+    .masonry {
+        column-count: 5;
+    }
+}
+/* ===== Tablet/layar sedang (opsional, kalau nanti dipakai) ===== */
+@media (max-width: 1200px) {
+    .masonry {
+        column-count: 3;
+    }
+}
+@media (max-width: 900px) {
+    .masonry {
+        column-count: 2;
+    }
+}
+@media (max-width: 560px) {
+    .masonry {
+        column-count: 2; /* dari yg 1 -> jadi 2 */
+        column-gap: 10px; /* rapatkan dikit di HP */
+    }
+    .masonry-item {
+        margin: 0 0 10px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .masonry {
+        column-count: 2;
+        column-gap: 8px;
+    }
+    .masonry-item {
+        margin-bottom: 8px;
+    }
+}
+
 /* Responsif kecil */
 @media (max-width: 480px) {
     .cd-item {
@@ -704,6 +880,36 @@ section {
     .wedding-date-section {
         background-position: 30% 30%;
     }
+
+    .lb-btn {
+        width: 40px;
+        height: 40px;
+    }
+    .lb-close {
+        top: 12px;
+        right: 12px;
+    }
+    .lb-prev {
+        left: 10px;
+    }
+    .lb-next {
+        right: 10px;
+    }
+}
+
+.lb-hint {
+    display: none;
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    color: #cccccc;
+    text-align: center;
+    opacity: 0.9;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.lb-hint.off {
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* ==== MOBILE LAYOUT ==== */
@@ -740,10 +946,10 @@ section {
 
     /* Ganti path gambar sesuai file kamu */
     .mobile-person.groom {
-        background-image: url("src/img/groomBride/groomMobile.jpg");
+        background-image: url("src/img/groomBride/groomMobile.webp");
     }
     .mobile-person.bride {
-        background-image: url("src/img/groomBride/brideMobile.jpg");
+        background-image: url("src/img/groomBride/brideMobile.webp");
     }
 
     /* Overlay gradasi dari bawah supaya teks kebaca */
@@ -792,6 +998,65 @@ section {
     /* Sedikit shadow agar kontras di atas foto */
     .mobile-text * {
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+    }
+
+    .lightbox {
+        touch-action: pan-y;
+    } /* izinkan geser vertikal alami; horizontal kita handle sendiri */
+    .lb-img {
+        max-width: 96vw;
+        max-height: 80dvh; /* kasih napas buat caption & tombol */
+    }
+    .lb-caption {
+        font-size: 0.9rem;
+        padding: 0 0.75rem;
+        max-width: 96vw;
+    }
+    .lb-btn {
+        width: 44px;
+        height: 44px;
+    }
+    .lb-prev {
+        left: 6px;
+    }
+    .lb-next {
+        right: 6px;
+    }
+    .lb-close {
+        top: 10px;
+        right: 10px;
+    }
+
+    .lb-prev,
+    .lb-next {
+        display: none !important;
+    }
+    .lb-hint {
+        display: block;
+        padding: 0 0.75rem calc(env(safe-area-inset-bottom) + 0.25rem);
+    }
+    .lightbox {
+        display: flex !important; /* override dari grid */
+        flex-direction: column;
+        justify-content: center; /* ⬅️ vertikal center */
+        align-items: center; /* ⬅️ horizontal center */
+        gap: 0.5rem;
+        padding: env(safe-area-inset-top) 12px
+            calc(env(safe-area-inset-bottom) + 12px);
+    }
+
+    /* Biar proporsional dan tidak “mentok” ke atas */
+    .lb-img {
+        max-width: 96vw;
+        max-height: 80dvh; /* sisakan ruang untuk caption/hint */
+        object-fit: contain; /* pastikan landscape muat */
+    }
+
+    .lb-caption,
+    .lb-hint {
+        max-width: 96vw;
+        text-align: center;
+        margin: 0; /* hilangkan margin atas default jika ada */
     }
 }
 
@@ -1466,7 +1731,7 @@ footer li {
             rgba(0, 0, 0, 0.8) 60%,
             rgba(0, 0, 0, 1) 100%
         ),
-        url("src/img/endPic.jpg");
+        url("src/img/endPic.webp");
 
     background-position: center;
     background-size: cover;
