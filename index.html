@@ -423,9 +423,6 @@
             <div class="rsvp-container">
                 <header class="rsvp-header">
                     <h2 class="rsvp-title">RSVP & Wishes</h2>
-                    <p class="rsvp-desc">
-                        Kindly confirm your attendance and leave a wish for us.
-                    </p>
                 </header>
 
                 <form
@@ -535,44 +532,37 @@
             </div>
         </section>
 
-        <!-- Section Gifts -->
-        <section id="gifts" class="gifts">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center">
-                        <h2>Wedding Gift</h2>
-                        <p>
-                            For family and friends who would like to send a
-                            gift, we would be glad to receive it through bank
-                            transfer below
-                        </p>
-                    </div>
-                </div>
+        <!-- Section: Wedding Gift -->
+        <section id="gift" class="gift-section" aria-label="Wedding Gift">
+            <div class="gift-container">
+                <h2 class="gift-title">Wedding Gift</h2>
 
-                <div class="row justify-content-center text-center">
-                    <div class="col-md-6">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <img
-                                    src="src/img/assets/bni-logo.webp"
-                                    alt="Om Shanti"
-                                    width="30%"
-                                    style="margin-bottom: 12px"
-                                />
-                                <br />
-                                2902260891 - Putu Ditha Putri Cahyani
-                                <br />
-                                <a
-                                    style="cursor: pointer"
-                                    onclick="copyText(this)"
-                                    class="copy-button btn btn-light mt-3"
-                                >
-                                    <i class="fas fa-fw fa-copy"></i>
-                                    Copy Number
-                                </a>
-                            </li>
-                        </ul>
+                <div class="gift-card">
+                    <img
+                        class="gift-logo"
+                        src="src/img/assets/bni-logo.webp"
+                        alt="Bank BNI"
+                    />
+
+                    <div class="gift-acc">
+                        <!-- tampilkan dengan spasi biar mudah dibaca, simpan versi raw di data-copytext -->
+                        <div
+                            class="acc-number"
+                            id="acc-number"
+                            data-copytext="2902260891"
+                        >
+                            2902260891
+                        </div>
+                        <div class="acc-name">a.n. Putu Ditha Putri Cahyani</div>
                     </div>
+
+                    <button
+                        type="button"
+                        class="btn-copy"
+                        data-copy="#acc-number"
+                    >
+                        Copy Account Number
+                    </button>
                 </div>
             </div>
         </section>

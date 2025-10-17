@@ -942,12 +942,6 @@ body.no-scroll {
     font-family: "Playwrite CA", cursive;
     font-size: clamp(2rem, 4.5vw, 2.6rem);
 }
-.rsvp-desc {
-    color: #e9e9e9;
-    opacity: 0.95;
-    font-size: clamp(0.95rem, 2vw, 1.05rem);
-    text-wrap: balance;
-}
 
 /* Form card */
 .rsvp-form {
@@ -1048,51 +1042,76 @@ body.no-scroll {
 
 /* ==== Wishes Section Height Override ==== */
 #wishes-wall,
-.wishes-section{
-  height: auto !important;                 /* penting: gagalkan height:100svh universal */
-  min-height: 50svh;                       /* setengah layar menggunakan svh */
-  min-height: 50dvh;                       /* fallback modern (dynamic viewport) */
-  padding-block: clamp(16px, 4vh, 24px);
+.wishes-section {
+    height: auto !important; /* penting: gagalkan height:100svh universal */
+    min-height: 50svh; /* setengah layar menggunakan svh */
+    min-height: 50dvh; /* fallback modern (dynamic viewport) */
+    padding-block: clamp(16px, 4vh, 24px);
 }
 
 /* Heading */
-.wishes-title{
-  text-align:center; margin: 0 0 .8rem; color:#fff;
+.wishes-title {
+    text-align: center;
+    margin: 0 0 0.8rem;
+    color: #fff;
 }
 
 /* Grid: desktop 2 kolom, mobile 1 kolom */
-.wishes-list{
-  display:grid; gap:12px;
-  grid-template-columns: repeat(2, minmax(0,1fr));
+.wishes-list {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-@media (max-width: 768px){
-  .wishes-list{ grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+    .wishes-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Kartu wish (pakai gaya yang sudah kamu punya; ini contoh ringkas) */
-.wish-card{
-  background: rgba(0,0,0,.5);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-  padding: 12px 14px;
+.wish-card {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 12px 14px;
 }
-.wish-name{ font-weight:700; color:#b3a162; margin-bottom:4px; }
-.wish-msg{ color:#f5f5f5; white-space:pre-wrap; }
+.wish-name {
+    font-weight: 700;
+    color: #b3a162;
+    margin-bottom: 4px;
+}
+.wish-msg {
+    color: #f5f5f5;
+    white-space: pre-wrap;
+}
 
 /* Pagination */
-.wishes-pagination{
-  display:flex; align-items:center; justify-content:center;
-  gap:.75rem; margin-top: 12px;
+.wishes-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 12px;
 }
-.w-btn{
-  appearance:none; border:1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.06);
-  color:#fff; padding:.5rem .8rem; border-radius:10px; cursor:pointer;
-  transition: background .15s ease, opacity .15s ease;
+.w-btn {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
 }
-.w-btn:disabled{ opacity:.5; cursor:not-allowed; }
-.w-page{ opacity:.9; min-width: 4ch; text-align:center; }
-
+.w-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.w-page {
+    opacity: 0.9;
+    min-width: 4ch;
+    text-align: center;
+}
 
 /* === Floating Toast === */
 #toast-root {
@@ -1178,6 +1197,105 @@ body.no-scroll {
     opacity: 1;
 }
 
+/* ===== Wedding Gift Section ===== */
+.gift-section {
+    position: relative;
+    /* Background image + gelap merata */
+    background-image: url("src/img/weddingGift/bgGift.webp"); /* ⬅️ ganti path */
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.45);
+    background-blend-mode: multiply;
+
+    color: #fff;
+    padding: clamp(44px, 8vh, 80px) 6vw;
+
+    /* tidak full screen, cukup separo-ish */
+    min-height: 42svh; /* kira-kira setengah layar */
+}
+
+.gift-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.gift-title {
+    text-align: center;
+    font-family: "Playwrite CA", cursive;
+    font-size: clamp(2rem, 4.5vw, 2.6rem);
+    margin: 0 0 1rem;
+}
+
+/* Kartu (mirip RSVP) */
+.gift-card {
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: clamp(16px, 3.2vw, 28px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    max-width: 560px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.75rem;
+}
+
+.gift-logo {
+    width: 88px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.gift-acc {
+    text-align: center;
+}
+.acc-number {
+    font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+.acc-name {
+    margin-top: 0.15rem;
+    color: #f0f0f0;
+    opacity: 0.95;
+}
+
+/* Tombol copy (selaras style RSVP) */
+.btn-copy {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    background: #b3a162;
+    color: #101010;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 0.8rem 1.2rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-copy:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Responsif mobile: fokus background & spasi */
+@media (max-width: 768px) {
+    .gift-section {
+        background-position: 30% 50%;
+    } /* geser fokus kalau perlu */
+    .gift-card {
+        gap: 0.6rem;
+    }
+    .gift-logo {
+        width: 76px;
+    }
+}
+
 @media (max-width: 768px) {
     .wishes-list {
         grid-template-columns: 1fr;
@@ -1187,7 +1305,7 @@ body.no-scroll {
 /* ===== Responsive (Mobile) ===== */
 @media (max-width: 768px) {
     .rsvp-section {
-        background-position: 40% 50%;
+        background-position: 40% 40%;
     } /* geser fokus foto kalau perlu */
     .form-grid {
         grid-template-columns: 1fr;

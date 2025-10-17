@@ -354,9 +354,16 @@ function escapeHTML(str) {
 }
 
 // ==== State & konstanta ====
+// Ubah ini aja kalau mau atur HP vs Desktop
+const MOBILE_PAGE_SIZE = 3; // ⬅️ ganti angka ini untuk handphone
+const DESKTOP_PAGE_SIZE = 6; // desktop tetap
+
 function getPageSize() {
-    return window.matchMedia("(max-width: 768px)").matches ? 5 : 6;
+    return window.matchMedia("(max-width: 768px)").matches
+        ? MOBILE_PAGE_SIZE // ⬅️ ini yang dipakai di HP
+        : DESKTOP_PAGE_SIZE; // ini untuk desktop
 }
+
 let PAGE_SIZE = getPageSize();
 let wishesData = [];
 let currentPage = 1;
@@ -483,30 +490,70 @@ const Toast = (() => {
     return { show, hide };
 })();
 
+// util copy yg aman utk mobile + iOS
+async function copyTextSafely(text) {
+    // 1) Clipboard API (butuh HTTPS & support)
+    if (navigator.clipboard && window.isSecureContext) {
+        try {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } catch (e) {
+            /* lanjut fallback */
+        }
+    }
+    // 2) Fallback: textarea + execCommand (works on iOS)
+    try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        // gaya supaya tak terlihat & tak trigger zoom
+        ta.style.position = "fixed";
+        ta.style.top = "-9999px";
+        ta.style.fontSize = "16px";
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        return ok;
+    } catch (e) {
+        return false;
+    }
+}
+
+// GANTI listener tombol copy kamu dengan ini:
+document.querySelectorAll(".btn-copy").forEach((btn) => {
+    btn.addEventListener(
+        "click",
+        async () => {
+            const targetSel = btn.getAttribute("data-copy");
+            const target = document.querySelector(targetSel);
+            if (!target) return;
+            const text = (
+                target.getAttribute("data-copytext") ||
+                target.textContent ||
+                ""
+            ).trim();
+
+            const ok = await copyTextSafely(text);
+
+            if (window.Toast) {
+                Toast.show(
+                    ok
+                        ? "Account number copied"
+                        : "Copy failed. Tap & hold to copy.",
+                    ok ? "success" : "error",
+                    { autohide: 1800 }
+                );
+            } else {
+                const old = btn.textContent;
+                btn.textContent = ok ? "Copied!" : "Copy failed";
+                setTimeout(() => (btn.textContent = old), 1500);
+            }
+        },
+        { passive: true }
+    );
+});
+
 // AOS Animation
 AOS.init();
-
-// Copy Text
-function copyText(el) {
-    var content = jQuery(el)
-        .siblings("div.card-container")
-        .find("div.card-number")
-        .text()
-        .trim();
-    var temp = document.createElement("textarea");
-
-    document.body.appendChild(temp);
-
-    temp.value = content.replace(/\s+/g, "");
-    temp.select();
-
-    document.execCommand("Copy");
-
-    document.body.removeChild(temp);
-
-    jQuery(el).text("Berhasil di Copy");
-
-    setTimeout(() => {
-        jQuery(el).html(`<i class="fas fa-regular fa-copy"></i> Copy`);
-    }, 1500);
-}
