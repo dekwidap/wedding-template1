@@ -116,7 +116,7 @@
 
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center py-5">
+                    <div class="col-md-8 col-10 py-5">
                         <img
                             class="img-omswastyastu"
                             src="src/img/assets/om-swastyastu.png"
@@ -124,13 +124,13 @@
                             style="margin-bottom: 12px"
                         />
                         <h2 class="title-omSwastyastu">Om Swastyastu</h2>
-                        <h4 class="title-doa">
+                        <h4 class="title-doa" style="text-align: justify">
                             Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi
-                            Wasa kami bermaksud mengundang Bapak/Ibu/Saudara/i
+                            Wasa kami bermaksud mengundang Bapak/Ibu/Saudara/I
                             pada Upacara Manusa Yadnya Pawiwahan (Pernikahan)
                             putra-putri kami.
                         </h4>
-                        <p class="veda-verse">
+                        <p class="veda-verse" style="text-align: justify">
                             <i>
                                 Grbhnāmi te saubhagatvāya hastam, Mayā patyā
                                 jaradastir yathāsah, Bhago aryamā savitā
@@ -139,10 +139,10 @@
                         </p>
 
                         <h5 class="veda-title">
-                            <i class="fa-solid fa-book"></i> Rg veda : X.85.36
+                            <i class="fa-solid fa-book"></i> Rg Veda : X.85.36
                         </h5>
 
-                        <p class="veda-meaning">
+                        <p class="veda-meaning" style="text-align: justify">
                             Dalam sebuah pernikahan kalian disatukan demi sebuah
                             kebahagiaan dengan janji hati untuk saling
                             membahagiakan. Bersamaku engkau akan hidup selamanya
@@ -163,19 +163,19 @@
                 <!-- Groom -->
                 <div class="person groom">
                     <h3 class="nickname">Dhani</h3>
-                    <h4 class="fullname">Yandhani Astika Putra</h4>
+                    <h4 class="fullname">Yandhani Astika Putra, S.T.</h4>
                     <p class="parents">
                         Putra pertama dari <br />
-                        I Wayan Suriada <br />
-                        & <br />
-                        Ni Nengah Ayu Hastina Wathy
+                        Drs. I Wayan Suriada <br />
+                        &amp; <br />
+                        Ni Nengah Ayu Hastina Wathy, S.Pd
                     </p>
                 </div>
 
                 <!-- Bride -->
                 <div class="person bride">
                     <h3 class="nickname">Ditha</h3>
-                    <h4 class="fullname">Putu Ditha Putri Cahyani</h4>
+                    <h4 class="fullname">Putu Ditha Putri Cahyani, S.K.M.</h4>
                     <p class="parents">
                         Putri pertama dari <br />
                         AKBP (Purn) I Ketut Perten <br />
@@ -197,12 +197,12 @@
                 <span class="mobile-overlay" aria-hidden="true"></span>
                 <div class="mobile-text">
                     <h3 class="nickname">Dhani</h3>
-                    <h4 class="fullname">Yandhani Astika Putra</h4>
+                    <h4 class="fullname">Yandhani Astika Putra, S.T.</h4>
                     <p class="parents">
                         Putra pertama dari <br />
-                        I Wayan Suriada <br />
+                        Drs. I Wayan Suriada <br />
                         &amp; <br />
-                        Ni Nengah Ayu Hastina Wathy
+                        Ni Nengah Ayu Hastina Wathy, S.Pd
                     </p>
                 </div>
             </div>
@@ -212,7 +212,7 @@
                 <span class="mobile-overlay" aria-hidden="true"></span>
                 <div class="mobile-text">
                     <h3 class="nickname">Ditha</h3>
-                    <h4 class="fullname">Putu Ditha Putri Cahyani</h4>
+                    <h4 class="fullname">Putu Ditha Putri Cahyani, S.K.M.</h4>
                     <p class="parents">
                         Putri pertama dari <br />
                         AKBP (Purn) I Ketut Perten <br />
@@ -442,7 +442,7 @@
                             <input
                                 type="text"
                                 id="guestName"
-                                name="name"
+                                name="Name"
                                 placeholder="Your full name"
                             />
                         </div>
@@ -450,7 +450,7 @@
                         <!-- 2) Confirmation -->
                         <div class="form-field">
                             <label for="confirmation">Confirmation</label>
-                            <select id="confirmation" name="confirmation">
+                            <select id="confirmation" name="Confirmation">
                                 <option value="" selected disabled>
                                     Choose...
                                 </option>
@@ -467,7 +467,7 @@
                             <input
                                 type="number"
                                 id="guests"
-                                name="guests"
+                                name="Guests"
                                 inputmode="numeric"
                                 min="0"
                                 step="1"
@@ -482,7 +482,7 @@
                             <label for="wishes">Your Wishes</label>
                             <textarea
                                 id="wishes"
-                                name="wishes"
+                                name="Wishes"
                                 rows="4"
                                 placeholder="Write your message for us..."
                             ></textarea>
@@ -493,18 +493,47 @@
                     <div class="form-actions">
                         <!-- type="button" supaya belum submit; nanti kamu pasang logic sendiri -->
                         <button type="button" id="btn-rsvp" class="btn-submit">
-                            Send RSVP
+                            RSVP
                         </button>
                     </div>
                 </form>
+
+                <section
+                    id="wishes-wall"
+                    class="wishes-section"
+                    aria-label="Wishes"
+                >
+                    <h3 class="wishes-title">Wishes</h3>
+
+                    <div id="wishes-list" class="wishes-list">
+                        <!-- items dirender via JS -->
+                    </div>
+
+                    <nav
+                        class="wishes-pagination"
+                        aria-label="Wishes pagination"
+                    >
+                        <button
+                            type="button"
+                            id="wPrev"
+                            class="w-btn"
+                            aria-label="Previous page"
+                        >
+                            &larr; Prev
+                        </button>
+                        <span id="wPage" class="w-page">1/1</span>
+                        <button
+                            type="button"
+                            id="wNext"
+                            class="w-btn"
+                            aria-label="Next page"
+                        >
+                            Next &rarr;
+                        </button>
+                    </nav>
+                </section>
             </div>
         </section>
-
-        <!-- Success Notification -->
-        <div id="successToast" class="toast-message">
-            <i class="bi bi-heart-fill"></i>
-            <span>Thank you for your message 💌</span>
-        </div>
 
         <!-- Section Gifts -->
         <section id="gifts" class="gifts">
@@ -626,9 +655,6 @@
 
         <!-- Light Box Image -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
-
-        <!-- Sweetalert -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Light Box -->
         <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>

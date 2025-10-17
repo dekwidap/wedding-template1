@@ -187,166 +187,304 @@ guests.addEventListener("input", () => {
     if (v > 5) guests.value = 5;
 });
 
-// AOS Animation
-AOS.init();
+const GAS_URL =
+    "https://script.google.com/macros/s/AKfycbz6BQ0EnCoBzUPc0OzmIC6KS82UTUOFHDzhlt43-FlE6ILrbeeybgxt9B1OSgqUK7kU/exec"; // ⬅️ ganti
 
-// =======================
-// FIREBASE CONFIGURATION
-// =======================
+// helper query
+const $ = (sel) => document.querySelector(sel);
 
-// TODO: Ganti konfigurasi berikut dengan config dari Firebase Project kamu
-const firebaseConfig = {
-    apiKey: "AIzaSyBtf6t_6mFOe1TZIcuObdPVXMdvQc2A2FY",
-    authDomain: "wedding-dekwid-1.firebaseapp.com",
-    databaseURL:
-        "https://wedding-dekwid-1-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "wedding-dekwid-1",
-    storageBucket: "wedding-dekwid-1.appspot.com",
-    messagingSenderId: "108200316819",
-    appId: "1:108200316819:web:a2e2829ee0268d7a652266",
-};
+// (opsional) toggle input guests sesuai konfirmasi
+(function setupGuestsToggle() {
+    const sel = $("#confirmation");
+    const g = $("#guests");
+    if (!sel || !g) return;
+    function apply() {
+        if (sel.value === "not_attending") {
+            g.value = "";
+            g.disabled = true;
+            g.placeholder = "—";
+        } else {
+            g.disabled = false;
+            g.placeholder = "e.g. 2";
+        }
+    }
+    sel.addEventListener("change", apply);
+    apply();
+})();
 
-// inisialisasi Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+// ➜ SATU FUNCTION untuk proses
+async function processRSVP() {
+    const name = $("#guestName")?.value.trim() || "";
+    const conf = $("#confirmation")?.value || "";
+    const wishes = $("#wishes")?.value.trim() || "";
+    const guestsEl = $("#guests");
 
-// =======================
-// FORM KARTU UCAPAN
-// =======================
-const messageForm = document.getElementById("message-form");
-const messageList = document.getElementById("messageList");
-
-messageForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById("guestName").value.trim();
-    const message = document.getElementById("guestMessage").value.trim();
-
-    if (name === "" || message === "") {
-        alert("Please fill out your name and message 🙏");
+    // validasi
+    if (!name) {
+        Toast.show("Please enter your name.", "error");
+        return;
+    }
+    if (!conf) {
+        Toast.show("Please choose your confirmation.", "error");
         return;
     }
 
-    // Simpan ke Firebase Realtime Database
-    const newMessageRef = database.ref("messages").push();
-    newMessageRef.set({
-        name: name,
-        message: message,
-        timestamp: Date.now(),
-    });
-
-    // Reset form
-    messageForm.reset();
-
-    // Tampilkan notifikasi sukses
-    showSuccessToast();
-});
-
-// =======================
-// MENAMPILKAN PESAN
-// =======================
-database.ref("messages").on("value", (snapshot) => {
-    messageList.innerHTML = ""; // Hapus list lama
-    const data = snapshot.val();
-
-    if (data) {
-        // Urutkan dari terbaru ke lama
-        const sortedKeys = Object.keys(data).sort(
-            (a, b) => data[b].timestamp - data[a].timestamp
-        );
-
-        sortedKeys.forEach((key) => {
-            const msg = data[key];
-            const div = document.createElement("div");
-            div.classList.add("message-item");
-            div.innerHTML = `
-        <h5>${msg.name}</h5>
-        <p>${msg.message}</p>
-      `;
-            div.style.animationDelay = "0s";
-            messageList.appendChild(div);
-        });
-    } else {
-        messageList.innerHTML =
-            "<p class='text-center text-muted'>No messages yet — be the first to write one! 💌</p>";
-    }
-});
-
-// =======================
-// NOTIFIKASI SUKSES
-// =======================
-function showSuccessToast() {
-    const toast = document.getElementById("successToast");
-    toast.classList.add("show");
-
-    // Hilangkan setelah 3 detik
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 3000);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("rsvp-form");
-    if (!form) return;
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const nameInput = form.querySelector('input[name="Name"]');
-        const statusSelect = form.querySelector('select[name="Status"]');
-
-        const nama = nameInput ? nameInput.value.trim() : "";
-        const kehadiran = statusSelect ? statusSelect.value.trim() : "";
-
-        if (!nama || !kehadiran || kehadiran.toLowerCase().includes("choose")) {
-            Swal.fire({
-                icon: "warning",
-                title: "Data belum lengkap",
-                text: "Harap isi nama dan pilih status kehadiran sebelum mengirim RSVP 🙏",
-                confirmButtonColor: "#ff5e99",
-            });
+    let guests = 0;
+    if (conf === "attending") {
+        const v = parseInt(guestsEl?.value || "0", 10);
+        if (!Number.isFinite(v) || v < 1 || v > 5) {
+            Toast.show("Number of Guests must be 1–5.", "error");
             return;
         }
+        guests = v;
+    }
 
-        // ⏳ Langsung tampilkan loading popup
-        Swal.fire({
-            title: "Sending RSVP...",
-            text: "Please Wait ❤️",
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            didOpen: () => {
-                Swal.showLoading();
-            },
+    const payload = {
+        name,
+        confirmation: conf,
+        guests,
+        wishes,
+        ts: new Date().toISOString(),
+    };
+
+    // Toast loading
+    const toast = Toast.show("Sending RSVP & Wishes…", "info", {
+        persist: true,
+        loading: true,
+    });
+
+    // UI tombol ringan
+    const btn = document.getElementById("btn-rsvp");
+    const old = btn?.textContent;
+    btn?.classList.add("is-loading");
+    if (btn) btn.textContent = "Sending…";
+
+    try {
+        const body = new URLSearchParams(payload).toString();
+        await fetch(GAS_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body,
         });
 
-        const scriptURL = form.action;
-        const formData = new FormData(form);
+        if (wishes) addWishToData({ name, wishes });
 
-        fetch(scriptURL, { method: "POST", body: formData })
-            .then((response) => {
-                // ⏩ Tutup popup loading lalu tampilkan hasilnya
-                if (response.ok) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Your RSVP Already Sended",
-                        text: "Thank you for your Confirmation ❤️",
-                        confirmButtonColor: "#ff5e99",
-                    });
-                    form.reset();
-                } else {
-                    throw new Error("Failed RSVP");
-                }
-            })
-            .catch(() => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Ups!",
-                    text: "There was been a error. Please try again later or contact the couple 🙏",
-                    confirmButtonColor: "#ff5e99",
-                });
-            });
-    });
+        // sukses
+        toast.update("Sent! Thank you.", "success", { autohide: 2200 });
+        document.getElementById("rsvp-form")?.reset();
+        const ev = new Event("change");
+        $("#confirmation")?.dispatchEvent(ev);
+    } catch (e) {
+        console.error(e);
+        toast.update("Send failed. Please try again.", "error", {
+            autohide: 3000,
+        });
+    } finally {
+        btn?.classList.remove("is-loading");
+        if (btn) btn.textContent = old || "Send RSVP";
+    }
+}
+
+// panggil saat DOM siap
+document.addEventListener("DOMContentLoaded", loadWishesFromSheet);
+
+// render satu kartu wish
+function addWishCard({ name, wishes }) {
+    const list = document.getElementById("wishes-list");
+    if (!list) return;
+    const card = document.createElement("article");
+    card.className = "wish-card";
+    card.innerHTML = `
+    <div class="wish-name">${escapeHTML(name)}</div>
+    <div class="wish-msg">${escapeHTML(wishes)}</div>
+  `;
+    list.prepend(card); // tampil paling atas
+}
+
+function loadWishesFromSheet() {
+    const cb = "wishesCB_" + Math.random().toString(36).slice(2);
+    const s = document.createElement("script");
+
+    window[cb] = function (resp) {
+        try {
+            if (resp && resp.ok && Array.isArray(resp.data)) {
+                // hanya ambil field yang dipakai
+                wishesData = resp.data
+                    .filter(
+                        (item) =>
+                            (item.name && item.name.trim()) ||
+                            (item.wishes && item.wishes.trim())
+                    )
+                    .map((item) => ({
+                        name: item.name || "Guest",
+                        wishes: item.wishes || "",
+                    }));
+            } else {
+                wishesData = [];
+            }
+            renderWishesPage(1); // tampilkan halaman pertama
+        } finally {
+            delete window[cb];
+            s.remove();
+        }
+    };
+
+    s.src = `${GAS_URL}?callback=${cb}&_=${Date.now()}`;
+    document.body.appendChild(s);
+}
+
+// panggil saat DOM siap
+document.addEventListener("DOMContentLoaded", loadWishesFromSheet);
+
+// panggil saat DOM siap
+document.addEventListener("DOMContentLoaded", loadWishesFromSheet);
+
+function escapeHTML(str) {
+    return (str || "").toString().replace(
+        /[&<>"']/g,
+        (s) =>
+            ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+            }[s])
+    );
+}
+
+// ==== State & konstanta ====
+function getPageSize() {
+    return window.matchMedia("(max-width: 768px)").matches ? 5 : 6;
+}
+let PAGE_SIZE = getPageSize();
+let wishesData = [];
+let currentPage = 1;
+
+// Render satu kartu (return string HTML)
+function renderWishItem(item) {
+    return `
+    <article class="wish-card">
+      <div class="wish-name">${escapeHTML(item.name || "Guest")}</div>
+      <div class="wish-msg">${escapeHTML(item.wishes || "")}</div>
+    </article>
+  `;
+}
+
+// Render halaman tertentu
+function renderWishesPage(page = 1) {
+    const listEl = document.getElementById("wishes-list");
+    const pageEl = document.getElementById("wPage");
+    const prevBtn = document.getElementById("wPrev");
+    const nextBtn = document.getElementById("wNext");
+
+    const total = Math.max(1, Math.ceil(wishesData.length / PAGE_SIZE));
+    currentPage = Math.min(Math.max(1, page), total);
+
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const end = start + PAGE_SIZE;
+    const slice = wishesData.slice(start, end);
+
+    listEl.innerHTML = slice.map(renderWishItem).join("");
+    pageEl.textContent = `${currentPage}/${total}`;
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= total;
+}
+
+// Tambahkan wish baru ke data & render ulang (top/halaman 1)
+function addWishToData({ name, wishes }) {
+    wishesData.unshift({ name, wishes });
+    renderWishesPage(1);
+}
+
+// Hook tombol + init page size saat DOM siap
+document.addEventListener("DOMContentLoaded", () => {
+    document
+        .getElementById("wPrev")
+        ?.addEventListener("click", () => renderWishesPage(currentPage - 1));
+    document
+        .getElementById("wNext")
+        ?.addEventListener("click", () => renderWishesPage(currentPage + 1));
+
+    // inisialisasi ukuran page sesuai device saat load
+    PAGE_SIZE = getPageSize();
 });
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        const newSize = getPageSize();
+        if (newSize !== PAGE_SIZE) {
+            // Pertahankan item teratas yang sedang terlihat
+            const firstIndex = (currentPage - 1) * PAGE_SIZE;
+            PAGE_SIZE = newSize;
+            const newPage = Math.floor(firstIndex / PAGE_SIZE) + 1;
+            renderWishesPage(newPage);
+        }
+    }, 150);
+});
+
+// hook tombol
+document.getElementById("btn-rsvp")?.addEventListener("click", processRSVP);
+
+// === Toast Helper ===
+const Toast = (() => {
+    let root, timer;
+
+    function ensureRoot() {
+        if (!root) {
+            root = document.createElement("div");
+            root.id = "toast-root";
+            document.body.appendChild(root);
+        }
+    }
+    function hide() {
+        if (!root) return;
+        root.classList.remove("on");
+        clearTimeout(timer);
+        timer = null;
+        setTimeout(() => {
+            if (root) root.innerHTML = "";
+        }, 200);
+    }
+    function show(message, type = "info", opts = {}) {
+        ensureRoot();
+        clearTimeout(timer);
+        root.innerHTML = `
+    <div class="toast ${type} ${opts.loading ? "loading" : ""}">
+      <span class="t-icon"></span>
+      <div class="t-msg">${message}</div>
+    </div>
+  `;
+        // tidak ada listener close
+        requestAnimationFrame(() => root.classList.add("on"));
+
+        if (!opts.persist) {
+            timer = setTimeout(hide, opts.autohide || 2500);
+        }
+        return {
+            update(msg, nextType = type, nextOpts = {}) {
+                const box = root.querySelector(".toast");
+                if (!box) return;
+                box.className = `toast ${nextType} ${
+                    nextOpts.loading ? "loading" : ""
+                }`;
+                root.querySelector(".t-msg").textContent = msg;
+                clearTimeout(timer);
+                if (!nextOpts.persist) {
+                    timer = setTimeout(hide, nextOpts.autohide || 2500);
+                }
+            },
+            close: hide,
+        };
+    }
+
+    return { show, hide };
+})();
+
+// AOS Animation
+AOS.init();
 
 // Copy Text
 function copyText(el) {

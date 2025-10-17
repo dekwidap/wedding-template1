@@ -384,6 +384,10 @@ section {
     right: -60px;
 }
 
+.justify-doa-text {
+    text-align: justify !important;
+}
+
 /* ✨ Animasi Rotasi Halus */
 @keyframes spin-slow {
     from {
@@ -1042,6 +1046,144 @@ body.no-scroll {
     transform: translateY(0);
 }
 
+/* ==== Wishes Section Height Override ==== */
+#wishes-wall,
+.wishes-section{
+  height: auto !important;                 /* penting: gagalkan height:100svh universal */
+  min-height: 50svh;                       /* setengah layar menggunakan svh */
+  min-height: 50dvh;                       /* fallback modern (dynamic viewport) */
+  padding-block: clamp(16px, 4vh, 24px);
+}
+
+/* Heading */
+.wishes-title{
+  text-align:center; margin: 0 0 .8rem; color:#fff;
+}
+
+/* Grid: desktop 2 kolom, mobile 1 kolom */
+.wishes-list{
+  display:grid; gap:12px;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+@media (max-width: 768px){
+  .wishes-list{ grid-template-columns: 1fr; }
+}
+
+/* Kartu wish (pakai gaya yang sudah kamu punya; ini contoh ringkas) */
+.wish-card{
+  background: rgba(0,0,0,.5);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.wish-name{ font-weight:700; color:#b3a162; margin-bottom:4px; }
+.wish-msg{ color:#f5f5f5; white-space:pre-wrap; }
+
+/* Pagination */
+.wishes-pagination{
+  display:flex; align-items:center; justify-content:center;
+  gap:.75rem; margin-top: 12px;
+}
+.w-btn{
+  appearance:none; border:1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
+  color:#fff; padding:.5rem .8rem; border-radius:10px; cursor:pointer;
+  transition: background .15s ease, opacity .15s ease;
+}
+.w-btn:disabled{ opacity:.5; cursor:not-allowed; }
+.w-page{ opacity:.9; min-width: 4ch; text-align:center; }
+
+
+/* === Floating Toast === */
+#toast-root {
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    transform: translateX(-50%) translateY(10px);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+#toast-root.on {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+#toast-root .toast {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 3px solid currentColor;
+    padding: 0.65rem 0.9rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+    max-width: min(92vw, 520px);
+    backdrop-filter: blur(4px) saturate(120%);
+    pointer-events: none;
+}
+
+/* Variasi warna */
+#toast-root .toast.info {
+    color: #b3a162;
+} /* emas */
+#toast-root .toast.success {
+    color: #7ed9a7;
+}
+#toast-root .toast.error {
+    color: #ff8b8b;
+}
+
+/* Icon + spinner */
+.toast .t-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    position: relative;
+    flex: 0 0 18px;
+}
+/* Spinner jika loading */
+.toast.loading .t-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.toast .t-msg {
+    line-height: 1.25;
+}
+.toast .t-close {
+    margin-left: 0.5rem;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.toast .t-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .wishes-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ===== Responsive (Mobile) ===== */
 @media (max-width: 768px) {
     .rsvp-section {
@@ -1053,7 +1195,6 @@ body.no-scroll {
     .btn-submit {
         width: 100%;
     }
-    
 }
 
 /* ==== MOBILE LAYOUT ==== */
