@@ -1,5 +1,5 @@
 :root {
-    --gold: #b3a162;
+    --gold: rgb(179, 161, 98);
     --bg: #0a0a0a;
     --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -64,6 +64,64 @@ section {
     background: rgba(0, 0, 0, 0.4); /* ubah opacity sesuai selera */
     z-index: 1;
 }
+
+.btn-enter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    background: #b3a162; /* emas */
+    color: #101010;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    font-size: clamp(0.95rem, 2.2vw, 1rem);
+
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-enter:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.btn-enter:active {
+    transform: translateY(0);
+}
+
+.btn-enter:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(179, 161, 98, 0.35),
+        0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+/* animasi panah kecil */
+.btn-enter::after {
+    content: "";
+    font-size: 1.1em;
+    line-height: 1;
+    transform: translateX(0);
+    transition: transform 0.15s ease;
+}
+.btn-enter:hover::after {
+    transform: translateX(2px);
+}
+
+/* (opsional) versi di hero: center + jarak dari bawah */
+#wedding-title .btn-enter {
+    margin-top: 1rem; /* kalau ditaruh di blok teks */
+    text-shadow: none; /* biar teks tombol tetap flat */
+}
+@media (max-width: 768px) {
+    .btn-enter {
+        width: auto;
+        padding: 0.85rem 1.2rem;
+    }
+}
 .safe-area {
     position: relative;
     z-index: 2;
@@ -87,8 +145,8 @@ section {
 }
 
 .guest-box {
-    background-color: rgba(255, 255, 255, 0.65);
-    color: #000;
+    background-color: rgba(179, 161, 98, 0.5);
+    color: #fff;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -169,14 +227,14 @@ section {
     }
 
     .guest-ornament {
-        width: 110px;
+        width: 100px;
         margin-bottom: 1rem;
     }
 
     .guest-box {
         padding: 1.5rem 1rem;
         border-radius: 10px;
-        background-color: rgba(255, 255, 255, 0.65);
+        margin-top: 75px;
     }
 
     .guest-box p {
@@ -185,6 +243,18 @@ section {
 
     .guest-box .guest-name {
         font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .guest-box .guest-name {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .wedding-container {
+        padding: 1.5rem 1rem 0rem 1rem !important;
     }
 }
 
@@ -207,9 +277,9 @@ section {
     position: relative;
     height: 100svh; /* ✅ isi penuh tinggi layar */
     width: 100%;
-    background-image: url("src/img/weddingTitle/desktopMode.webp");
+    background-image: url("src/img/weddingTitle/mobileMode.webp");
     background-size: cover;
-    background-position: center 85%;
+    background-position: center 35%;
     background-repeat: no-repeat;
     text-align: center;
     overflow: hidden; /* potong elemen keluar */
@@ -261,15 +331,14 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100%;
-    padding: 0 2rem;
+    padding: 2.2rem 2rem;
+    color: var(--gold);
 }
 
 .wedding-container {
-    padding: 1.5rem 1rem;
+    padding: 5rem 1rem;
     border-radius: 10px;
-    background-color: rgba(210, 210, 210, 0.7);
 }
 
 .wedding-text .subtitle {
@@ -295,6 +364,49 @@ section {
     font-family: "Cormorant Garamond", serif;
 }
 
+/* Tombol Instagram – match style btn lainnya (emas, pill) */
+.btn-ig {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    background: #b3a162; /* emas */
+    color: #101010; /* teks gelap */
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    margin-top: 0.7rem;
+}
+
+.btn-ig:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.btn-ig:active {
+    transform: translateY(0);
+}
+.btn-ig:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(179, 161, 98, 0.35),
+        0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+/* Ikon Instagram (ikut warna teks tombol via currentColor) */
+.btn-ig .ig-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    flex: 0 0 18px;
+}
+
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
     .ornament-top img,
@@ -308,7 +420,7 @@ section {
     }
 
     .wedding-text .subtitle {
-        font-size: 1.2rem;
+        font-size: 2.5rem;
     }
 
     .wedding-text .bride-groom {
@@ -323,7 +435,7 @@ section {
 /* ========== HANDPHONE SUPER PANJANG (20:9 KE ATAS) ========== */
 @media (max-aspect-ratio: 9/16) {
     .wedding-text {
-        padding-top: 5vh;
+        padding-top: 10vh;
         padding-bottom: 5vh;
     }
 }
@@ -455,6 +567,15 @@ section {
 
 .title-omSwastyastu {
     font-size: 2rem;
+    font-weight: 700;
+    color: #b3a162; /* warna gold lembut */
+    margin-bottom: 1rem;
+    font-family: "Playwrite CA", cursive;
+    margin: 2rem 0;
+}
+
+.title-omShanti {
+    font-size: 1.65rem;
     font-weight: 700;
     color: #b3a162; /* warna gold lembut */
     margin-bottom: 1rem;
@@ -1249,7 +1370,7 @@ body.no-scroll {
 }
 
 .gift-logo {
-    width: 88px;
+    width: 180px;
     height: auto;
     display: block;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
@@ -1297,7 +1418,7 @@ body.no-scroll {
         gap: 0.6rem;
     }
     .gift-logo {
-        width: 76px;
+        width: 108px;
     }
 }
 
@@ -1405,10 +1526,6 @@ body.no-scroll {
         color: #f5f5f5;
     }
 
-    /* Sedikit shadow agar kontras di atas foto */
-    .mobile-text * {
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
-    }
 
     .lightbox {
         touch-action: pan-y;
@@ -1855,6 +1972,7 @@ body.no-scroll {
     font-weight: 700;
     font-size: clamp(22px, 3vw, 36px);
     text-align: center;
+    font-family: "Playwrite CA", cursive;
 }
 
 .closing__icon {
