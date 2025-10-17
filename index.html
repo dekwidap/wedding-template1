@@ -419,148 +419,84 @@
             </div>
         </section>
 
-        <section id="rsvp" class="rsvp">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center">
-                        <h2>RSVP & Wishes</h2>
-                    </div>
-                </div>
+        <section id="rsvp" class="rsvp-section" aria-label="RSVP & Wishes">
+            <div class="rsvp-container">
+                <header class="rsvp-header">
+                    <h2 class="rsvp-title">RSVP & Wishes</h2>
+                    <p class="rsvp-desc">
+                        Kindly confirm your attendance and leave a wish for us.
+                    </p>
+                </header>
 
                 <form
                     id="rsvp-form"
-                    method="POST"
-                    action="https://script.google.com/macros/s/AKfycbyPVekI50oYRWh3nRyIZ7MVbtKqYZu7xAu9klIJjrIMjDfN5SUB_eyumRDqKJVKhBwk/exec"
-                    class="row row-cols-md-auto g-3 align-items-center justify-content-center mt-3"
-                    id="my-form"
+                    class="rsvp-form"
+                    action="#"
+                    method="post"
+                    novalidate
                 >
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="Name" class="form-label">Name</label>
+                    <div class="form-grid">
+                        <!-- 1) Name -->
+                        <div class="form-field">
+                            <label for="guestName">Name</label>
                             <input
                                 type="text"
-                                class="form-control"
-                                id="Name"
-                                name="Name"
+                                id="guestName"
+                                name="name"
+                                placeholder="Your full name"
                             />
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="Status" class="form-label"
-                                >Confirmation</label
-                            >
-                            <select
-                                name="Status"
-                                id="Status"
-                                class="form-select"
-                            >
-                                <option value="" disabled selected>
-                                    Choose
+                        <!-- 2) Confirmation -->
+                        <div class="form-field">
+                            <label for="confirmation">Confirmation</label>
+                            <select id="confirmation" name="confirmation">
+                                <option value="" selected disabled>
+                                    Choose...
                                 </option>
-                                <option value="Attending">Attending</option>
-                                <option value="Not Attending">
-                                    Not Attendance
+                                <option value="attending">Will Attend</option>
+                                <option value="not_attending">
+                                    Unable to Attend
                                 </option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="Attendance" class="form-label"
-                                >Number of Guests</label
-                            >
+                        <!-- 3) Number of Guests -->
+                        <div class="form-field">
+                            <label for="guests">Number of Guests</label>
                             <input
                                 type="number"
-                                class="form-control"
-                                id="Attendance"
+                                id="guests"
+                                name="guests"
+                                inputmode="numeric"
+                                min="0"
+                                step="1"
+                                placeholder="e.g. 2"
                                 min="1"
                                 max="5"
-                                length="1"
-                                value="1"
-                                name="Attendance"
                             />
                         </div>
-                    </div>
 
-                    <div class="col-12 button-send">
-                        <button
-                            class="btn btn-send btn-sm"
-                            style="margin-top: 20px"
-                        >
-                            Send
-                        </button>
-                    </div>
-                </form>
-
-                <!-- <div class="row justify-content-center">
-                    <div class="col-md-8 col-10 text-center mt-5">
-                        <p>
-                            If you want to see the guest list who already
-                            confirmed, please click the button below
-                        </p>
-                        <a
-                            href="https://docs.google.com/spreadsheets/d/17BM9LJeJgpJ2v9dDCZ0ht8ILKPgcoY_lQxffrnUFI-s/edit?usp=sharing"
-                            target="_blank"
-                            class="btn btn-sm mb-3 btn-send"
-                        >
-                            Click Here to See The Guest List
-                        </a>
-                    </div>
-                </div> -->
-            </div>
-        </section>
-
-        <!-- Section Guest Messages -->
-        <section id="messages" class="messages">
-            <div class="container">
-                <!-- <div class="row justify-content-center text-center">
-                    <div class="col-md-8 col-10">
-                        <h2>Send Your Wishes</h2>
-                        <p class="sub-text">
-                            Leave your best wishes and prayers for us on our
-                            special day 💌
-                        </p>
-                    </div>
-                </div> -->
-
-                <!-- Form Kartu Ucapan -->
-                <form id="message-form" class="row justify-content-center mt-4">
-                    <div class="col-md-5 col-10 mb-3">
-                        <input
-                            type="text"
-                            id="guestName"
-                            class="form-control"
-                            placeholder="Your Name"
-                            required
-                        />
-                    </div>
-                    <div class="col-md-5 col-10 mb-3">
-                        <textarea
-                            id="guestMessage"
-                            class="form-control"
-                            rows="3"
-                            placeholder="Write your message..."
-                            required
-                        ></textarea>
-                    </div>
-                    <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-send btn-sm">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Daftar Ucapan -->
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-8 col-11">
-                        <div id="messageList" class="message-list">
-                            <!-- Pesan dari Firebase akan tampil di sini -->
+                        <!-- 4) Wishes -->
+                        <div class="form-field form-field--full">
+                            <label for="wishes">Your Wishes</label>
+                            <textarea
+                                id="wishes"
+                                name="wishes"
+                                rows="4"
+                                placeholder="Write your message for us..."
+                            ></textarea>
                         </div>
                     </div>
-                </div>
+
+                    <!-- 5) Button -->
+                    <div class="form-actions">
+                        <!-- type="button" supaya belum submit; nanti kamu pasang logic sendiri -->
+                        <button type="button" id="btn-rsvp" class="btn-submit">
+                            Send RSVP
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
 

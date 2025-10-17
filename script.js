@@ -179,6 +179,14 @@ setInterval(tick, 1000);
     btnNext.addEventListener("click", () => showAt(idx + 1));
 })();
 
+const guests = document.getElementById("guests");
+guests.addEventListener("input", () => {
+    const v = parseInt(guests.value, 10);
+    if (Number.isNaN(v)) return;
+    if (v < 1) guests.value = 1;
+    if (v > 5) guests.value = 5;
+});
+
 // AOS Animation
 AOS.init();
 
