@@ -358,7 +358,6 @@ function loadWishesFromSheet() {
     document.body.appendChild(s);
 }
 
-
 function escapeHTML(str) {
     return (str || "").toString().replace(
         /[&<>"']/g,
@@ -763,6 +762,11 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
     const btn = document.getElementById("music-toggle");
     const icon = btn.querySelector("i");
     const TARGET_VOL = 0.5;
+
+    // state: apakah user yg pause? dan apakah kita pause otomatis?
+    let userPaused = true; // awalnya dianggap belum play (jadi "paused oleh user")
+    let autoPaused = false;
+
     audio.volume = TARGET_VOL;
 
     function showMusicBtn() {
@@ -777,6 +781,7 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
         );
         icon.className = isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
     }
+
     function fadeTo(volTarget = TARGET_VOL, ms = 900) {
         return new Promise((resolve) => {
             const start = audio.volume,
@@ -794,46 +799,87 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
             })();
         });
     }
-    async function playWithFade() {
+
+    async function playWithFade(origin = "user") {
         try {
             audio.volume = 0;
-            await audio.play();
+            await audio.play(); // sudah ada user gesture sebelumnya
             await fadeTo(TARGET_VOL, 1200);
             setPlayingUI(true);
+            userPaused = origin !== "user" ? false : false; // tetap false
+            autoPaused = false;
         } catch (e) {
             console.debug("audio play failed:", e);
         }
     }
-    async function pauseWithFade() {
+
+    async function pauseWithFade(origin = "user") {
         await fadeTo(0, 200);
         audio.pause();
         setPlayingUI(false);
+        if (origin === "auto") {
+            autoPaused = true; // hanya tandai auto-pause
+            // jangan mengubah userPaused agar kita tahu ini bukan pause manual
+        } else {
+            userPaused = true; // pause manual oleh user
+            autoPaused = false;
+        }
     }
 
-    // ➜ tombol mengambang (setelah muncul)
+    // toggle tombol mengambang
     btn.addEventListener("click", async () => {
-        if (audio.paused) await playWithFade();
-        else await pauseWithFade();
+        if (audio.paused) {
+            await playWithFade("user");
+            userPaused = false;
+        } else {
+            await pauseWithFade("user");
+            userPaused = true;
+        }
     });
 
-    // ➜ saat Open Invitation diklik: tampilkan tombol + mulai musik
+    // saat Open Invitation diklik → tampilkan tombol + mulai musik
     document.addEventListener(
         "click",
         async (e) => {
             const openBtn = e.target.closest(".btn-enter");
             if (!openBtn) return;
-
-            showMusicBtn(); // munculkan tombol
-            if (audio.paused) await playWithFade(); // mulai musik (fade-in)
+            showMusicBtn();
+            if (audio.paused) {
+                await playWithFade("user");
+                userPaused = false;
+            }
         },
         true
     );
 
-    // (opsional) kalau di tab ini user sudah pernah klik Open Invitation,
-    // kamu bisa langsung munculkan tombol sejak awal:
-    if (sessionStorage.getItem("inv_opened") === "1") {
-        showMusicBtn();
+    // ====== Auto pause/resume berdasar fokus/visibility ======
+    function onHidden() {
+        // kalau sedang bermain, pause otomatis
+        if (!audio.paused) pauseWithFade("auto");
     }
+    async function onVisible() {
+        // resume hanya jika tadi kita yg auto-pause DAN user belum mem-pause manual
+        if (autoPaused && !userPaused) {
+            try {
+                await playWithFade("auto");
+            } catch (e) {
+                /* kalau diblokir policy, biarkan tombol manual */
+            }
+        }
+    }
+
+    // Page Visibility API (lintas desktop & mobile)
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") onHidden();
+        else onVisible();
+    });
+
+    // Fallback tambahan: iOS/Safari bisa kirim pagehide/pageshow
+    window.addEventListener("pagehide", onHidden);
+    window.addEventListener("focus", onVisible); // kembali ke tab/app
+
+    // tombol tetap hidden saat awal; akan muncul setelah Open Invitation
+    // (kalau mau muncul ulang setelah user pernah buka di tab yang sama, boleh showMusicBtn() di sini)
 })();
 
 // AOS Animation
