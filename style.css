@@ -13,6 +13,20 @@ body {
     padding: 0;
 }
 
+/* Kunci scrolling saat halaman “terkunci” */
+html.lock-scroll,
+body.lock-scroll {
+    overflow: hidden !important;
+    height: 100%; /* cegah bounce */
+}
+
+/* (opsional) untuk hero full screen, pakai dvh supaya stabil di mobile */
+@supports (height: 100dvh) {
+    #wedding-title {
+        height: 100dvh;
+    }
+}
+
 html {
     scrollbar-width: thin; /* thin / auto / none */
     scrollbar-color: var(--gold) rgba(255, 255, 255, 0.12); /* thumb, track */
@@ -846,6 +860,12 @@ section {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
     background: #111; /* fallback saat image loading */
     cursor: pointer;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.55s ease-out,
+        transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform, opacity;
+    contain: paint; /* isolate painting biar ringan */
 }
 .masonry-item img {
     display: block;
@@ -856,6 +876,20 @@ section {
 }
 .masonry-item:hover img {
     transform: scale(1.02);
+}
+
+.masonry-item.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* Hormati preferensi user */
+@media (prefers-reduced-motion: reduce) {
+    .masonry-item {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
 
 /* ===== Lightbox ===== */
@@ -1216,6 +1250,10 @@ body.no-scroll {
 @media (max-width: 768px) {
     .wishes-list {
         grid-template-columns: 1fr;
+    }
+    .masonry-item.from-left,
+    .masonry-item.from-right {
+        transform: translateY(14px); /* ⬅️ hilangkan geser X */
     }
 }
 
@@ -2242,4 +2280,49 @@ body.no-snap {
     .couple-section {
         height: 100dvh;
     }
+}
+
+/* Music */
+.music-btn {
+    position: fixed;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    z-index: 9999;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: #b3a162; /* gold */
+    color: #101010;
+    border: none;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    opacity: 0.7;
+    display: none;
+}
+.music-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+.music-btn:active {
+    transform: translateY(0);
+}
+@media (max-width: 768px) {
+    .music-btn {
+        width: 44px;
+        height: 44px;
+        right: 10px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+}
+@media print {
+    .music-btn {
+        display: none;
+    }
+}
+
+.music-btn.is-visible {
+    display: grid;
 }

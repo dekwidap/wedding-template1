@@ -358,11 +358,6 @@ function loadWishesFromSheet() {
     document.body.appendChild(s);
 }
 
-// panggil saat DOM siap
-document.addEventListener("DOMContentLoaded", loadWishesFromSheet);
-
-// panggil saat DOM siap
-document.addEventListener("DOMContentLoaded", loadWishesFromSheet);
 
 function escapeHTML(str) {
     return (str || "").toString().replace(
@@ -631,6 +626,214 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
             // contoh: PAGE_SIZE = getPageSize(); renderWishesPage(currentPage);
         }, 150);
     });
+})();
+
+// Disable Scrolling
+(function () {
+    const root = document.documentElement;
+    const body = document.body;
+
+    // --- helper untuk benar-benar memblokir scroll (wheel/touch/keyboard)
+    function prevent(e) {
+        e.preventDefault();
+    }
+    function blockKeys(e) {
+        const keys = [
+            " ",
+            "Spacebar",
+            "PageDown",
+            "PageUp",
+            "ArrowDown",
+            "ArrowUp",
+            "Home",
+            "End",
+        ];
+        if (keys.includes(e.key)) e.preventDefault();
+    }
+
+    function lockScroll() {
+        root.classList.add("lock-scroll");
+        body.classList.add("lock-scroll");
+        window.scrollTo(0, 0);
+
+        document.addEventListener("wheel", prevent, { passive: false });
+        document.addEventListener("touchmove", prevent, { passive: false });
+        document.addEventListener("keydown", blockKeys, { passive: false });
+    }
+
+    function unlockScroll() {
+        root.classList.remove("lock-scroll");
+        body.classList.remove("lock-scroll");
+
+        document.removeEventListener("wheel", prevent);
+        document.removeEventListener("touchmove", prevent);
+        document.removeEventListener("keydown", blockKeys);
+
+        // (opsional) tandai sudah dibuka agar reload di tab yang sama tidak ngunci lagi
+        sessionStorage.setItem("inv_opened", "1");
+    }
+
+    // --- Kunci hanya saat pertama kali kunjungan di tab ini
+    if (sessionStorage.getItem("inv_opened") !== "1") {
+        lockScroll();
+    }
+
+    // --- Buka ketika tombol Open Invitation diklik
+    document.addEventListener(
+        "click",
+        function (e) {
+            const btn = e.target.closest(".btn-enter"); // tombolmu
+            if (!btn) return;
+
+            // buka kunci
+            unlockScroll();
+
+            // kalau href adalah anchor (#section), scroll manual agar mulus
+            const href = btn.getAttribute("href");
+            if (href && href.startsWith("#")) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                    });
+                }
+            }
+        },
+        true
+    );
+})();
+
+// Animasi Gallery
+// ===== Smooth reveal untuk masonry tanpa ganggu layout =====
+(function () {
+    const container = document.querySelector(".masonry");
+    if (!container) return;
+
+    const items = Array.from(container.querySelectorAll(".masonry-item"));
+    if (!items.length) return;
+
+    // Stagger ringan (opsional, biar berasa “mengalir”)
+    items.forEach((el, i) => {
+        el.style.setProperty("--delay", `${(i % 6) * 40}ms`);
+    });
+
+    // Observer: saat item terlihat, tentukan arah kiri/kanan (khusus mobile),
+    // lalu beri kelas .is-in → animasi jalan. Tidak mengubah ukuran/flow.
+    const mqMobile = window.matchMedia("(max-width: 768px)");
+
+    const io = new IntersectionObserver(
+        (entries) => {
+            const contRect = container.getBoundingClientRect();
+            const midX = contRect.left + contRect.width / 2;
+
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+
+                // Tentukan arah hanya saat mobile, supaya natural 2 kolom
+                if (mqMobile.matches) {
+                    const r = el.getBoundingClientRect();
+                    const centerX = r.left + r.width / 2;
+                    el.classList.add(
+                        centerX < midX ? "from-left" : "from-right"
+                    );
+                }
+
+                el.classList.add("is-in");
+                io.unobserve(el); // sekali animasi saja
+            });
+        },
+        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
+    );
+
+    items.forEach((el) => io.observe(el));
+
+    // Jika kamu sebelumnya pakai AOS untuk gallery, HAPUS data-aos dari .masonry-item
+    // supaya tidak bentrok. AOS masih boleh dipakai untuk section lain.
+
+    // Penting: bantu stabilkan layout agar tidak “geser”
+    // → set width/height di <img> atau pakai aspect-ratio via CSS bila tau rasionya.
+})();
+
+// MUSIC
+(function () {
+    const audio = document.getElementById("bgm");
+    const btn = document.getElementById("music-toggle");
+    const icon = btn.querySelector("i");
+    const TARGET_VOL = 0.5;
+    audio.volume = TARGET_VOL;
+
+    function showMusicBtn() {
+        btn.classList.add("is-visible");
+    }
+
+    function setPlayingUI(isPlaying) {
+        btn.setAttribute("aria-pressed", String(isPlaying));
+        btn.setAttribute(
+            "aria-label",
+            isPlaying ? "Pause music" : "Play music"
+        );
+        icon.className = isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
+    }
+    function fadeTo(volTarget = TARGET_VOL, ms = 900) {
+        return new Promise((resolve) => {
+            const start = audio.volume,
+                diff = volTarget - start;
+            if (Math.abs(diff) < 0.001) return resolve();
+            const steps = Math.max(1, Math.round(ms / 50));
+            let i = 0;
+            (function tick() {
+                i++;
+                audio.volume = Math.max(
+                    0,
+                    Math.min(1, start + diff * (i / steps))
+                );
+                i >= steps ? resolve() : setTimeout(tick, 50);
+            })();
+        });
+    }
+    async function playWithFade() {
+        try {
+            audio.volume = 0;
+            await audio.play();
+            await fadeTo(TARGET_VOL, 1200);
+            setPlayingUI(true);
+        } catch (e) {
+            console.debug("audio play failed:", e);
+        }
+    }
+    async function pauseWithFade() {
+        await fadeTo(0, 200);
+        audio.pause();
+        setPlayingUI(false);
+    }
+
+    // ➜ tombol mengambang (setelah muncul)
+    btn.addEventListener("click", async () => {
+        if (audio.paused) await playWithFade();
+        else await pauseWithFade();
+    });
+
+    // ➜ saat Open Invitation diklik: tampilkan tombol + mulai musik
+    document.addEventListener(
+        "click",
+        async (e) => {
+            const openBtn = e.target.closest(".btn-enter");
+            if (!openBtn) return;
+
+            showMusicBtn(); // munculkan tombol
+            if (audio.paused) await playWithFade(); // mulai musik (fade-in)
+        },
+        true
+    );
+
+    // (opsional) kalau di tab ini user sudah pernah klik Open Invitation,
+    // kamu bisa langsung munculkan tombol sejak awal:
+    if (sessionStorage.getItem("inv_opened") === "1") {
+        showMusicBtn();
+    }
 })();
 
 // AOS Animation
