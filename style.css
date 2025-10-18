@@ -972,6 +972,9 @@ body.no-scroll {
     .masonry-item {
         margin-bottom: 8px;
     }
+    .title-omShanti {
+        font-size: 1.3rem;
+    }
 }
 
 /* Responsif kecil */
@@ -2200,5 +2203,43 @@ body.no-scroll {
         width: 36px;
         height: 36px;
         font-size: 18px;
+    }
+}
+
+/* default boleh smooth */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Saat ada fokus (keyboard muncul) → jangan smooth */
+html.keyboard-open,
+html.keyboard-open body {
+    scroll-behavior: auto !important;
+}
+
+/* Kalau kamu pakai scroll-snap di global, matikan sewaktu ngetik */
+html.no-snap,
+body.no-snap {
+    scroll-snap-type: none !important;
+}
+
+/* Tahan overscroll chain waktu ngetik di RSVP */
+#rsvp {
+    overscroll-behavior: contain;
+}
+
+/* Hindari auto-zoom iOS saat fokus */
+#rsvp input,
+#rsvp select,
+#rsvp textarea {
+    font-size: 16px;
+}
+
+/* Gunakan dvh agar section full-screen nggak ‘melompat’ saat keyboard muncul */
+@supports (height: 100dvh) {
+    /* ganti selector berikut ke section full-screen milikmu */
+    #wedding-title,
+    .couple-section {
+        height: 100dvh;
     }
 }

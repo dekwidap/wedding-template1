@@ -442,13 +442,21 @@ document.addEventListener("DOMContentLoaded", () => {
     PAGE_SIZE = getPageSize();
 });
 
+// --- helper: cek apakah fokus ada di field form
+function isFormFocused() {
+    const ae = document.activeElement;
+    return ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName);
+}
+
 let resizeTimer;
 window.addEventListener("resize", () => {
+    // ⛔ skip saat user lagi mengetik / keyboard terbuka
+    if (isFormFocused()) return;
+
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-        const newSize = getPageSize();
+        const newSize = getPageSize(); // fungsi yang kita pakai kemarin
         if (newSize !== PAGE_SIZE) {
-            // Pertahankan item teratas yang sedang terlihat
             const firstIndex = (currentPage - 1) * PAGE_SIZE;
             PAGE_SIZE = newSize;
             const newPage = Math.floor(firstIndex / PAGE_SIZE) + 1;
@@ -579,6 +587,51 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
         { passive: true }
     );
 });
+
+(function () {
+    const root = document.documentElement;
+
+    // Saat fokus di field dalam #rsvp → matikan smooth & snap, lalu center-kan field
+    document.addEventListener("focusin", (e) => {
+        if (!e.target.closest("#rsvp")) return;
+        root.classList.add("keyboard-open", "no-snap");
+
+        // tunggu keyboard naik dulu sedikit (Safari/iOS butuh jeda)
+        setTimeout(() => {
+            try {
+                e.target.scrollIntoView({
+                    block: "center",
+                    inline: "nearest",
+                    behavior: "auto",
+                });
+            } catch (_) {}
+        }, 250);
+    });
+
+    // Saat keluar fokus → balikin state
+    document.addEventListener("focusout", (e) => {
+        if (!e.target.closest("#rsvp")) return;
+        setTimeout(
+            () => root.classList.remove("keyboard-open", "no-snap"),
+            200
+        );
+    });
+
+    // Bonus: jangan hitung ulang layout pagination saat user sedang mengetik
+    function isTyping() {
+        const a = document.activeElement;
+        return a && /^(INPUT|TEXTAREA|SELECT)$/i.test(a.tagName);
+    }
+    let rzT;
+    window.addEventListener("resize", () => {
+        if (isTyping()) return; // ⛔ skip saat keyboard open
+        clearTimeout(rzT);
+        rzT = setTimeout(() => {
+            // kalau kamu punya logika resize -> panggil di sini
+            // contoh: PAGE_SIZE = getPageSize(); renderWishesPage(currentPage);
+        }, 150);
+    });
+})();
 
 // AOS Animation
 AOS.init();
