@@ -40,7 +40,7 @@ section {
     /* 🌆 Dua lapisan background */
     background-image: url("src/img/assets/desktopView.png"),
         /* border frame (di atas) */
-            url("src/img/weddingLanding/bgLanding.webp"); /* foto latar belakang (di bawah) */
+            url("src/img/weddingPicture//bgLanding.webp"); /* foto latar belakang (di bawah) */
 
     background-repeat: no-repeat, no-repeat;
     background-size: contain, cover; /* border = contain, foto = cover */
@@ -176,7 +176,7 @@ section {
         /* 🔁 Dua lapisan background untuk mobile */
         background-image: url("src/img/assets/mobileView.png"),
             /* border versi mobile */
-                url("src/img/weddingLanding/bgLanding.webp"); /* foto latar belakang mobile */
+                url("src/img/weddingPicture/bgLanding.webp"); /* foto latar belakang mobile */
 
         background-repeat: no-repeat, no-repeat;
         background-size: contain, cover; /* border tetap proporsional, foto isi penuh */
@@ -214,7 +214,7 @@ section {
         /* 🔁 Dua lapisan background untuk mobile */
         background-image: url("src/img/assets/mobileView.png"),
             /* border versi mobile */
-                url("src/img/weddingLanding/bgLanding.webp"); /* foto latar belakang mobile */
+                url("src/img/weddingPicture/bgLanding.webp"); /* foto latar belakang mobile */
 
         background-repeat: no-repeat, no-repeat;
         background-size: contain, cover; /* border tetap proporsional, foto isi penuh */
@@ -277,7 +277,7 @@ section {
     position: relative;
     height: 100svh; /* ✅ isi penuh tinggi layar */
     width: 100%;
-    background-image: url("src/img/weddingTitle/mobileMode.webp");
+    background-image: url("src/img/weddingPicture/mobileMode.webp");
     background-size: cover;
     background-position: center 35%;
     background-repeat: no-repeat;
@@ -288,7 +288,7 @@ section {
 /* 📱 TABLET & HANDPHONE */
 @media (max-width: 1024px) {
     #wedding-title {
-        background-image: url("src/img/weddingTitle/mobileMode.webp");
+        background-image: url("src/img/weddingPicture/mobileMode.webp");
         background-size: cover;
         background-position: center 65%;
     }
@@ -414,7 +414,7 @@ section {
         width: 380px;
     }
     #wedding-title {
-        background-image: url("src/img/weddingTitle/mobileMode.webp");
+        background-image: url("src/img/weddingPicture/mobileMode.webp");
         background-size: cover;
         background-position: center 100%;
     }
@@ -587,7 +587,7 @@ section {
 .couple-section {
     position: relative;
     height: 100vh; /* ⬅️ fix utama */
-    background: url("src/img/groomBride/groomBride.webp") center / cover
+    background: url("src/img/weddingPicture/groomBride.webp") center / cover
         no-repeat;
     color: #fff;
     overflow: hidden;
@@ -657,7 +657,7 @@ section {
 /* ===== Wedding Date Section ===== */
 .wedding-date-section {
     position: relative;
-    background: url("src/img/weddingDate/weddingDate.webp") center / cover
+    background: url("src/img/weddingPicture/weddingDate.webp") center / cover
         no-repeat; /* ⬅️ ganti gambarnya */
     color: #fff;
     padding: clamp(64px, 10vh, 120px) 6vw;
@@ -789,7 +789,7 @@ section {
     position: relative;
     /* Fallback: JPG + overlay (tanpa markup tambahan) */
     background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-        url("src/img/weddingGallery/bgGallery.webp"); /* ⬅️ ganti path */
+        url("src/img/weddingPicture/bgGallery.webp"); /* ⬅️ ganti path */
     background-size: 100% 100%, cover; /* overlay full, foto cover */
     background-position: 50% 50%, 50% 50%; /* overlay center, foto center */
     background-repeat: no-repeat, no-repeat;
@@ -1043,7 +1043,7 @@ body.no-scroll {
 /* ===== Section background (gelap merata) ===== */
 .rsvp-section {
     position: relative;
-    background-image: url("src/img/weddingRSVP/bgRsvp.webp"); /* ⬅️ ganti path */
+    background-image: url("src/img/weddingPicture/bgRsvp.webp"); /* ⬅️ ganti path */
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -1326,7 +1326,7 @@ body.no-scroll {
 .gift-section {
     position: relative;
     /* Background image + gelap merata */
-    background-image: url("src/img/weddingGift/bgGift.webp"); /* ⬅️ ganti path */
+    background-image: url("src/img/weddingPicture/bgGift.webp"); /* ⬅️ ganti path */
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -1478,10 +1478,10 @@ body.no-scroll {
 
     /* Ganti path gambar sesuai file kamu */
     .mobile-person.groom {
-        background-image: url("src/img/groomBride/groomMobile.webp");
+        background-image: url("src/img/weddingPicture/groomMobile.webp");
     }
     .mobile-person.bride {
-        background-image: url("src/img/groomBride/brideMobile.webp");
+        background-image: url("src/img/weddingPicture/brideMobile.webp");
     }
 
     /* Overlay gradasi dari bawah supaya teks kebaca */
@@ -1908,7 +1908,7 @@ body.no-scroll {
 /* ===== Closing Section ===== */
 .closing {
     /* Ganti ke gambar kamu */
-    --bg: url("src/img/BRD04255.webp");
+    --bg: url("src/img/weddingPicture/endSection.webp");
 
     position: relative;
     min-height: 70vh;
@@ -2109,7 +2109,7 @@ body.no-scroll {
             rgba(0, 0, 0, 0.8) 60%,
             rgba(0, 0, 0, 1) 100%
         ),
-        url("src/img/endPic.webp");
+        url("src/img/weddingPicture/endPic.webp");
 
     background-position: center;
     background-size: cover;
