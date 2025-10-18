@@ -12,6 +12,29 @@ body {
     margin: 0;
     padding: 0;
 }
+
+html {
+    scrollbar-width: thin; /* thin / auto / none */
+    scrollbar-color: var(--gold) rgba(255, 255, 255, 0.12); /* thumb, track */
+}
+
+/* Chrome/Edge/Safari (WebKit/Blink) */
+html::-webkit-scrollbar {
+    width: 10px; /* ⬅️ vertikal = width */
+}
+html::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 999px;
+    border: 2px solid rgba(0, 0, 0, 0.25); /* bikin “padding” */
+}
+html::-webkit-scrollbar-thumb:hover {
+    background: #c7b378; /* gold sedikit lebih terang */
+}
+
 body {
     font-size: 1.2rem;
     font-family: "Work Sans", sans-serif;
@@ -1525,7 +1548,6 @@ body.no-scroll {
         line-height: 1.55;
         color: #f5f5f5;
     }
-
 
     .lightbox {
         touch-action: pan-y;
