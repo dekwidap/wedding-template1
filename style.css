@@ -1540,7 +1540,7 @@ section {
 /* Responsif mobile: fokus background & spasi */
 @media (max-width: 768px) {
     .gift-section {
-        background-position: 30% 50%;
+        background-position: 50% 50%;
     } /* geser fokus kalau perlu */
     .gift-card {
         gap: 0.6rem;
