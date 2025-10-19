@@ -340,10 +340,10 @@ section {
     }
 }
 
-/* ===== Pemandes Section ===== */
-.pemandes-section {
+/* ===== mepandes Section ===== */
+.mepandes-section {
     position: relative;
-    background: url("src/img/pemandes/Latar.jpeg") center/cover no-repeat;
+    background: url("src/img/mepandes/Latar.jpeg") center/cover no-repeat;
     background-blend-mode: multiply;
     color: #fff;
     padding: clamp(48px, 8vh, 96px) 6vw;
@@ -436,13 +436,13 @@ section {
     color: var(--gold);
 }
 
-/* Reverse layout untuk pemandes ke-2 */
+/* Reverse layout untuk mepandes ke-2 */
 .pm-card--reverse {
     flex-direction: row;
     text-align: left;
 }
 
-/* Tombol IG di dalam section Pemandes */
+/* Tombol IG di dalam section mepandes */
 .pm-ig {
     display: inline-flex; /* shrink-to-fit */
     align-items: center;
@@ -496,11 +496,11 @@ section {
 }
 
 /* Pastikan section jadi anchor posisi dan potong yang keluar */
-.pemandes-section {
+.mepandes-section {
     position: relative;
     overflow: hidden;
     /* opsional: ubah path gambar cepat via custom properties */
-    --orn-flower: url("src/img/pemandes/Ornament-Tema-Bohemian-4.png");
+    --orn-flower: url("src/img/mepandes/Ornament-Tema-Bohemian-4.png");
 }
 
 /* Konten di atas ornament */
@@ -510,7 +510,7 @@ section {
 }
 
 /* Ornament bunga 1 — pojok kanan atas */
-.pemandes-section::before {
+.mepandes-section::before {
     content: "";
     position: absolute;
     top: -18px; /* geser sedikit keluar frame biar natural */
@@ -525,7 +525,7 @@ section {
 }
 
 /* Ornament bunga 2 — pojok kiri bawah */
-.pemandes-section::after {
+.mepandes-section::after {
     content: "";
     position: absolute;
     bottom: -22px;
@@ -542,12 +542,12 @@ section {
 
 /* Responsif: kecilkan agar tidak menutupi konten */
 @media (max-width: 768px) {
-    .pemandes-section::before {
+    .mepandes-section::before {
         top: -18px; /* geser sedikit keluar frame biar natural */
         right: -46px;
         width: clamp(230px, 22vw, 400px);
     }
-    .pemandes-section::after {
+    .mepandes-section::after {
         bottom: -22px;
         left: -46px;
         width: clamp(230px, 22vw, 400px);
