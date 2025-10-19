@@ -272,7 +272,7 @@ async function processRSVP() {
     };
 
     // Toast loading
-    const toast = Toast.show("Sending RSVP & Wishes…", "info", {
+    const toast = Toast.show("Mengirim Konfirmasi dan Kartu Ucapan…", "info", {
         persist: true,
         loading: true,
     });
@@ -294,7 +294,7 @@ async function processRSVP() {
         if (wishes) addWishToData({ name, wishes });
 
         // sukses
-        toast.update("Sent! Thank you.", "success", { autohide: 2200 });
+        toast.update("Berhasil! Terima kasih.", "success", { autohide: 2200 });
         document.getElementById("rsvp-form")?.reset();
         const ev = new Event("change");
         $("#confirmation")?.dispatchEvent(ev);
@@ -854,23 +854,20 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
     );
 })();
 
-// MUSIC
+// MUSIC — tampil & auto-play jika user pernah membuka undangan
 (function () {
     const audio = document.getElementById("bgm");
-    const btn = document.getElementById("music-toggle");
+    const btn = document.getElementById("music-toggle"); // <button id="music-toggle" class="music-btn">...</button>
     const icon = btn.querySelector("i");
     const TARGET_VOL = 0.5;
-
-    // state: apakah user yg pause? dan apakah kita pause otomatis?
-    let userPaused = true; // awalnya dianggap belum play (jadi "paused oleh user")
-    let autoPaused = false;
-
-    audio.volume = TARGET_VOL;
+    const STORAGE_KEY = "inv_has_opened"; // "1" jika user pernah klik Buka Undangan
 
     function showMusicBtn() {
         btn.classList.add("is-visible");
     }
-
+    function hideMusicBtn() {
+        btn.classList.remove("is-visible");
+    }
     function setPlayingUI(isPlaying) {
         btn.setAttribute("aria-pressed", String(isPlaying));
         btn.setAttribute(
@@ -879,7 +876,6 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
         );
         icon.className = isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
     }
-
     function fadeTo(volTarget = TARGET_VOL, ms = 900) {
         return new Promise((resolve) => {
             const start = audio.volume,
@@ -897,87 +893,55 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
             })();
         });
     }
-
-    async function playWithFade(origin = "user") {
+    async function playWithFade() {
         try {
             audio.volume = 0;
-            await audio.play(); // sudah ada user gesture sebelumnya
+            await audio.play(); // jika diblokir, catch
             await fadeTo(TARGET_VOL, 1200);
             setPlayingUI(true);
-            userPaused = origin !== "user" ? false : false; // tetap false
-            autoPaused = false;
         } catch (e) {
-            console.debug("audio play failed:", e);
+            console.debug("audio play blocked:", e);
+            setPlayingUI(false); // tombol tetap tampil untuk manual
         }
     }
-
-    async function pauseWithFade(origin = "user") {
+    async function pauseWithFade() {
         await fadeTo(0, 200);
         audio.pause();
         setPlayingUI(false);
-        if (origin === "auto") {
-            autoPaused = true; // hanya tandai auto-pause
-            // jangan mengubah userPaused agar kita tahu ini bukan pause manual
-        } else {
-            userPaused = true; // pause manual oleh user
-            autoPaused = false;
-        }
     }
 
-    // toggle tombol mengambang
+    // init
+    audio.volume = TARGET_VOL;
+
+    const hasOpenedBefore = localStorage.getItem(STORAGE_KEY) === "1";
+    if (hasOpenedBefore) {
+        showMusicBtn(); // selalu tampilkan tombol jika pernah membuka
+        playWithFade(); // coba auto-play (kalau gagal, user klik manual)
+    } else {
+        hideMusicBtn(); // sembunyikan sampai user klik Buka Undangan
+        setPlayingUI(false);
+    }
+
+    // Toggle manual
     btn.addEventListener("click", async () => {
-        if (audio.paused) {
-            await playWithFade("user");
-            userPaused = false;
-        } else {
-            await pauseWithFade("user");
-            userPaused = true;
-        }
+        if (audio.paused) await playWithFade();
+        else await pauseWithFade();
     });
 
-    // saat Open Invitation diklik → tampilkan tombol + mulai musik
+    // Saat "Buka Undangan" diklik → simpan flag + tampilkan tombol + play
     document.addEventListener(
         "click",
         async (e) => {
             const openBtn = e.target.closest(".btn-enter");
             if (!openBtn) return;
+            try {
+                localStorage.setItem(STORAGE_KEY, "1");
+            } catch {}
             showMusicBtn();
-            if (audio.paused) {
-                await playWithFade("user");
-                userPaused = false;
-            }
+            if (audio.paused) await playWithFade();
         },
         true
     );
-
-    // ====== Auto pause/resume berdasar fokus/visibility ======
-    function onHidden() {
-        // kalau sedang bermain, pause otomatis
-        if (!audio.paused) pauseWithFade("auto");
-    }
-    async function onVisible() {
-        // resume hanya jika tadi kita yg auto-pause DAN user belum mem-pause manual
-        if (autoPaused && !userPaused) {
-            try {
-                await playWithFade("auto");
-            } catch (e) {
-                /* kalau diblokir policy, biarkan tombol manual */
-            }
-        }
-    }
-
-    // Page Visibility API (lintas desktop & mobile)
-    document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") onHidden();
-        else onVisible();
-    });
-
-    // Fallback tambahan: iOS/Safari bisa kirim pagehide/pageshow
-    window.addEventListener("pagehide", onHidden);
-    window.addEventListener("focus", onVisible); // kembali ke tab/app
-
-    // tombol tetap hidden saat awal; akan muncul setelah Open Invitation
-    // (kalau mau muncul ulang setelah user pernah buka di tab yang sama, boleh showMusicBtn() di sini)
 })();
 
 // AOS Animation
