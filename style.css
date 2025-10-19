@@ -177,7 +177,24 @@ section {
     font-weight: bold;
 }
 
+/* default: jangan pecah baris (desktop) */
+.br-mobile {
+    display: none;
+}
+/* mobile: pecah baris setelah "Undangan" */
+@media (max-width: 768px) {
+    .br-mobile {
+        display: inline;
+    }
+}
 
+/* optional: jamin judul tetap 1 baris di desktop meski kontainernya sempit */
+@media (max-width: 768px) {
+    .myFont {
+        white-space: nowrap;
+        font-size: 1.25rem;
+    }
+}
 
 /* AREA AMAN DI DALAM FRAME */
 .safe-area {
