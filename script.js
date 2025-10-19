@@ -704,56 +704,155 @@ document.querySelectorAll(".btn-copy").forEach((btn) => {
     );
 })();
 
-// Animasi Gallery
-// ===== Smooth reveal untuk masonry tanpa ganggu layout =====
-(function () {
-    const container = document.querySelector(".masonry");
-    if (!container) return;
+(() => {
+    const imgs = document.querySelectorAll(".gallery-grid img");
+    if (!imgs.length) return;
 
-    const items = Array.from(container.querySelectorAll(".masonry-item"));
-    if (!items.length) return;
+    const lb = document.getElementById("lightbox");
+    const stage = lb.querySelector(".lb-stage");
+    const lbImg = document.getElementById("lb-image");
+    const btnPrev = lb.querySelector(".lb-prev");
+    const btnNext = lb.querySelector(".lb-next");
+    const btnClose = lb.querySelector(".lb-close");
 
-    // Stagger ringan (opsional, biar berasa “mengalir”)
-    items.forEach((el, i) => {
-        el.style.setProperty("--delay", `${(i % 6) * 40}ms`);
+    let idx = 0;
+    let isOpen = false;
+    const SWIPE_THRESHOLD = 40;
+
+    // --- Helpers ---
+    const clampIndex = (i) => (i + imgs.length) % imgs.length;
+
+    const setReady = (ready) => {
+        if (ready) lbImg.classList.add("is-ready");
+        else lbImg.classList.remove("is-ready");
+    };
+
+    const preload = (i) => {
+        const el = imgs[clampIndex(i)];
+        const s = el.currentSrc || el.src;
+        const im = new Image();
+        im.decoding = "async";
+        im.src = s;
+    };
+
+    const showImage = (i) => {
+        idx = clampIndex(i);
+        setReady(false);
+        const el = imgs[idx];
+        const src = el.currentSrc || el.src;
+        const alt = el.alt || "";
+
+        // Preload target dulu untuk transisi halus
+        const pre = new Image();
+        pre.decoding = "async";
+        pre.onload = () => {
+            if (!isOpen) return;
+            lbImg.src = src;
+            lbImg.alt = alt;
+            // requestAnimationFrame untuk memastikan browser commit style sebelum fade
+            requestAnimationFrame(() => setReady(true));
+            // Preload tetangga
+            preload(idx + 1);
+            preload(idx - 1);
+        };
+        pre.src = src;
+    };
+
+    const open = (i) => {
+        isOpen = true;
+        lb.classList.add("show");
+        lb.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("no-scroll");
+        showImage(i);
+        btnClose.focus();
+    };
+
+    const closeIfOutsideImage = (e) => {
+        if (!isOpen) return;
+        const onBtn = e.target.closest(".lb-btn");
+        const onImg = e.target.closest("#lb-image");
+        if (onBtn) return; // klik tombol: jangan tutup
+        if (!onImg) close(); // bukan gambar? tutup
+    };
+
+    // Pakai click (desktop & sebagian besar mobile)
+    lb.addEventListener("click", closeIfOutsideImage);
+    // Tambah touchstart supaya responsif di mobile
+    lb.addEventListener("touchstart", closeIfOutsideImage, { passive: true });
+
+    const close = () => {
+        isOpen = false;
+        lb.classList.remove("show");
+        lb.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("no-scroll");
+        setReady(false);
+    };
+
+    const next = () => showImage(idx + 1);
+    const prev = () => showImage(idx - 1);
+
+    // --- Bind gallery thumbs (1x saja) ---
+    imgs.forEach((img, i) => {
+        img.dataset.index = i;
+        img.style.cursor = "pointer";
+        img.tabIndex = 0;
+        img.addEventListener("click", () => open(i));
+        img.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") open(i);
+        });
     });
 
-    // Observer: saat item terlihat, tentukan arah kiri/kanan (khusus mobile),
-    // lalu beri kelas .is-in → animasi jalan. Tidak mengubah ukuran/flow.
-    const mqMobile = window.matchMedia("(max-width: 768px)");
+    // --- Buttons ---
+    btnClose.addEventListener("click", close);
+    btnNext.addEventListener("click", next);
+    btnPrev.addEventListener("click", prev);
 
-    const io = new IntersectionObserver(
-        (entries) => {
-            const contRect = container.getBoundingClientRect();
-            const midX = contRect.left + contRect.width / 2;
+    // --- Overlay click: tutup jika klik di luar stage atau tombol ---
+    lb.addEventListener("click", (e) => {
+        if (!isOpen) return;
+        const hitStage = e.target.closest(".lb-stage");
+        const hitBtn = e.target.closest(".lb-btn");
+        if (!hitStage && !hitBtn) close();
+    });
 
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                const el = entry.target;
-
-                // Tentukan arah hanya saat mobile, supaya natural 2 kolom
-                if (mqMobile.matches) {
-                    const r = el.getBoundingClientRect();
-                    const centerX = r.left + r.width / 2;
-                    el.classList.add(
-                        centerX < midX ? "from-left" : "from-right"
-                    );
-                }
-
-                el.classList.add("is-in");
-                io.unobserve(el); // sekali animasi saja
-            });
+    // --- Keyboard nav (global, tapi ringan) ---
+    document.addEventListener(
+        "keydown",
+        (e) => {
+            if (!isOpen) return;
+            if (e.key === "Escape") close();
+            else if (e.key === "ArrowRight") next();
+            else if (e.key === "ArrowLeft") prev();
         },
-        { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.15 }
+        { passive: true }
     );
 
-    items.forEach((el) => io.observe(el));
+    // --- Swipe (Pointer Events, 1 handler utk mouse/touch/pen) ---
+    let startX = 0,
+        startY = 0;
+    stage.addEventListener(
+        "pointerdown",
+        (e) => {
+            if (!isOpen) return;
+            startX = e.clientX;
+            startY = e.clientY;
+            // optional: stage.setPointerCapture?.(e.pointerId);
+        },
+        { passive: true }
+    );
 
-    // Jika kamu sebelumnya pakai AOS untuk gallery, HAPUS data-aos dari .masonry-item
-    // supaya tidak bentrok. AOS masih boleh dipakai untuk section lain.
-
-    // Penting: bantu stabilkan layout agar tidak “geser”
-    // → set width/height di <img> atau pakai aspect-ratio via CSS bila tau rasionya.
+    stage.addEventListener(
+        "pointerup",
+        (e) => {
+            if (!isOpen) return;
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
+                dx < 0 ? next() : prev();
+            }
+        },
+        { passive: true }
+    );
 })();
 
 // MUSIC
