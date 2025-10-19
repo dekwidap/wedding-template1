@@ -68,23 +68,25 @@
         <!-- Section landing-page -->
         <section id="landing-page" class="landing-page">
             <div class="safe-area">
-                <div class="ornament-wrapper">
+                <div class="guest-box guest-row">
+                    <h3 class="guest-name myFont">
+                        Undangan Pawiwahan & Mepandes
+                    </h3>
                     <img
                         src="src/img/assets/amkara.png"
                         alt="Om Symbol"
                         class="guest-ornament"
                     />
-                </div>
-
-                <div class="guest-box">
                     <p>Kepada Yth.</p>
                     <p>Bapak/Ibu/Saudara/I</p>
-                    <h3 class="guest-name">Nama Tamu</h3>
-                    <p style="font-size: 0.8rem;"><i>Mohon Maaf apabila ada kesalahan dalam penulisan nama/gelar/jabatan</i></p>
+                    <h3 class="guest-name">Tamu Undangan</h3>
+                    <!-- <p style="font-size: 0.8rem;"><i>Mohon Maaf apabila ada kesalahan dalam penulisan nama/gelar/jabatan</i></p> -->
                     <a href="#wedding-title" class="btn-enter"
-                        ><i class="fa-solid fa-envelope"></i>Open Invitation</a
+                        ><i class="fa-solid fa-envelope"></i>Buka Undangan</a
                     >
                 </div>
+
+                <!-- <div class="guest-box"></div> -->
             </div>
         </section>
 
@@ -166,12 +168,12 @@
                             itulah kalian dipersatukan dalam satu keluarga.
                         </p>
 
-                        <h4 class="title-doa" style="text-align: justify">
+                        <p class="title-doa" style="text-align: justify">
                             Atas Asung Kertha Wara Nugraha Ida Sang Hyang Widhi
                             Wasa, kami bermaksud mengundang Bapak/Ibu/Saudara/I
                             pada Upacara Manusa Yadnya Pawiwahan (Pernikahan)
-                            putra-putri kami.
-                        </h4>
+                            dan Mepandes (Potong Gigi) Putra-Putri kami.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -424,6 +426,81 @@
             </div>
         </section>
 
+        <!-- Section: Pemandes -->
+        <section id="pemandes" class="pemandes-section">
+            <div class="pm-container">
+                <h2 class="pm-title">Pemandes</h2>
+
+                <!-- Pemandes #1: foto kiri, teks kanan -->
+                <article class="pm-card">
+                    <div class="pm-photo">
+                        <img
+                            src="src/img/pemandes/pemandes1.jpeg"
+                            alt="Pemandes Pertama"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                    <div
+                        class="pm-info"
+                        data-aos="fade-left"
+                        data-aos-duration="2000"
+                    >
+                        <h3 class="pm-name">Ni Luh Putu Sedani Ratning</h3>
+                        <p class="pm-role">Ratning</p>
+                        <a
+                            class="btn-ig pm-ig"
+                            href="https://www.instagram.com/sdniratning"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <i
+                                class="fa-brands fa-instagram"
+                                aria-hidden="true"
+                            ></i>
+                            Instagram Ratning
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Pemandes #2: teks kiri, foto kanan -->
+                <article class="pm-card pm-card--reverse">
+                    <div
+                        class="pm-info"
+                        data-aos="fade-right"
+                        data-aos-duration="2000"
+                    >
+                        <h3 class="pm-name" style="text-align: right">
+                            Luhmang Srikarani
+                        </h3>
+                        <p class="pm-role" style="text-align: right">
+                            Gek Mang
+                        </p>
+                        <a
+                            class="btn-ig pm-ig"
+                            href="https://www.instagram.com/luhmang.karani"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <i
+                                class="fa-brands fa-instagram"
+                                aria-hidden="true"
+                            ></i>
+                            Instagram Gek Mang
+                        </a>
+                    </div>
+                    <div class="pm-photo">
+                        <img
+                            src="src/img/pemandes/pemandes2.jpeg"
+                            alt="Pemandes Kedua"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </div>
+                </article>
+            </div>
+        </section>
+
         <!-- Section: Wedding Date -->
         <section
             id="wedding-date"
@@ -442,7 +519,7 @@
                         data-aos="zoom-in"
                         data-aos-duration="1500"
                     >
-                        <h3 class="event-title">Pawiwahan</h3>
+                        <h3 class="event-title">Pawiwahan & Mepandes</h3>
                         <p class="event-date">Juma't, 7 November 2025</p>
                         <p class="event-time">08.00 - 11.00 WITA</p>
                         <p class="event-location">
@@ -517,7 +594,7 @@
         <section id="gallery" class="gallery-section">
             <div class="overlay"></div>
             <div class="container py-5 position-relative">
-                <h2 class="text-center mb-5 gallery-title">Our Gallery</h2>
+                <h2 class="text-center mb-5 gallery-title">Pre-Wedding Gallery</h2>
                 <div class="gallery-grid">
                     <!-- 22 foto -->
                     <img
@@ -673,7 +750,7 @@
         <section id="rsvp" class="rsvp-section" aria-label="RSVP & Wishes">
             <div class="rsvp-container">
                 <header class="rsvp-header">
-                    <h2 class="rsvp-title">RSVP & Wishes</h2>
+                    <h2 class="rsvp-title">Konfirmasi Kehadiran dan Ucapan</h2>
                 </header>
 
                 <form
@@ -686,39 +763,39 @@
                     <div class="form-grid">
                         <!-- 1) Name -->
                         <div class="form-field">
-                            <label for="guestName">Name</label>
+                            <label for="guestName">Nama</label>
                             <input
                                 type="text"
                                 id="guestName"
                                 name="Name"
-                                placeholder="Your full name"
+                                placeholder="Nama Lengkap"
                             />
                         </div>
 
                         <!-- 2) Confirmation -->
                         <div class="form-field">
-                            <label for="confirmation">Confirmation</label>
+                            <label for="confirmation">Konfirmasi</label>
                             <select id="confirmation" name="Confirmation">
                                 <option value="" selected disabled>
-                                    Choose...
+                                    Pilih Kehadiran...
                                 </option>
-                                <option value="attending">Will Attend</option>
+                                <option value="attending">Hadir</option>
                                 <option value="not_attending">
-                                    Unable to Attend
+                                    Tidak Hadir
                                 </option>
                             </select>
                         </div>
 
                         <!-- 3) Number of Guests -->
                         <div class="form-field">
-                            <label for="guests">Number of Guests</label>
+                            <label for="guests">Jumlah Tamu</label>
                             <input
                                 type="number"
                                 id="guests"
                                 name="Guests"
                                 inputmode="numeric"
                                 step="1"
-                                placeholder="e.g. 2"
+                                placeholder="cth: 2"
                                 min="1"
                                 max="5"
                             />
@@ -726,12 +803,12 @@
 
                         <!-- 4) Wishes -->
                         <div class="form-field form-field--full">
-                            <label for="wishes">Your Wishes</label>
+                            <label for="wishes">Ucapan</label>
                             <textarea
                                 id="wishes"
                                 name="Wishes"
                                 rows="4"
-                                placeholder="Write your message for us..."
+                                placeholder="Tulis ucapan dan doa terbaikmu di sini..."
                             ></textarea>
                         </div>
                     </div>
@@ -740,7 +817,7 @@
                     <div class="form-actions">
                         <!-- type="button" supaya belum submit; nanti kamu pasang logic sendiri -->
                         <button type="button" id="btn-rsvp" class="btn-submit">
-                            SEND <i class="fa-solid fa-paper-plane"></i>
+                            Kirim <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </div>
                 </form>
@@ -750,7 +827,7 @@
                     class="wishes-section"
                     aria-label="Wishes"
                 >
-                    <h3 class="wishes-title">Wishes</h3>
+                    <h3 class="wishes-title">Kartu Ucapan</h3>
 
                     <div id="wishes-list" class="wishes-list">
                         <!-- items dirender via JS -->
@@ -766,7 +843,7 @@
                             class="w-btn"
                             aria-label="Previous page"
                         >
-                            &larr; Prev
+                            &larr; Sebelumnya
                         </button>
                         <span id="wPage" class="w-page">1/1</span>
                         <button
@@ -775,7 +852,7 @@
                             class="w-btn"
                             aria-label="Next page"
                         >
-                            Next &rarr;
+                            Berikutnya &rarr;
                         </button>
                     </nav>
                 </section>
@@ -811,7 +888,7 @@
                         class="btn-copy"
                         data-copy="#acc-number"
                     >
-                        <i class="fa-solid fa-copy"></i> Copy Account Number
+                        <i class="fa-solid fa-copy"></i> Salin Nomor Rekening
                     </button>
                 </div>
             </div>

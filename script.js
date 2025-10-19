@@ -230,7 +230,6 @@ const $ = (sel) => document.querySelector(sel);
             g.placeholder = "—";
         } else {
             g.disabled = false;
-            g.placeholder = "e.g. 2";
         }
     }
     sel.addEventListener("change", apply);
