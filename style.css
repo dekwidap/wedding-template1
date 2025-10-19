@@ -177,21 +177,7 @@ section {
     font-weight: bold;
 }
 
-/* default: jangan pecah baris (desktop) */
-.br-mobile { display: none; }
-/* mobile: pecah baris setelah "Undangan" */
-@media (max-width: 768px) {
-    .br-mobile {
-        display: inline;
-    }
-}
 
-/* optional: jamin judul tetap 1 baris di desktop meski kontainernya sempit */
-@media(max-width: 768px)  {
-    .myFont {
-        white-space: nowrap;
-    }
-}
 
 /* AREA AMAN DI DALAM FRAME */
 .safe-area {
@@ -1467,12 +1453,11 @@ section {
     text-align: center;
     font-family: "Playwrite CA", cursive;
     font-size: clamp(2rem, 4.5vw, 2.6rem);
-    margin: 0 0 2rem;
     color: var(--gold);
 }
 
 .gift-text {
-    text-align: center;
+    text-align: justify;
     margin-bottom: 1rem;
     color: #f0f0f0;
     font-size: clamp(0.8rem, 2.5vw, 1rem);
