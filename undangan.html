@@ -1392,5 +1392,105 @@
                 );
             })();
         </script>
+
+        <script>
+            // MUSIC — tampil & auto-play jika user pernah membuka undangan
+            (function () {
+                const audio = document.getElementById("bgm");
+                const btn = document.getElementById("music-toggle"); // <button id="music-toggle" class="music-btn">...</button>
+                const icon = btn.querySelector("i");
+                const TARGET_VOL = 0.5;
+                const STORAGE_KEY = "inv_has_opened"; // "1" jika user pernah klik Buka Undangan
+
+                function showMusicBtn() {
+                    btn.classList.add("is-visible");
+                }
+                function hideMusicBtn() {
+                    btn.classList.remove("is-visible");
+                }
+                function setPlayingUI(isPlaying) {
+                    btn.setAttribute("aria-pressed", String(isPlaying));
+                    btn.setAttribute(
+                        "aria-label",
+                        isPlaying ? "Pause music" : "Play music"
+                    );
+                    icon.className = isPlaying
+                        ? "fa-solid fa-pause"
+                        : "fa-solid fa-play";
+                }
+                function fadeTo(volTarget = TARGET_VOL, ms = 900) {
+                    return new Promise((resolve) => {
+                        const start = audio.volume,
+                            diff = volTarget - start;
+                        if (Math.abs(diff) < 0.001) return resolve();
+                        const steps = Math.max(1, Math.round(ms / 50));
+                        let i = 0;
+                        (function tick() {
+                            i++;
+                            audio.volume = Math.max(
+                                0,
+                                Math.min(1, start + diff * (i / steps))
+                            );
+                            i >= steps ? resolve() : setTimeout(tick, 50);
+                        })();
+                    });
+                }
+                async function playWithFade() {
+                    try {
+                        audio.volume = 0;
+                        await audio.play(); // jika diblokir, catch
+                        await fadeTo(TARGET_VOL, 1200);
+                        setPlayingUI(true);
+                    } catch (e) {
+                        console.debug("audio play blocked:", e);
+                        setPlayingUI(false); // tombol tetap tampil untuk manual
+                    }
+                }
+                async function pauseWithFade() {
+                    await fadeTo(0, 200);
+                    audio.pause();
+                    setPlayingUI(false);
+                }
+
+                // init
+                audio.volume = TARGET_VOL;
+
+                const hasOpenedBefore =
+                    localStorage.getItem(STORAGE_KEY) === "1";
+                if (hasOpenedBefore) {
+                    showMusicBtn(); // selalu tampilkan tombol jika pernah membuka
+                    playWithFade(); // coba auto-play (kalau gagal, user klik manual)
+                } else {
+                    hideMusicBtn(); // sembunyikan sampai user klik Buka Undangan
+                    setPlayingUI(false);
+                }
+
+                // Toggle manual
+                btn.addEventListener("click", async () => {
+                    if (audio.paused) await playWithFade();
+                    else await pauseWithFade();
+                });
+
+                // Saat "Buka Undangan" diklik → simpan flag + tampilkan tombol + play
+                document.addEventListener(
+                    "click",
+                    async (e) => {
+                        const openBtn = e.target.closest(".btn-enter");
+                        if (!openBtn) return;
+                        try {
+                            localStorage.setItem(STORAGE_KEY, "1");
+                        } catch {}
+                        showMusicBtn();
+                        if (audio.paused) await playWithFade();
+                    },
+                    true
+                );
+            })();
+        </script>
+
+        <script>
+            // AOS Animation
+            AOS.init();
+        </script>
     </body>
 </html>
