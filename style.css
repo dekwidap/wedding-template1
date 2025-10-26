@@ -2360,8 +2360,24 @@ body.no-snap {
     gap: 10px;
 }
 
+.gallery-grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    grid-auto-flow: dense;
+    gap: 10px;
+}
+
 /* Gaya umum gambar */
 .gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Gaya umum gambar */
+.gallery-grid2 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -2374,6 +2390,11 @@ body.no-snap {
     grid-column: span 2;
 }
 
+/* Gambar landscape lebih lebar */
+.gallery-grid2 img.landscape {
+    grid-column: span 2;
+}
+
 /* === RESPONSIVE: MOBILE 2 COLUMN === */
 @media (max-width: 768px) {
     .gallery-grid {
@@ -2381,6 +2402,13 @@ body.no-snap {
     }
 
     .gallery-grid img.landscape {
+        grid-column: span 1; /* reset agar landscape tetap sejajar */
+    }
+    .gallery-grid2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid2 img.landscape {
         grid-column: span 1; /* reset agar landscape tetap sejajar */
     }
 }
